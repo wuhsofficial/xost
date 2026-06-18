@@ -1,0 +1,16 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ParticleSphere — 3D rotating particle sphere container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Allow orbit controls to receive pointer events on the canvas itself */
+.container canvas {
+  pointer-events: auto;
+}

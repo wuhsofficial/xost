@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GradientMesh — ambient drifting gradient background
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Shared blob base ──────────────────────────────────────────────────── */
+.blob {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  will-change: transform;
+}
+
+/* ─── Corner positions ──────────────────────────────────────────────────── */
+.blob1 {
+  top: -10%;
+  left: -10%;
+}
+
+.blob2 {
+  top: -10%;
+  right: -10%;
+}
+
+.blob3 {
+  bottom: -10%;
+  left: -10%;
+}
+
+.blob4 {
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ─── Drift animations (keyframes defined in animations.css) ────────────── */
+.drift1 {
+  animation: meshDrift1 20s ease-in-out infinite;
+}
+
+.drift2 {
+  animation: meshDrift2 25s ease-in-out infinite;
+}
+
+.drift3 {
+  animation: meshDrift3 22s ease-in-out infinite;
+}
+
+.drift4 {
+  animation: meshDrift4 28s ease-in-out infinite;
+}
+
+/* ─── Dark mode — reduce intensity ──────────────────────────────────────── */
+:global([data-theme="dark"]) .blob {
+  opacity: 0.25;
+}

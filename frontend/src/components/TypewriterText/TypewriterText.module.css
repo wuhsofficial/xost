@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TypewriterText — character-by-character text typing effect
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.container {
+  display: inline;
+  position: relative;
+}
+
+.text {
+  display: inline;
+}
+
+/* ─── Blinking cursor ───────────────────────────────────────────────────── */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--accent-aqua);
+
+  /* cursorBlink keyframe is defined in animations.css */
+  animation: cursorBlink 530ms step-end infinite;
+}
+
+/* During active typing, keep cursor solid (no blink) for less visual noise */
+.cursor.typing {
+  animation: none;
+  opacity: 1;
+}

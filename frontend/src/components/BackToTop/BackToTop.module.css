@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   BackToTop — floating scroll-to-top button
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.button {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  background: var(--gradient-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+
+  /* Smooth appear / disappear */
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out,
+    box-shadow 250ms ease-out;
+
+  /* Subtle idle pulse */
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+.button.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.button:hover {
+  box-shadow: 0 0 24px var(--hover-glow);
+  transform: scale(1.1);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 1;
+}

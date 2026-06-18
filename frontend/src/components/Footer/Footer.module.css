@@ -1,0 +1,269 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Footer — Dark footer with 4-column layout, social icons, copyright bar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.footer {
+  width: 100%;
+}
+
+/* ─── Gradient top border ──────────────────────────────────────────────────── */
+.gradientBorder {
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+/* ─── Body ─────────────────────────────────────────────────────────────────── */
+.body {
+  background: var(--footer-bg);
+  padding: 48px 64px;
+}
+
+.columns {
+  display: flex;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ─── Brand column (flex: 3) ───────────────────────────────────────────────── */
+.brandCol {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brandLogo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brandTagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--footer-text);
+}
+
+.brandDescription {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--footer-text);
+  opacity: 0.7;
+  line-height: 1.6;
+  margin: 4px 0 0;
+  max-width: 320px;
+}
+
+/* ─── Social icons row ─────────────────────────────────────────────────────── */
+.socialRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(203, 213, 224, 0.2);
+  background: transparent;
+  color: var(--footer-text);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 200ms ease-out, border-color 200ms ease-out,
+    box-shadow 200ms ease-out, color 200ms ease-out;
+}
+
+.socialIcon:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+  color: var(--accent-aqua);
+}
+
+/* ─── Generic column ───────────────────────────────────────────────────────── */
+.column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* First service column gets more room */
+.columns > .column:nth-child(2) {
+  flex: 3;
+}
+
+.columnTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pure-white);
+  margin: 0 0 16px;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ─── Footer links ─────────────────────────────────────────────────────────── */
+.footerLink {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--footer-text);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: color 150ms ease-out, opacity 150ms ease-out;
+}
+
+.footerLink:hover {
+  color: var(--accent-aqua);
+  opacity: 1;
+}
+
+/* ─── Contact items ────────────────────────────────────────────────────────── */
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--footer-text);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: color 150ms ease-out, opacity 150ms ease-out;
+}
+
+a.contactItem:hover {
+  color: var(--accent-aqua);
+  opacity: 1;
+}
+
+.contactIcon {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--accent-aqua);
+  opacity: 0.8;
+}
+
+/* ─── Copyright bar ────────────────────────────────────────────────────────── */
+.copyrightBar {
+  background: var(--footer-bg);
+  border-top: 1px solid rgba(203, 213, 224, 0.1);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Ensure copyright bar background extends full width */
+.footer > .copyrightBar {
+  max-width: none;
+  background: var(--footer-bg);
+}
+
+.copyrightText {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--footer-text);
+  opacity: 0.6;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legalLink {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--footer-text);
+  opacity: 0.6;
+  text-decoration: none;
+  transition: color 150ms ease-out, opacity 150ms ease-out;
+}
+
+.legalLink:hover {
+  color: var(--accent-aqua);
+  opacity: 1;
+}
+
+.legalSeparator {
+  font-size: 12px;
+  color: var(--footer-text);
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Responsive Breakpoints
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Large desktop */
+@media (min-width: 1400px) {
+  .columns {
+    display: grid;
+    grid-template-columns: 2fr repeat(7, 1fr);
+  }
+}
+
+/* Standard desktop */
+@media (max-width: 1399px) and (min-width: 1024px) {
+  .columns {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 600px) {
+  .body {
+    padding: 40px 32px;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  .body {
+    padding: 36px 24px;
+  }
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .copyrightBar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 20px 24px;
+  }
+}

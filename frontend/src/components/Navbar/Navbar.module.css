@@ -1,0 +1,384 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Navbar — Glassmorphic sticky nav with mobile bottom-sheet + dark mode toggle
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Navbar container ─────────────────────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 16px 32px;
+  transition: background 200ms ease-out, backdrop-filter 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 8px;
+}
+
+/* ─── Logo ─────────────────────────────────────────────────────────────────── */
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* ─── Desktop links ────────────────────────────────────────────────────────── */
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 200ms ease-out, font-weight 200ms ease-out;
+}
+
+.navLink.active {
+  font-weight: 600;
+  color: var(--accent-aqua);
+}
+
+/* Animated underline */
+.underline {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: 1px;
+  transition: width 250ms ease-out;
+}
+
+.navLink:hover .underline,
+.navLink.active .underline {
+  width: 24px;
+}
+
+/* ─── Dark mode toggle (desktop) ───────────────────────────────────────────── */
+.darkModeToggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--accent-aqua);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 200ms ease-out, border-color 200ms ease-out;
+}
+
+.darkModeToggle:hover {
+  background: var(--card-surface);
+  border-color: var(--accent-aqua);
+}
+
+/* ─── CTA button (desktop) ─────────────────────────────────────────────────── */
+.ctaGroup {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.ctaButton {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bg-primary); /* Changed to background primary for contrast on gradient */
+  background: var(--gradient-accent);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: box-shadow 200ms ease-out;
+}
+
+.ctaButtonGhost {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 9px 19px; /* slightly smaller padding to account for border */
+  cursor: pointer;
+  transition: border-color 200ms ease-out, background 200ms ease-out;
+}
+
+.ctaButtonGhost:hover {
+  border-color: var(--accent-aqua);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.ctaButton:hover {
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.35);
+}
+
+/* ─── Hamburger (mobile) ───────────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  font-size: 22px;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ─── Mobile overlay + bottom sheet ────────────────────────────────────────── */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 200ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobileSheet {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
+  padding: 16px 24px 32px;
+  animation: slideUp 300ms ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.dragHandle {
+  width: 40px;
+  height: 4px;
+  background: var(--text-muted);
+  opacity: 0.3;
+  border-radius: 2px;
+  margin: 0 auto 24px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 20px;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobileLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileLinkItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileLinkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mobileLink {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 12px 8px;
+  border-radius: 8px;
+  transition: background 200ms ease-out, color 200ms ease-out;
+  min-height: 44px;
+}
+
+.mobileSubmenuToggle {
+  color: var(--text-secondary);
+  font-size: 16px;
+  padding: 12px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileSubLinks {
+  list-style: none;
+  padding-left: 12px;
+  margin-top: 4px;
+  margin-left: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--card-border);
+}
+
+.mobileSubLink {
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: color 200ms ease-out;
+  min-height: 44px;
+}
+
+.mobileSubLink:hover {
+  color: var(--accent-aqua);
+}
+
+.mobileLink:hover {
+  background: rgba(0, 212, 255, 0.06);
+}
+
+.mobileLinkActive {
+  font-weight: 600;
+  color: var(--accent-aqua);
+}
+
+.activeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-aqua);
+  flex-shrink: 0;
+}
+
+/* ─── Mobile dark mode toggle ──────────────────────────────────────────────── */
+.mobileDarkModeToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  cursor: pointer;
+  transition: background 200ms ease-out, border-color 200ms ease-out;
+}
+
+.mobileDarkModeToggle:hover {
+  background: rgba(0, 212, 255, 0.06);
+  border-color: var(--accent-aqua);
+}
+
+.mobileDarkModeIcon {
+  color: var(--accent-aqua);
+  font-size: 18px;
+}
+
+.mobileDarkModeLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ─── Mobile CTA ───────────────────────────────────────────────────────────── */
+.mobileCTA {
+  width: 100%;
+  margin-top: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--gradient-accent);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: box-shadow 200ms ease-out;
+}
+
+.mobileCTA:hover {
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.35);
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 16px 20px;
+  }
+
+  .desktopLinks,
+  .ctaButton,
+  .darkModeToggle {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobileOverlay {
+    display: none;
+  }
+
+  .mobileDarkModeToggle {
+    display: none;
+  }
+}

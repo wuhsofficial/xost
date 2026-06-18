@@ -1,0 +1,145 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GradientButton — Filled & Ghost variants with shimmer sweep + ripple
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Shared base ──────────────────────────────────────────────────────────── */
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  transition: box-shadow 200ms ease-out, transform 150ms ease-out;
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+/* Shimmer pseudo-element */
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.button:hover::after {
+  animation: shimmerSweep 800ms ease-out forwards;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* ─── Filled variant ───────────────────────────────────────────────────────── */
+.filled {
+  background: var(--gradient-accent);
+  color: var(--text-primary);
+}
+
+.filled:hover {
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.35);
+}
+
+/* ─── Ghost variant ────────────────────────────────────────────────────────── */
+.ghost {
+  background: transparent;
+  color: transparent;
+  position: relative;
+}
+
+/* Gradient border via pseudo-element (border-image breaks border-radius) */
+.ghost::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: var(--gradient-accent);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Gradient text for ghost label */
+.ghost .label {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ghost .icon {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ghost:hover {
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.2);
+}
+
+/* ─── Icon ─────────────────────────────────────────────────────────────────── */
+.icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ─── Label ────────────────────────────────────────────────────────────────── */
+.label {
+  white-space: nowrap;
+}
+
+/* ─── Ripple effect ────────────────────────────────────────────────────────── */
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  animation: rippleExpand 600ms ease-out forwards;
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

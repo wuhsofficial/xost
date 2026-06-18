@@ -1,0 +1,22 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MagneticButton — transparent magnetic-effect wrapper
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wrapper {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.inner {
+  display: inline-block;
+  will-change: transform;
+
+  /* Spring-back transition when mouse leaves */
+  transition: transform 300ms ease-out;
+}
+
+/* Remove transition while actively tracking the cursor for snappy feel */
+.inner.active {
+  transition: none;
+}

@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ScrollReveal — Directional reveal on scroll
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wrapper {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-out;
+  /* transitionDuration and transitionDelay set via inline style */
+  will-change: opacity, transform;
+}
+
+/* ─── Direction: Up (default) ──────────────────────────────────────────── */
+.dirUp {
+  transform: translateY(30px);
+}
+
+/* ─── Direction: Left (slide in from left) ─────────────────────────────── */
+.dirLeft {
+  transform: translateX(-40px);
+}
+
+/* ─── Direction: Right (slide in from right) ───────────────────────────── */
+.dirRight {
+  transform: translateX(40px);
+}
+
+/* ─── Direction: Scale ─────────────────────────────────────────────────── */
+.dirScale {
+  transform: scale(0.85);
+}
+
+/* ─── Visible state ────────────────────────────────────────────────────── */
+.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}

@@ -1,0 +1,312 @@
+.subPageMain {
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.heroSection {
+  position: relative;
+  padding: 120px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.blobPositioner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px var(--card-shadow);
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 32px;
+  color: var(--accent-aqua);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.breadcrumbLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbLink:hover {
+  color: var(--accent-aqua);
+}
+
+.breadcrumbSeparator {
+  color: var(--card-border);
+}
+
+.breadcrumbCurrent {
+  color: var(--accent-aqua);
+  font-weight: 700;
+}
+
+.heroTitleText {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.heroDesc {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ─── Generic Content Block ────────────────────────────────────────────── */
+.contentSection {
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.bentoItem {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 20px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bentoHighlight {
+  grid-column: 1 / -1;
+  background: var(--gradient-bg);
+}
+
+.bentoItem h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.bentoItem p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.featureList li {
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.featureList li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-aqua);
+}
+
+.ctaButton {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 12px 24px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── Globe Section (Where We Work) ─────────────────────────────────────── */
+.globeSection {
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 3rem;
+}
+
+.mapContainer {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 2/1;
+  position: relative;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05), transparent 70%);
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+}
+
+.abstractMap {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(var(--card-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.mapDot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dotLabel {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--card-surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+}
+
+.hqDot {
+  top: 45%;
+  left: 65%;
+  background: #00FFB3;
+  z-index: 10;
+}
+
+.hqDot .dotLabel {
+  color: #00FFB3;
+  border-color: rgba(0, 255, 179, 0.3);
+}
+
+.dotPulse {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid #00FFB3;
+  animation: pulse 2s infinite ease-out;
+}
+
+/* North America */
+.nyDot { top: 36%; left: 28%; }
+.sfDot { top: 38%; left: 18%; }
+.torDot { top: 32%; left: 26%; }
+.mexDot { top: 45%; left: 24%; }
+
+/* South America */
+.spDot { top: 65%; left: 34%; }
+.baDot { top: 75%; left: 32%; }
+
+/* Europe */
+.lonDot { top: 32%; left: 48%; }
+.berDot { top: 31%; left: 51%; }
+.parDot { top: 34%; left: 49%; }
+
+/* Africa */
+.caiDot { top: 42%; left: 55%; }
+.ctDot { top: 75%; left: 53%; }
+
+/* Asia (HQ is Lahore: 45%, 65%) */
+.dxbDot { top: 45%; left: 60%; }
+.mumDot { top: 50%; left: 66%; }
+.sinDot { top: 58%; left: 75%; }
+.tyoDot { top: 38%; left: 85%; }
+.beiDot { top: 35%; left: 80%; }
+
+/* Oceania */
+.sydDot { top: 75%; left: 88%; }
+
+@keyframes pulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ─── Marquee (Industries) ──────────────────────────────────────────────── */
+.marqueeStrip {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  width: max-content;
+  gap: 2rem;
+  align-items: center;
+}

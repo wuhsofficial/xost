@@ -1,0 +1,53 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: var(--bg-primary);
+  overflow: hidden;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* Gradient overlay for fading edges */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(circle at center, transparent 40%, var(--bg-primary) 100%);
+}
+
+.floatingItem {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--card-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: default;
+  user-select: none;
+  z-index: 1;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.logoLabel {
+  font-weight: bold;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}

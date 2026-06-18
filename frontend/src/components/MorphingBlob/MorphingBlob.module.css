@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MorphingBlob — organic shape with animated border-radius
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.blob {
+  position: absolute;
+  border: 1px solid var(--card-border);
+  pointer-events: none;
+
+  /* Initial organic shape — will be overridden by keyframe immediately */
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+
+  /* blobMorph keyframe is defined in animations.css */
+  animation: blobMorph ease-in-out infinite;
+
+  /* Duration is set via inline style prop */
+  will-change: border-radius, transform;
+}

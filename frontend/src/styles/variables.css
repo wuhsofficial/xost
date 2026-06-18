@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CSS Custom Properties — Design Tokens
+   Maps every Flutter AppColors + AppGradients value to CSS variables.
+   Includes dark mode overrides via [data-theme="dark"]
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Backgrounds ─────────────────────────────────────────────────── */
+  --bg-primary: #F0FFFE;
+  --bg-secondary: #F0FFF8;
+  --bg-gradient-end: #EBF9F4;
+
+  /* ─── Accent Colors ───────────────────────────────────────────────── */
+  --accent-aqua: #00D4FF;
+  --accent-mint: #00FFB3;
+
+  /* ─── Text Colors ─────────────────────────────────────────────────── */
+  --text-primary: #0D1B2A;
+  --text-secondary: #2D3748;
+  --text-muted: #718096;
+
+  /* ─── Card / Surface ──────────────────────────────────────────────── */
+  --card-surface: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(0, 212, 255, 0.25);
+  --card-shadow: rgba(0, 212, 255, 0.12);
+  --hover-glow: rgba(0, 212, 255, 0.45);
+
+  /* ─── Footer / Dark Sections ──────────────────────────────────────── */
+  --footer-bg: #0A0F1E;
+  --footer-bg-end: #111827;
+  --footer-text: #CBD5E0;
+
+  /* ─── Utility ─────────────────────────────────────────────────────── */
+  --pure-white: #FFFFFF;
+
+  /* ─── Gradients ───────────────────────────────────────────────────── */
+  --gradient-accent: linear-gradient(135deg, #00D4FF, #00FFB3);
+  --gradient-hero: linear-gradient(to bottom right, #00D4FF, #00FFB3);
+  --gradient-bg: linear-gradient(to bottom, #F0FFFE, #EBF9F4);
+  --gradient-dark: linear-gradient(to bottom, #0A0F1E, #111827);
+  --gradient-gold: linear-gradient(135deg, #FFB800, #FF8C00);
+  --gradient-card-hover: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(0,255,179,0.05));
+
+  /* ─── Spacing Scale ───────────────────────────────────────────────── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+
+  /* ─── Border Radius ───────────────────────────────────────────────── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ─── Transitions ─────────────────────────────────────────────────── */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 200ms ease-out;
+  --transition-slow: 300ms ease-out;
+  --transition-slower: 500ms ease-out;
+
+  /* ─── Noise Overlay ───────────────────────────────────────────────── */
+  --noise-opacity: 0.035;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK MODE — Override all color tokens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+  --bg-primary: #0A0F1E;
+  --bg-secondary: #0F1629;
+  --bg-gradient-end: #111827;
+
+  --text-primary: #E2E8F0;
+  --text-secondary: #A0AEC0;
+  --text-muted: #718096;
+
+  --card-surface: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(0, 212, 255, 0.18);
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --hover-glow: rgba(0, 212, 255, 0.35);
+
+  --footer-bg: #050810;
+  --footer-bg-end: #0A0F1E;
+  --footer-text: #94A3B8;
+
+  --pure-white: #E2E8F0;
+
+  --gradient-bg: linear-gradient(to bottom, #0A0F1E, #111827);
+  --gradient-card-hover: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,255,179,0.08));
+
+  --noise-opacity: 0.025;
+}

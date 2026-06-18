@@ -1,0 +1,55 @@
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  margin: 12px 0;
+  /* Fading edges */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  align-items: center;
+}
+
+.trackLeft {
+  animation: scrollLeft linear infinite;
+}
+
+.trackRight {
+  animation: scrollRight linear infinite;
+}
+
+.companyBadge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.companyBadge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--pure-white);
+  border-color: var(--accent-aqua);
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-33.33% - 8px)); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(calc(-33.33% - 8px)); }
+  100% { transform: translateX(0); }
+}

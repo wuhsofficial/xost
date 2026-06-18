@@ -1,0 +1,15 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   WaveDivider — Animated sine-wave gradient divider
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

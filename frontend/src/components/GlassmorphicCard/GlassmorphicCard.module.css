@@ -1,0 +1,19 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GlassmorphicCard — Frosted-glass container with hover glow
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.card {
+  background: var(--card-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px var(--card-shadow);
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.card:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow:
+    0 12px 48px var(--card-shadow),
+    0 0 24px rgba(0, 212, 255, 0.08);
+}

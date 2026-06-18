@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   IndustriesPage Styles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.page {
+  padding: 80px 80px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.pageTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.pageSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ─── Detailed List ──────────────────────────────────────────────────────── */
+.detailedList {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.industryBlock {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 4px 20px var(--card-shadow);
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-color 300ms ease-out;
+}
+
+.industryBlock:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-aqua);
+  box-shadow: 0 12px 32px var(--hover-glow);
+}
+
+.blockHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.iconBox {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconBox svg {
+  width: 28px;
+  height: 28px;
+  color: #FFFFFF;
+}
+
+.blockTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.blockContent {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.subHeading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.bullets ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.checkIcon {
+  color: var(--accent-mint);
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.challengesPanel {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.challengesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.challengeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.challengeTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrowIcon {
+  color: var(--accent-aqua);
+  font-size: 14px;
+}
+
+.challengeDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  padding-left: 22px;
+}
+
+/* ─── Marquees ──────────────────────────────────────────────────────────── */
+.marqueeWrapper {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--card-border);
+}
+
+.marqueeHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .blockContent {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 60px 20px 80px;
+  }
+
+  .pageTitle {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .industryBlock {
+    padding: 24px;
+  }
+
+  .blockHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .blockTitle {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}

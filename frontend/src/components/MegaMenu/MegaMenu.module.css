@@ -1,0 +1,97 @@
+.megaMenuPositioner {
+  position: absolute;
+  top: 100%;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.megaMenuContainer {
+  width: max-content;
+  max-width: 800px;
+  background: var(--bg-primary); /* Solid background instead of transparent */
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 40px var(--card-shadow);
+  padding: 1rem;
+  margin-top: 10px; /* Small gap from navbar */
+  pointer-events: auto;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  pointer-events: none; /* Let clicks pass through if needed, or handle explicitly */
+}
+
+.megaMenuInner {
+  /* No longer full width */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: background-color 200ms ease-out, transform 200ms ease-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.gridItem:hover {
+  background-color: var(--hover-glow);
+  transform: translateY(-2px);
+}
+
+.iconWrapper {
+  font-size: 18px;
+  color: var(--accent-aqua);
+  background: var(--bg-primary);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.itemTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.itemDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .megaMenuPositioner,
+  .megaMenuContainer {
+    display: none !important;
+  }
+}

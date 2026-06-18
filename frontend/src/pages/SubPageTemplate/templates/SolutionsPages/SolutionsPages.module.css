@@ -1,0 +1,206 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.heroHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.heroHeadline {
+  font-size: 2.5rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubhead {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+}
+
+/* Grids */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.statCard {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-aqua);
+}
+
+.statLabel {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bentoGridLarge {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.bentoCard {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bentoIcon {
+  color: var(--accent-aqua);
+  width: 32px;
+  height: 32px;
+}
+
+/* Split Layouts */
+.splitLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .splitLayout { grid-template-columns: 1fr; }
+}
+
+/* Timeline Flow */
+.flowContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-surface);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--card-border);
+  overflow-x: auto;
+}
+
+.flowNode {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  color: var(--accent-aqua);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.flowLine {
+  height: 2px;
+  flex-grow: 1;
+  background: var(--gradient-accent);
+  margin: 0 1rem;
+  transform-origin: left center;
+}
+
+/* ROI Calculator */
+.roiCalculator {
+  background: var(--card-surface);
+  border: 1px solid var(--accent-aqua);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.roiInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.roiInput {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--card-border);
+  padding: 0.8rem;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+}
+.roiResult {
+  background: rgba(0, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+.roiAmount {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-aqua);
+}
+
+.lottieHero {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Parallax Section */
+.parallaxSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--card-border);
+  text-align: center;
+  padding: 2rem;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.comparisonTable th, .comparisonTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+.comparisonTable th {
+  color: var(--accent-aqua);
+  font-weight: 600;
+}

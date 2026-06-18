@@ -1,0 +1,107 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SplashScreen — Phased intro animation overlay
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Full-screen overlay ──────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 400ms ease-out;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── Centered content wrapper ─────────────────────────────────────────────── */
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ─── Logo — shared text style ─────────────────────────────────────────────── */
+.logoOutline,
+.logoFill {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.15;
+  user-select: none;
+}
+
+/* ─── Phase 1: stroke-draw outline (clip-path reveal) ──────────────────────── */
+.logoOutline {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent-aqua);
+  opacity: 0.6;
+  animation: strokeDraw 1.5s ease-out forwards;
+}
+
+@keyframes strokeDraw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ─── Phase 2: gradient fill (positioned over outline) ─────────────────────── */
+.logoFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+
+.logoFill.visible {
+  opacity: 1;
+}
+
+/* ─── Phase 3: tagline ─────────────────────────────────────────────────────── */
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+
+.tagline.visible {
+  opacity: 1;
+}
+
+/* ─── Mobile adjustments ───────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .logoOutline,
+  .logoFill {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+}

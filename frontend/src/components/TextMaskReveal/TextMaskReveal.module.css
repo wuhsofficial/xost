@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TextMaskReveal — scroll-triggered clip-path text reveal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  /* Start hidden — clipped out and shifted down */
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transform: translateY(20px);
+  opacity: 0;
+
+  /* Transition for reveal */
+  transition:
+    clip-path 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Inherit parent's margin/padding so spacing is preserved */
+  margin: 0;
+}
+
+/* Revealed state */
+.visible .content {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: translateY(0);
+  opacity: 1;
+}

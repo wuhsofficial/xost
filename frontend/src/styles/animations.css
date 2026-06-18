@@ -1,0 +1,170 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared Animation Keyframes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Shimmer Sweep (for gradient button hover) ───────────────────────────── */
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* ─── Shimmer Loading (for skeleton placeholders) ─────────────────────────── */
+@keyframes shimmerLoad {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Float Bob (for floating shapes in hero) ─────────────────────────────── */
+@keyframes floatBob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8px, -15px) scale(1.05); }
+}
+@keyframes floatBob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8px, 15px) scale(0.95); }
+}
+@keyframes floatBob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6px, -12px) scale(1.03); }
+}
+
+/* ─── Marquee (for tech stack auto-scroll) ────────────────────────────────── */
+@keyframes marqueeForward {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+@keyframes marqueeReverse {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+/* ─── Fade In (general purpose) ───────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ─── Fade In Up ──────────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Fade In Scale ───────────────────────────────────────────────────────── */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Pulse Glow ──────────────────────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 20px 4px rgba(0, 212, 255, 0.15); }
+}
+
+/* ─── Spin (for loading indicators) ───────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Stroke Draw (for splash logo) ───────────────────────────────────────── */
+@keyframes strokeDraw {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEW PREMIUM ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Text Mask Reveal ────────────────────────────────────────────────────── */
+@keyframes textMaskReveal {
+  from {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ─── Ripple Expand (for button click ripple) ─────────────────────────────── */
+@keyframes rippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+/* ─── Typewriter Blink Cursor ─────────────────────────────────────────────── */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Gradient Mesh Drift ─────────────────────────────────────────────────── */
+@keyframes meshDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, -40px) scale(1.1); }
+  50% { transform: translate(-30px, 50px) scale(0.95); }
+  75% { transform: translate(40px, 20px) scale(1.05); }
+}
+@keyframes meshDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-50px, 30px) scale(1.05); }
+  50% { transform: translate(40px, -60px) scale(1.1); }
+  75% { transform: translate(-20px, -30px) scale(0.95); }
+}
+@keyframes meshDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, 50px) scale(0.95); }
+  50% { transform: translate(-60px, -20px) scale(1.05); }
+  75% { transform: translate(50px, -40px) scale(1.1); }
+}
+@keyframes meshDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  25% { transform: translate(-40px, -50px) scale(1); }
+  50% { transform: translate(50px, 30px) scale(1.1); }
+  75% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+/* ─── Blob Morph (for SVG path morphing) ──────────────────────────────────── */
+@keyframes blobMorph {
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 70% 30% 46% 54% / 30% 58% 42% 70%;
+    transform: rotate(90deg);
+  }
+  50% {
+    border-radius: 30% 70% 30% 70% / 58% 42% 58% 42%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 54% 46% 58% 42% / 70% 30% 70% 30%;
+    transform: rotate(270deg);
+  }
+}
+
+/* ─── Back to Top Pulse ───────────────────────────────────────────────────── */
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ─── Bounce In (for spring-like counters) ────────────────────────────────── */
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
