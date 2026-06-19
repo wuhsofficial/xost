@@ -8,10 +8,10 @@ import { megaMenuData } from '../../data/megaMenuData';
 import styles from './Footer.module.css';
 
 const SOCIAL_LINKS = [
-  { icon: faLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: faGithub, href: 'https://github.com', label: 'GitHub' },
-  { icon: faInstagram, href: 'https://instagram.com', label: 'Instagram' },
-  { icon: faXTwitter, href: 'https://x.com', label: 'X (Twitter)' },
+  { icon: faLinkedinIn, href: 'https://linkedin.com/company/xost', label: 'LinkedIn' },
+  { icon: faGithub, href: 'https://github.com/xost-agency', label: 'GitHub' },
+  { icon: faInstagram, href: 'https://instagram.com/xost.agency', label: 'Instagram' },
+  { icon: faXTwitter, href: 'https://x.com/xostagency', label: 'X (Twitter)' },
 ];
 
 /**
@@ -23,6 +23,17 @@ export default function Footer() {
 
   // State for accordion functionality
   const [expandedTabs, setExpandedTabs] = useState<Record<string, boolean>>({});
+
+  // Newsletter state
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail.trim()) {
+      setNewsletterSubmitted(true);
+    }
+  };
 
   const toggleTab = (tab: string) => {
     setExpandedTabs(prev => ({
@@ -38,6 +49,50 @@ export default function Footer() {
 
       {/* Main body */}
       <div className={styles.body}>
+        {/* ── Newsletter Section ──────────────────────────────────────── */}
+        <motion.div
+          className={styles.newsletterSection}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <div className={styles.newsletterContent}>
+            <div className={styles.newsletterText}>
+              <h3 className={styles.newsletterHeadline}>Stay Ahead of the Curve</h3>
+              <p className={styles.newsletterSubtext}>
+                Get weekly insights on AI, cloud, and digital innovation
+              </p>
+            </div>
+            {newsletterSubmitted ? (
+              <motion.div
+                className={styles.newsletterSuccess}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                <span className={styles.newsletterSuccessIcon}>✓</span>
+                Subscribed! Thank you.
+              </motion.div>
+            ) : (
+              <form className={styles.newsletterForm} onSubmit={handleNewsletterSubmit}>
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  className={styles.newsletterInput}
+                  aria-label="Email address for newsletter"
+                />
+                <button type="submit" className={styles.newsletterButton}>
+                  Subscribe
+                </button>
+              </form>
+            )}
+          </div>
+        </motion.div>
+
         <div className={styles.columns}>
           {/* ── Brand column ──────────────────────────────────────────── */}
           <div className={styles.brandCol}>

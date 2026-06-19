@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark, faSun, faMoon, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faSun, faMoon, faChevronDown, faChevronUp, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import MegaMenu from '../MegaMenu/MegaMenu';
 import { megaMenuData } from '../../data/megaMenuData';
@@ -20,7 +20,7 @@ const NAV_LINKS = [
  * Navbar — glassmorphic sticky nav that transitions from transparent
  * to frosted glass on scroll, with mobile bottom-sheet menu and dark mode toggle.
  */
-export default function Navbar() {
+export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { isDark, toggle: toggleDarkMode } = useDarkMode();
@@ -157,6 +157,19 @@ export default function Navbar() {
             })}
           </ul>
 
+          {/* AI Search button */}
+          <button
+            className={styles.searchBtn}
+            onClick={onSearchOpen}
+            type="button"
+            aria-label="Open AI Search (Ctrl+K)"
+            title="AI Search  Ctrl+K"
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <span className={styles.searchLabel}>Search</span>
+            <kbd className={styles.searchKbd}>⌘K</kbd>
+          </button>
+
           {/* Desktop dark mode toggle */}
           <button
             className={styles.darkModeToggle}
@@ -198,22 +211,42 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className={styles.hamburger}
-            onClick={() => setMobileOpen(true)}
-            type="button"
-            aria-label="Open menu"
-          >
-            <FontAwesomeIcon icon={faBars} />
-          </button>
+          {/* Mobile Actions */}
+          <div className={styles.mobileActions}>
+            <button
+              className={styles.mobileSearchBtn}
+              onClick={onSearchOpen}
+              type="button"
+              aria-label="Open AI Search"
+            >
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+            <button
+              className={styles.hamburger}
+              onClick={() => setMobileOpen(true)}
+              type="button"
+              aria-label="Open menu"
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Mobile bottom-sheet overlay */}
       {mobileOpen && (
-        <div className={styles.mobileOverlay} onClick={() => setMobileOpen(false)}>
-          <div className={styles.mobileSheet} onClick={(e) => e.stopPropagation()}>
+        <div 
+          className={styles.mobileOverlay} 
+          onClick={() => setMobileOpen(false)}
+          onWheel={(e) => e.preventDefault()}
+          onTouchMove={(e) => e.preventDefault()}
+        >
+        <div 
+            className={styles.mobileSheet} 
+            onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
             {/* Drag handle */}
             <div className={styles.dragHandle} />
 

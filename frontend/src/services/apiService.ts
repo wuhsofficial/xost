@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const BASE_URL = 'http://localhost:3001/api';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -22,7 +22,7 @@ export async function getInsights() {
     if (Array.isArray(data)) return data;
     if (data && Array.isArray(data.data)) return data.data;
     return [];
-  } catch (error: any) {
+  } catch (error) {
     console.warn('[ApiService] getInsights failed:', error?.message || error);
     return [];
   }
@@ -39,25 +39,17 @@ export async function getCareers() {
     if (Array.isArray(data)) return data;
     if (data && Array.isArray(data.data)) return data.data;
     return [];
-  } catch (error: any) {
+  } catch (error) {
     console.warn('[ApiService] getCareers failed:', error?.message || error);
     return [];
   }
-}
-
-export interface ContactData {
-  name: string;
-  email: string;
-  phone?: string;
-  subject: string;
-  message: string;
 }
 
 /**
  * Submit a contact form inquiry.
  * Returns true on success, false on failure.
  */
-export async function submitContact({ name, email, phone, subject, message }: ContactData) {
+export async function submitContact({ name, email, phone, subject, message }) {
   try {
     const response = await apiClient.post('/contact', {
       name,
@@ -67,19 +59,10 @@ export async function submitContact({ name, email, phone, subject, message }: Co
       message,
     });
     return response.status === 200 || response.status === 201;
-  } catch (error: any) {
+  } catch (error) {
     console.warn('[ApiService] submitContact failed:', error?.message || error);
     return false;
   }
-}
-
-export interface ApplicationData {
-  fullName: string;
-  email: string;
-  phone?: string;
-  position: string;
-  portfolioUrl?: string;
-  coverLetter?: string;
 }
 
 /**
@@ -93,7 +76,7 @@ export async function submitApplication({
   position,
   portfolioUrl,
   coverLetter,
-}: ApplicationData) {
+}) {
   try {
     const response = await apiClient.post('/applications', {
       fullName,
@@ -104,11 +87,10 @@ export async function submitApplication({
       coverLetter,
     });
     return response.status === 200 || response.status === 201;
-  } catch (error: any) {
+  } catch (error) {
     console.warn('[ApiService] submitApplication failed:', error?.message || error);
     return false;
   }
 }
 
 export default { getInsights, getCareers, submitContact, submitApplication };
-

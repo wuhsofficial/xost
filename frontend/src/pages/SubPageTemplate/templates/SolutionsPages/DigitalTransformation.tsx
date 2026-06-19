@@ -6,13 +6,13 @@ import styles from './SolutionsPages.module.css';
 
 export default function DigitalTransformation({ pageData }) {
   const radarOptions = {
-    chart: { type: 'radar' as const, background: 'transparent', toolbar: { show: false } },
+    chart: { type: 'radar', background: 'transparent', toolbar: { show: false } },
     labels: ['Strategy', 'Culture', 'Technology', 'Operations', 'Data', 'Customer Exp'],
     stroke: { width: 2, colors: ['#00FFFF'] },
     fill: { opacity: 0.2, colors: ['#00FFFF'] },
     markers: { size: 4, colors: ['#fff'], strokeColors: '#00FFFF', strokeWidth: 2 },
     yaxis: { show: false },
-    theme: { mode: 'dark' as const },
+    theme: { mode: 'dark' },
     plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.1)', connectorColors: 'rgba(255,255,255,0.1)' } } }
   };
   const radarSeries = [{ name: 'Digital Maturity', data: [90, 80, 95, 85, 100, 90] }];

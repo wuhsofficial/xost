@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGamepad, faRotateRight, faTrophy, faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './FloatingLogos.module.css';
 
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -20,13 +21,19 @@ export interface ContainerSize {
 interface FloatingLogoProps {
   service: FloatingService;
   containerSize: ContainerSize;
+  isPlaying: boolean;
+  gameKey: number;
+  onCatch: () => void;
 }
 
-// Pre-calculate randomized parameters so SSR and initial render match if needed.
-// But we're client side, so we can generate on mount.
-const FloatingLogo = ({ service, containerSize }: FloatingLogoProps) => {
+const FloatingLogo = ({ service, containerSize, isPlaying, gameKey, onCatch }: FloatingLogoProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [duration, setDuration] = useState(20);
+  const [caught, setCaught] = useState(false);
+
+  useEffect(() => {
+    setCaught(false);
+  }, [gameKey]);
 
   useEffect(() => {
     // Generate initial random position
@@ -43,26 +50,39 @@ const FloatingLogo = ({ service, containerSize }: FloatingLogoProps) => {
     };
 
     // Move periodically
-    const interval = setInterval(moveLogo, 10000); // adjust every 10 seconds, but animation takes longer so it interrupts smoothly
+    const interval = setInterval(moveLogo, 10000);
     moveLogo();
 
     return () => clearInterval(interval);
   }, [containerSize]);
 
+  const handlePointerDown = () => {
+    if (isPlaying && !caught) {
+      setCaught(true);
+      onCatch();
+    }
+  };
+
   return (
     <motion.div
       className={styles.floatingItem}
-      animate={{
+      animate={caught ? { scale: 0, opacity: 0 } : {
         x: position.x,
         y: position.y,
         rotate: [0, Math.random() > 0.5 ? 5 : -5, 0]
       }}
-      transition={{
+      transition={caught ? { duration: 0.3 } : {
         x: { duration: duration, ease: "linear" },
         y: { duration: duration, ease: "linear" },
-        rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+        rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+        scale: { duration: 0.2 }
       }}
-      whileHover={{ scale: 1.1, zIndex: 10 }}
+      whileHover={!caught ? { scale: 1.1, zIndex: 10 } : {}}
+      onPointerDown={handlePointerDown}
+      style={{ 
+        cursor: isPlaying ? 'crosshair' : 'default',
+        pointerEvents: caught ? 'none' : 'auto'
+      }}
     >
       <div 
         className={styles.iconContainer}
@@ -93,7 +113,11 @@ export interface FloatingLogosProps {
 
 export default function FloatingLogos({ services }: FloatingLogosProps) {
   const [containerSize, setContainerSize] = useState<ContainerSize>({ width: 0, height: 0 });
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [score, setScore] = useState(0);
+  const [gameKey, setGameKey] = useState(0);
 
   useEffect(() => {
     const updateSize = () => {
@@ -110,11 +134,82 @@ export default function FloatingLogos({ services }: FloatingLogosProps) {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
+  const startGame = () => {
+    setIsPlaying(true);
+    setScore(0);
+    setGameKey(prev => prev + 1);
+  };
+
+  const stopGame = () => {
+    setIsPlaying(false);
+    setScore(0);
+    setGameKey(prev => prev + 1);
+  };
+
+  const handleCatch = () => {
+    setScore(prev => prev + 1);
+  };
+
+  const total = services.length;
+  const isWon = isPlaying && score === total;
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.overlay}></div>
+      
+      {/* Game HUD */}
+      <div className={styles.gameHud}>
+        {!isPlaying ? (
+          <button className={styles.gameBtn} onClick={startGame}>
+            <FontAwesomeIcon icon={faGamepad} /> Play Mini-Game
+          </button>
+        ) : (
+          <div className={styles.gameScoreBoard}>
+            <span className={styles.scoreText}>Caught: {score} / {total}</span>
+            <button className={styles.gameBtnGhost} onClick={stopGame} title="Quit">
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+            <button className={styles.gameBtnGhost} onClick={startGame} title="Restart">
+              <FontAwesomeIcon icon={faRotateRight} />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Win Overlay */}
+      <AnimatePresence>
+        {isWon && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles.winOverlay}
+          >
+            <motion.div 
+              initial={{ scale: 0.8, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              className={styles.winMessage}
+            >
+              <FontAwesomeIcon icon={faTrophy} className={styles.winIcon} />
+              <h3 style={{ fontSize: '2rem', margin: 0, color: 'var(--text-primary)' }}>You caught them all!</h3>
+              <p style={{ color: 'var(--text-secondary)' }}>Excellent reflexes. The ecosystem is fully captured.</p>
+              <button className={styles.gameBtn} onClick={startGame} style={{ marginTop: '1rem' }}>
+                Play Again
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {containerSize.width > 0 && services.map((service, i) => (
-        <FloatingLogo key={i} service={service} containerSize={containerSize} />
+        <FloatingLogo 
+          key={i} 
+          service={service} 
+          containerSize={containerSize} 
+          isPlaying={isPlaying}
+          gameKey={gameKey}
+          onCatch={handleCatch}
+        />
       ))}
     </div>
   );

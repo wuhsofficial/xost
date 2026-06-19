@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Lenis from 'lenis';
@@ -6,6 +6,8 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
 import Spotlight from './components/Spotlight/Spotlight';
+import GenAIAssistant from './components/GenAIAssistant/GenAIAssistant';
+import AISearchModal from './components/AISearchModal/AISearchModal';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -23,6 +25,22 @@ const pageVariants = {
 export default function App(): JSX.Element {
   const { pathname } = useLocation();
   const lenisRef = useRef<Lenis | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const openSearch = useCallback(() => setSearchOpen(true), []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+
+  /* ── Global Ctrl+K shortcut ──────────────────────────────── */
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   /* ── Initialize Lenis smooth scroll ─────────────────────────────── */
   useEffect(() => {
@@ -72,7 +90,7 @@ export default function App(): JSX.Element {
         {/* Noise / Grain Texture Overlay */}
         <div className="noiseOverlay" />
 
-        <Navbar />
+        <Navbar onSearchOpen={openSearch} />
         <Spotlight />
 
         <AnimatePresence mode="wait">
@@ -90,6 +108,10 @@ export default function App(): JSX.Element {
 
         <Footer />
         <BackToTop />
+
+        {/* AI Integrations — global */}
+        <GenAIAssistant />
+        <AISearchModal isOpen={searchOpen} onClose={closeSearch} />
       </div>
     </DarkModeProvider>
   );

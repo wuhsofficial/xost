@@ -900,11 +900,34 @@
 }
 
 @media (max-width: 767px) {
-  .heroTitleText { font-size: clamp(2rem, 8vw, 3rem); }
+  .heroTitleText { font-size: clamp(1.5rem, 6vw, 2.2rem); }
   .platformCoreSection, .globalReachSection { padding: 80px 24px; }
   .abstractMap { height: 300px; }
-  .leafletMapWrapper { height: 350px; } /* Reduce height for leaflet map */
+  .leafletMapWrapper { height: 350px; }
   .globalStats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .ctaRow { flex-direction: column; width: 100%; align-items: stretch; }
   .ctaGradient, .ctaGhost { width: 100%; justify-content: center; min-height: 44px; }
+
+  /* Horizontal scrolling for Engineering Engine */
+  .coreGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 24px;
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .coreGrid::-webkit-scrollbar {
+    display: none;
+  }
+  .coreCard {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+  .coreCard:last-child {
+    margin-right: 24px;
+  }
 }

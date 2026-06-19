@@ -1,9 +1,14 @@
+/* ──────────────────────────────────────────
+   ContactPage – Premium Glassmorphic Theme
+   ────────────────────────────────────────── */
+
 .contactPage {
   position: relative;
   width: 100%;
   overflow: hidden;
 }
 
+/* ── Hero ──────────────────────────────── */
 .hero {
   position: relative;
   min-height: 60vh;
@@ -51,6 +56,7 @@
   margin: 0 auto;
 }
 
+/* ── Layout ────────────────────────────── */
 .contentSection {
   max-width: 1200px;
   margin: 0 auto;
@@ -65,7 +71,7 @@
   gap: 4rem;
 }
 
-/* Form Styles */
+/* ── Form Column ───────────────────────── */
 .formCol {
   background: var(--card-surface);
   backdrop-filter: blur(20px);
@@ -73,7 +79,13 @@
   border: 1px solid var(--card-border);
   border-radius: 24px;
   padding: 3rem;
-  box-shadow: 0 20px 40px var(--card-shadow);
+  box-shadow: 0 20px 40px var(--card-shadow, rgba(0, 0, 0, 0.4));
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .formTitle {
@@ -82,6 +94,10 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-aqua));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .form {
@@ -90,15 +106,35 @@
   gap: 1.5rem;
 }
 
+/* ── Input Groups ──────────────────────── */
 .inputGroup {
   position: relative;
+}
+
+/* Icon prefix */
+.fieldIcon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--text-secondary, #888);
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+/* Textarea icon sits at top */
+.inputGroup:has(textarea) .fieldIcon {
+  top: 1.25rem;
+  transform: none;
 }
 
 .inputGroup input,
 .inputGroup textarea {
   width: 100%;
-  padding: 1.25rem 1rem 0.75rem;
-  background: rgba(255, 255, 255, 0.4);
+  padding: 1.25rem 1rem 0.75rem 2.75rem;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--card-border);
   border-radius: 12px;
   font-family: 'Inter', sans-serif;
@@ -106,42 +142,244 @@
   color: var(--text-primary);
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 .inputGroup input:focus,
 .inputGroup textarea:focus {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 212, 255, 0.04);
   border-color: var(--accent-aqua);
-  box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
 }
 
+.inputGroup:focus-within .fieldIcon {
+  color: var(--accent-aqua);
+}
+
+/* Error border */
+.inputGroup.hasError input,
+.inputGroup.hasError textarea,
+.inputGroup.hasError select {
+  border-color: #ff4d6d;
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.15);
+}
+
+/* Floating Label */
 .inputGroup label {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  left: 2.75rem;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--text-secondary, #888);
   pointer-events: none;
-  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  transition: transform 0.25s ease, font-size 0.25s ease, color 0.25s ease;
+  z-index: 1;
 }
 
 .inputGroup input:focus ~ label,
 .inputGroup input:not(:placeholder-shown) ~ label,
 .inputGroup textarea:focus ~ label,
 .inputGroup textarea:not(:placeholder-shown) ~ label {
-  transform: translateY(-0.6rem);
-  font-size: 0.75rem;
+  transform: translateY(-0.65rem);
+  font-size: 0.72rem;
+  color: var(--accent-aqua);
+  letter-spacing: 0.03em;
+}
+
+/* ── Select / Dropdown ─────────────────── */
+.selectGroup {
+  position: relative;
+}
+
+.selectGroup select {
+  width: 100%;
+  padding: 1.25rem 2.75rem 0.75rem 2.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-sizing: border-box;
+}
+
+.selectGroup select:focus {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: var(--accent-aqua);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
+}
+
+/* style placeholder option */
+.selectPlaceholder {
+  color: transparent !important;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary, #888);
+  font-size: 0.8rem;
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.selectGroup:focus-within .selectArrow {
   color: var(--accent-aqua);
 }
 
+/* Select floating label – floated when a value is chosen */
+.selectGroup label {
+  position: absolute;
+  top: 1rem;
+  left: 2.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-secondary, #888);
+  pointer-events: none;
+  transition: transform 0.25s ease, font-size 0.25s ease, color 0.25s ease;
+  z-index: 1;
+}
+
+.selectGroup select:focus ~ label,
+.labelFloated {
+  transform: translateY(-0.65rem) !important;
+  font-size: 0.72rem !important;
+  color: var(--accent-aqua) !important;
+  letter-spacing: 0.03em;
+}
+
+/* ── Error Messages ────────────────────── */
+.errorMsg {
+  display: block;
+  margin-top: 0.4rem;
+  margin-left: 0.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #ff4d6d;
+  letter-spacing: 0.01em;
+}
+
+/* ── Submit Button ─────────────────────── */
 .submitWrapper {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: flex-start;
 }
 
-/* Info Side Styles */
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-aqua, #00d4ff), var(--gradient-accent, #7c3aed));
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.submitBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.submitBtn:not(:disabled):hover::after {
+  opacity: 1;
+}
+
+.submitBtn:not(:disabled):hover {
+  box-shadow: 0 6px 28px rgba(0, 212, 255, 0.45);
+}
+
+/* Spinner spin animation */
+.spinnerIcon {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Success State ─────────────────────── */
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  flex: 1;
+}
+
+.successIconRing {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.1);
+  border: 2px solid var(--accent-aqua, #00d4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+  animation: successPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
+  50%       { box-shadow: 0 0 40px rgba(0, 212, 255, 0.45); }
+}
+
+.successIcon {
+  font-size: 2.5rem;
+  color: var(--accent-aqua, #00d4ff);
+}
+
+.successText {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.successSub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Info Column ───────────────────────── */
 .infoCol {
   display: flex;
   flex-direction: column;
@@ -173,11 +411,12 @@
   font-size: 1.125rem;
   color: var(--text-primary);
   padding: 1rem;
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.08);
   border-radius: 8px;
   border-left: 4px solid var(--accent-aqua);
 }
 
+/* ── Social Links ──────────────────────── */
 .socialSection {
   display: flex;
   flex-direction: column;
@@ -213,7 +452,7 @@
 
 .socialLink:hover {
   transform: translateX(8px);
-  box-shadow: 0 10px 20px var(--card-shadow);
+  box-shadow: 0 10px 20px var(--card-shadow, rgba(0,0,0,0.3));
   border-color: var(--accent-aqua);
 }
 
@@ -228,12 +467,13 @@
   font-size: 1.5rem;
   color: var(--text-primary);
   transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
 }
 
 .socialLink:hover .socialIconWrapper {
   color: var(--accent-aqua);
   transform: scale(1.1);
-  box-shadow: 0 0 15px var(--hover-glow);
+  box-shadow: 0 0 15px var(--hover-glow, rgba(0, 212, 255, 0.3));
 }
 
 .socialHandle {
@@ -243,6 +483,7 @@
   color: var(--text-primary);
 }
 
+/* ── Responsive ────────────────────────── */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr;
@@ -251,10 +492,76 @@
 
 @media (max-width: 768px) {
   .formCol {
-    padding: 2rem;
+    padding: 1.5rem;
+    border-radius: 18px;
   }
-  
+
+  .formTitle {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
   .heroTitle {
     font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .contentSection {
+    padding: 2.5rem 1rem 5rem;
+  }
+
+  .inputGroup input,
+  .inputGroup textarea,
+  .selectGroup select {
+    font-size: 0.95rem;
+    padding: 1.1rem 1rem 0.65rem 2.5rem;
+  }
+
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .submitWrapper {
+    justify-content: stretch;
+  }
+
+  .successIconRing {
+    width: 72px;
+    height: 72px;
+  }
+
+  .successIcon {
+    font-size: 2rem;
+  }
+
+  .successText {
+    font-size: 1.4rem;
+  }
+
+  .sponsorshipCard {
+    padding: 1.75rem;
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 6rem 1rem 3rem;
+    min-height: 50vh;
+  }
+
+  .formCol {
+    padding: 1.25rem;
+  }
+
+  .form {
+    gap: 1.25rem;
   }
 }

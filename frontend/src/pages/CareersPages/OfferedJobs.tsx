@@ -1,125 +1,417 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter, ArrowRight } from 'lucide-react';
-import styles from './CareersPages.module.css';
+import {
+  faMapPin,
+  faBriefcase,
+  faArrowRight,
+  faClock,
+  faChevronRight,
+  faWifi,
+  faHeartPulse,
+  faGraduationCap,
+  faChartLine,
+  faCalendarDays,
+  faPlane,
+  faFilter,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './OfferedJobs.module.css';
 
-const jobs = [
-  { id: 1, title: 'Lead AI Architect', dept: 'Engineering', loc: 'Remote', type: 'Full-time' },
-  { id: 2, title: 'Senior React Native Developer', dept: 'Engineering', loc: 'Dubai', type: 'Full-time' },
-  { id: 3, title: 'Product Designer (UI/UX)', dept: 'Design', loc: 'London', type: 'Full-time' },
-  { id: 4, title: 'DevOps Engineer', dept: 'Infrastructure', loc: 'Remote', type: 'Contract' },
-  { id: 5, title: 'Technical Recruiter', dept: 'HR', loc: 'Dubai', type: 'Full-time' },
-  { id: 6, title: 'Backend Node.js Developer', dept: 'Engineering', loc: 'Remote', type: 'Full-time' }
+/* ─── Data ───────────────────────────────────────────────────────────────── */
+
+const JOBS = [
+  {
+    id: 1,
+    title: 'Senior React Developer',
+    dept: 'Engineering',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Architect and ship high-performance React applications at scale. Work alongside world-class engineers building next-gen user interfaces powered by WebGL and AI.',
+    tags: ['React', 'TypeScript', 'GraphQL'],
+    color: '#00FFFF',
+  },
+  {
+    id: 2,
+    title: 'Cloud Solutions Architect',
+    dept: 'Engineering',
+    location: 'Hybrid',
+    type: 'Full-time',
+    description:
+      'Design and own multi-cloud infrastructure across AWS, GCP, and Azure. Drive architectural decisions for systems serving millions of concurrent users globally.',
+    tags: ['AWS', 'Kubernetes', 'Terraform'],
+    color: '#00FFFF',
+  },
+  {
+    id: 3,
+    title: 'AI/ML Engineer',
+    dept: 'AI & Data',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Build and fine-tune large language models and computer vision pipelines. Push the frontier of generative AI for enterprise clients across fintech and healthcare.',
+    tags: ['PyTorch', 'LLMs', 'MLOps'],
+    color: '#D946EF',
+  },
+  {
+    id: 4,
+    title: 'UI/UX Designer',
+    dept: 'Design',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Craft pixel-perfect, research-driven digital experiences. Own the end-to-end design lifecycle from wireframes to interactive Figma prototypes and design systems.',
+    tags: ['Figma', 'Design Systems', 'Prototyping'],
+    color: '#FF8C00',
+  },
+  {
+    id: 5,
+    title: 'DevOps Engineer',
+    dept: 'Engineering',
+    location: 'Hybrid',
+    type: 'Full-time',
+    description:
+      'Automate, monitor, and harden our CI/CD pipelines. Champion reliability engineering with zero-downtime deployments and sub-second observability tooling.',
+    tags: ['Docker', 'GitHub Actions', 'Prometheus'],
+    color: '#00FFFF',
+  },
+  {
+    id: 6,
+    title: 'Business Development Manager',
+    dept: 'Sales',
+    location: 'On-site',
+    type: 'Full-time',
+    description:
+      'Identify and close strategic partnerships with Fortune 500 companies. Lead the full sales cycle from prospecting to contract negotiation for 7-figure deals.',
+    tags: ['Enterprise Sales', 'CRM', 'Strategy'],
+    color: '#3fb950',
+  },
 ];
 
-const departments = ['All', 'Engineering', 'Design', 'Infrastructure', 'HR'];
+const FILTERS = ['All', 'Engineering', 'Design', 'AI & Data', 'Sales'];
+
+const BENEFITS = [
+  {
+    icon: faWifi,
+    title: 'Remote Work',
+    desc: 'Work from anywhere in the world. We are async-first and results-driven, not clock-watchers.',
+    color: '#00FFFF',
+  },
+  {
+    icon: faHeartPulse,
+    title: 'Health Insurance',
+    desc: 'Comprehensive medical, dental, and vision coverage for you and your dependants, globally.',
+    color: '#D946EF',
+  },
+  {
+    icon: faGraduationCap,
+    title: 'Learning Budget',
+    desc: '$3,000 annual budget for courses, certifications, conferences, and books. Never stop growing.',
+    color: '#FFD700',
+  },
+  {
+    icon: faChartLine,
+    title: 'Stock Options',
+    desc: 'Meaningful equity from day one. We want you to own what you build and share in our success.',
+    color: '#3fb950',
+  },
+  {
+    icon: faCalendarDays,
+    title: 'Flexible Hours',
+    desc: 'Core hours exist to collaborate, but your schedule is yours. We trust you to deliver.',
+    color: '#FF8C00',
+  },
+  {
+    icon: faPlane,
+    title: 'Team Retreats',
+    desc: 'Twice-yearly company-wide retreats to world-class destinations. Work hard, explore harder.',
+    color: '#00FFFF',
+  },
+];
+
+/* ─── Animation Variants ─────────────────────────────────────────────────── */
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const heroTextVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut', delay },
+  }),
+};
+
+/* ─── Department Color Mapping ───────────────────────────────────────────── */
+
+const deptColorMap: Record<string, string> = {
+  Engineering: '#00FFFF',
+  'AI & Data': '#D946EF',
+  Design: '#FF8C00',
+  Sales: '#3fb950',
+};
+
+const locationColorMap: Record<string, string> = {
+  Remote: '#3fb950',
+  Hybrid: '#FFD700',
+  'On-site': '#D946EF',
+};
+
+/* ─── Component ─────────────────────────────────────────────────────────── */
 
 export default function OfferedJobs() {
-  const [activeDept, setActiveDept] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState('All');
 
-  const filteredJobs = jobs.filter(job => {
-    const matchesDept = activeDept === 'All' || job.dept === activeDept;
-    const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesDept && matchesSearch;
-  });
+  const filteredJobs =
+    activeFilter === 'All' ? JOBS : JOBS.filter((j) => j.dept === activeFilter);
 
   return (
     <div className={styles.pageWrapper}>
-      <header className={styles.heroHeader}>
-        <motion.h1 
-          className={styles.heroHeadline}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          Open Positions
-        </motion.h1>
-        <p className={styles.heroSubhead}>
-          Find your next big challenge. We are constantly looking for exceptional talent to join our ranks.
-        </p>
+
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      <header className={styles.hero}>
+        {/* Animated gradient orbs */}
+        <div className={styles.heroOrb1} />
+        <div className={styles.heroOrb2} />
+
+        <div className={styles.heroContent}>
+          <motion.div
+            className={styles.heroPill}
+            custom={0}
+            initial="hidden"
+            animate="show"
+            variants={heroTextVariants}
+          >
+            <span className={styles.pillDot} />
+            We're Hiring
+          </motion.div>
+
+          <motion.h1
+            className={styles.heroHeadline}
+            custom={0.15}
+            initial="hidden"
+            animate="show"
+            variants={heroTextVariants}
+          >
+            Join the{' '}
+            <span className={styles.heroGradient}>XOST Team</span>
+          </motion.h1>
+
+          <motion.p
+            className={styles.heroSubhead}
+            custom={0.3}
+            initial="hidden"
+            animate="show"
+            variants={heroTextVariants}
+          >
+            We build the digital infrastructure of tomorrow. Join a collective of
+            elite engineers, designers, and visionaries shaping what's next.
+          </motion.p>
+
+          <motion.div
+            className={styles.heroStats}
+            custom={0.45}
+            initial="hidden"
+            animate="show"
+            variants={heroTextVariants}
+          >
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>6+</span>
+              <span className={styles.heroStatLabel}>Open Roles</span>
+            </div>
+            <div className={styles.heroStatDivider} />
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>4</span>
+              <span className={styles.heroStatLabel}>Departments</span>
+            </div>
+            <div className={styles.heroStatDivider} />
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>100%</span>
+              <span className={styles.heroStatLabel}>Remote Friendly</span>
+            </div>
+          </motion.div>
+        </div>
       </header>
 
-      <section className={styles.section} style={{ paddingTop: '2rem' }}>
-        {/* Filters and Search */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {departments.map(dept => (
-              <button
-                key={dept}
-                onClick={() => setActiveDept(dept)}
-                style={{
-                  padding: '0.5rem 1rem',
-                  borderRadius: '20px',
-                  border: `1px solid ${activeDept === dept ? '#00FFFF' : 'var(--card-border)'}`,
-                  background: activeDept === dept ? 'rgba(0, 255, 255, 0.1)' : 'transparent',
-                  color: activeDept === dept ? '#00FFFF' : 'var(--text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s'
-                }}
-              >
-                {dept}
-              </button>
-            ))}
-          </div>
-          <div style={{ position: 'relative', width: '100%', maxWidth: '300px' }}>
-            <Search color="var(--text-secondary)" size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)' }} />
-            <input 
-              type="text" 
-              placeholder="Search roles..." 
-              className={styles.formInput}
-              style={{ paddingLeft: '2.5rem', borderRadius: '20px' }}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
+      {/* ── Filter Bar ────────────────────────────────────────────────── */}
+      <section className={styles.filterSection}>
+        <div className={styles.filterBar}>
+          <FontAwesomeIcon icon={faFilter} className={styles.filterIcon} />
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              className={`${styles.filterBtn} ${activeFilter === f ? styles.filterBtnActive : ''}`}
+              onClick={() => setActiveFilter(f)}
+            >
+              {f}
+            </button>
+          ))}
+          <span className={styles.filterCount}>
+            {filteredJobs.length} position{filteredJobs.length !== 1 ? 's' : ''}
+          </span>
         </div>
+      </section>
 
-        {/* Job Listings */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <AnimatePresence>
+      {/* ── Job Listings ──────────────────────────────────────────────── */}
+      <section className={styles.jobsSection}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            className={styles.jobsGrid}
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
             {filteredJobs.length === 0 ? (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
-                No jobs found matching your criteria.
+              <motion.div
+                className={styles.emptyState}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                No positions found in this category.
               </motion.div>
             ) : (
               filteredJobs.map((job) => (
                 <motion.div
                   key={job.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    background: 'var(--card-surface)',
-                    border: '1px solid var(--card-border)',
-                    borderRadius: '12px',
-                    padding: '1.5rem 2rem',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(217, 70, 239, 0.5)'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--card-border)'}
+                  className={styles.jobCard}
+                  variants={cardVariants}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  style={{ '--accent': job.color } as React.CSSProperties}
                 >
-                  <div>
-                    <h3 style={{ fontSize: '1.4rem', color: '#fff', marginBottom: '0.5rem' }}>{job.title}</h3>
-                    <div style={{ display: 'flex', gap: '1.5rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Briefcase size={16} /> {job.dept}</span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><MapPin size={16} /> {job.loc}</span>
-                      <span>{job.type}</span>
+                  {/* Glow border on hover */}
+                  <div className={styles.jobCardGlow} style={{ background: job.color }} />
+
+                  <div className={styles.jobCardHeader}>
+                    <div className={styles.jobBadges}>
+                      <span
+                        className={styles.deptBadge}
+                        style={{
+                          color: deptColorMap[job.dept] ?? '#00FFFF',
+                          borderColor: `${deptColorMap[job.dept] ?? '#00FFFF'}40`,
+                          background: `${deptColorMap[job.dept] ?? '#00FFFF'}12`,
+                        }}
+                      >
+                        {job.dept}
+                      </span>
+                    </div>
+                    <div className={styles.jobMeta}>
+                      <span
+                        className={styles.locationBadge}
+                        style={{ color: locationColorMap[job.location] ?? '#fff' }}
+                      >
+                        <FontAwesomeIcon icon={faMapPin} className={styles.metaIcon} />
+                        {job.location}
+                      </span>
+                      <span className={styles.typeBadge}>
+                        <FontAwesomeIcon icon={faClock} className={styles.metaIcon} />
+                        {job.type}
+                      </span>
                     </div>
                   </div>
-                  <button className={styles.ctaBtn} style={{ color: '#D946EF' }}>Apply <ArrowRight size={16} /></button>
+
+                  <h3 className={styles.jobTitle}>{job.title}</h3>
+
+                  <p className={styles.jobDesc}>{job.description}</p>
+
+                  <div className={styles.jobTags}>
+                    {job.tags.map((tag) => (
+                      <span key={tag} className={styles.jobTag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className={styles.jobCardFooter}>
+                    <button className={styles.applyBtn}>
+                      Apply Now
+                      <FontAwesomeIcon icon={faArrowRight} className={styles.applyArrow} />
+                    </button>
+                  </div>
                 </motion.div>
               ))
             )}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </section>
+
+      {/* ── Benefits Section ──────────────────────────────────────────── */}
+      <section className={styles.benefitsSection}>
+        <motion.div
+          className={styles.benefitsInner}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className={styles.benefitsHeader}>
+            <h2 className={styles.benefitsTitle}>Why Work at XOST?</h2>
+            <p className={styles.benefitsSubtitle}>
+              We invest in our team the same way we invest in our products — without compromise.
+            </p>
+          </div>
+
+          <motion.div
+            className={styles.benefitsGrid}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+          >
+            {BENEFITS.map((b) => (
+              <motion.div
+                key={b.title}
+                className={styles.benefitCard}
+                variants={cardVariants}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
+                <div
+                  className={styles.benefitIconWrap}
+                  style={{ background: `${b.color}18`, borderColor: `${b.color}30` }}
+                >
+                  <FontAwesomeIcon
+                    icon={b.icon}
+                    className={styles.benefitIcon}
+                    style={{ color: b.color }}
+                  />
+                </div>
+                <h4 className={styles.benefitTitle}>{b.title}</h4>
+                <p className={styles.benefitDesc}>{b.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ── CTA Banner ────────────────────────────────────────────────── */}
+      <section className={styles.ctaSection}>
+        <motion.div
+          className={styles.ctaBanner}
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className={styles.ctaOrb} />
+          <h2 className={styles.ctaTitle}>Don't see a perfect fit?</h2>
+          <p className={styles.ctaText}>
+            We are always on the lookout for exceptional talent. Send us your résumé and we'll reach out when the right opportunity arises.
+          </p>
+          <button className={styles.ctaButton}>
+            Send Open Application
+            <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: '0.5rem' }} />
+          </button>
+        </motion.div>
+      </section>
+
     </div>
   );
 }
