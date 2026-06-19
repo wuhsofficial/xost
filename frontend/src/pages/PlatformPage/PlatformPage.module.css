@@ -72,9 +72,20 @@
   background-clip: text;
 }
 
+.heroTitleText {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 72px; /* Increased for desktop */
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  color: #FFFFFF;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  margin: 0;
+}
+
 .subheadline {
   font-family: 'Inter', sans-serif;
-  font-size: 18px;
+  font-size: 22px; /* Increased for desktop */
   font-weight: 600;
   line-height: 1.65;
   color: #FFFFFF; /* Pure White */
@@ -175,12 +186,25 @@
 .featuresRow {
   display: flex;
   gap: 32px;
-  justify-content: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px; /* Space for scrollbar */
+}
+
+/* Hide scrollbar for a cleaner look */
+.featuresRow::-webkit-scrollbar {
+  height: 6px;
+}
+.featuresRow::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
 }
 
 .featureCard {
-  flex: 1;
-  max-width: 360px;
+  flex: 0 0 calc(25% - 24px); /* Show 4 on desktop */
+  min-width: 280px;
+  scroll-snap-align: start;
   padding: 0 16px;
   text-align: center;
   display: flex;
@@ -313,7 +337,7 @@
 
 .marqueeStrip {
   overflow: hidden;
-  height: 48px;
+  padding: 8px 0;
 }
 
 .marqueeTrack {
@@ -508,6 +532,10 @@
     font-size: 44px;
   }
 
+  .heroTitleText {
+    font-size: 52px;
+  }
+
   .section {
     padding: 80px 48px;
   }
@@ -531,8 +559,13 @@
     font-size: 34px;
   }
 
+  .heroTitleText {
+    font-size: 36px; /* Decreased to fit nicely on mobile */
+    letter-spacing: -0.5px;
+  }
+
   .subheadline {
-    font-size: 16px;
+    font-size: 15px; /* Decreased for mobile */
   }
 
   .section {
@@ -544,19 +577,20 @@
   }
 
   .featuresRow {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+    gap: 16px;
+    padding: 0 16px 24px 16px; /* extra padding to not clip box shadows */
+    margin: 0 -24px; /* break out of container padding */
   }
 
   .featureCard {
-    max-width: 100%;
+    flex: 0 0 85%;
     padding: 0;
-    margin-bottom: 32px;
+    margin-bottom: 0;
+    scroll-snap-align: center;
   }
 
   .featureCard:last-child {
-    margin-bottom: 0;
+    margin-right: 24px; /* padding at end of scroll */
   }
 
   /* Vertical timeline on mobile */

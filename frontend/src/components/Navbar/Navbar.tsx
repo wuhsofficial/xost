@@ -100,11 +100,11 @@ export default function Navbar() {
 
   /* ── Dynamic glass styles ────────────────────────────────────────── */
   const navStyle = {
-    background: `rgba(255, 255, 255, ${0.65 * glassOpacity})`,
-    backdropFilter: `blur(${20 * glassOpacity}px)`,
-    WebkitBackdropFilter: `blur(${20 * glassOpacity}px)`,
-    borderBottom: `1px solid rgba(0, 212, 255, ${0.25 * glassOpacity})`,
-    boxShadow: `0 0 ${24 * glassOpacity}px rgba(0, 212, 255, ${0.08 * glassOpacity})`,
+    background: 'var(--card-surface)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderBottom: '1px solid var(--card-border)',
+    boxShadow: '0 0 24px var(--card-shadow)',
   };
 
   const toggleIconStyle = {
@@ -137,8 +137,15 @@ export default function Navbar() {
                   <Link
                     to={link.path}
                     className={`${styles.navLink} ${isActive(link.path) ? styles.active : ''}`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
                   >
                     {link.label}
+                    {megaMenuData[link.label] && (
+                      <FontAwesomeIcon 
+                        icon={faChevronDown} 
+                        style={{ fontSize: '10px', opacity: 0.6, marginTop: '2px' }} 
+                      />
+                    )}
                     <span className={styles.underline} />
                   </Link>
                   {/* Render MegaMenu exactly under the active tab */}

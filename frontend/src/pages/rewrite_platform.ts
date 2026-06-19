@@ -158,18 +158,18 @@ const newSections = `      {/* ═══ PLATFORM CORE SECTIONS ═══ */}
         <div className={styles.mapContainer}>
           <div className={styles.abstractMap}>
             {/* The HQ Dot */}
-            <div className={`${styles.mapDot} ${styles.hqDot}`}>
+            <div className={\`\${styles.mapDot} \${styles.hqDot}\`}>
               <div className={styles.dotPulse}></div>
               <div className={styles.dotLabel}>Lahore, Pakistan (HQ)</div>
             </div>
             {/* Other regional dots */}
-            <div className={`${styles.mapDot} ${styles.usDot}`}>
+            <div className={\`\${styles.mapDot} \${styles.usDot}\`}>
                <div className={styles.dotLabel}>United States</div>
             </div>
-            <div className={`${styles.mapDot} ${styles.canDot}`}>
+            <div className={\`\${styles.mapDot} \${styles.canDot}\`}>
                <div className={styles.dotLabel}>Canada</div>
             </div>
-            <div className={`${styles.mapDot} ${styles.ukDot}`}>
+            <div className={\`\${styles.mapDot} \${styles.ukDot}\`}>
                <div className={styles.dotLabel}>United Kingdom</div>
             </div>
             

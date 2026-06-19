@@ -24,13 +24,13 @@ export default function EnterpriseAutomation({ pageData }) {
   const estimatedSavings = teamSize * hourlyRate * hoursSavedPerEmployee;
 
   const barOptions = {
-    chart: { type: 'bar', background: 'transparent', toolbar: { show: false } },
+    chart: { type: 'bar' as const, background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
     dataLabels: { enabled: false },
     xaxis: { categories: ['HR', 'Finance', 'IT Ops', 'Sales', 'Support'], labels: { style: { colors: '#fff' } } },
     yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' }
+    theme: { mode: 'dark' as const }
   };
   const barSeries = [{ name: 'Hours Saved/Month', data: [120, 350, 400, 200, 500] }];
 
@@ -85,15 +85,15 @@ export default function EnterpriseAutomation({ pageData }) {
           
           <div className={styles.roiInputGroup}>
             <label>Team Size (Employees)</label>
-            <input type="number" value={teamSize} onChange={(e) => setTeamSize(e.target.value)} className={styles.roiInput} />
+            <input type="number" value={teamSize} onChange={(e) => setTeamSize(Number(e.target.value))} className={styles.roiInput} />
           </div>
           <div className={styles.roiInputGroup}>
             <label>Average Hourly Rate ($)</label>
-            <input type="number" value={hourlyRate} onChange={(e) => setHourlyRate(e.target.value)} className={styles.roiInput} />
+            <input type="number" value={hourlyRate} onChange={(e) => setHourlyRate(Number(e.target.value))} className={styles.roiInput} />
           </div>
           <div className={styles.roiInputGroup}>
             <label>Hours Saved per Employee / Month</label>
-            <input type="range" min="5" max="50" value={hoursSavedPerEmployee} onChange={(e) => setHoursSaved(e.target.value)} />
+            <input type="range" min="5" max="50" value={hoursSavedPerEmployee} onChange={(e) => setHoursSaved(Number(e.target.value))} />
             <span style={{ textAlign: 'right', color: 'var(--accent-aqua)', fontWeight: 'bold' }}>{hoursSavedPerEmployee} hrs</span>
           </div>
           

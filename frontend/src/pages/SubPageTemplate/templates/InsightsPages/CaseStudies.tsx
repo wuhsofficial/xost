@@ -48,7 +48,7 @@ export default function CaseStudies({ pageData }) {
         <h2 className={styles.heroHeadline}>How we solved complex problems</h2>
         <p className={styles.heroSubhead}>Real results for real businesses.</p>
         
-        <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginTop: '2rem', background: 'var(--card-surface)', padding: '1rem', borderRadius: '50px', border: '1px solid var(--card-border)', width: 'fit-content', margin: '2rem auto 0' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', marginTop: '2rem', background: 'var(--card-surface)', padding: '1rem 2rem', borderRadius: '50px', border: '1px solid var(--card-border)', width: 'fit-content', margin: '2rem auto 0' }}>
           <div><strong style={{ color: '#00FFFF' }}>50+</strong> Case Studies</div>
           <div style={{ width: '1px', background: 'var(--card-border)' }}></div>
           <div><strong style={{ color: '#D946EF' }}>20+</strong> Industries</div>
@@ -116,7 +116,7 @@ export default function CaseStudies({ pageData }) {
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Aggregate Outcomes</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', height: '100%' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem', height: '100%' }}>
             <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Zap color="#00FFFF" style={{ marginBottom: '0.5rem' }}/>
               <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>3x Faster</span>

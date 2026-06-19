@@ -77,8 +77,8 @@
 /* Grids */
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
 }
 
 .statCard {
@@ -206,9 +206,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .splitLayout { grid-template-columns: 1fr; }
+}
+
+.splitLayout > div {
+  min-width: 0; /* Prevents flex/grid blowouts from charts */
 }
 
 .splitCard {
@@ -219,6 +224,13 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .splitCard {
+    padding: 1.5rem;
+  }
 }
 
 /* Newsletters & Widgets */

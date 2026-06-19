@@ -6,7 +6,6 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
 import Spotlight from './components/Spotlight/Spotlight';
-import Cursor from './components/Cursor/Cursor';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -70,7 +69,6 @@ export default function App(): JSX.Element {
           transition: 'background-color 400ms ease',
         }}
       >
-        <Cursor />
         {/* Noise / Grain Texture Overlay */}
         <div className="noiseOverlay" />
 

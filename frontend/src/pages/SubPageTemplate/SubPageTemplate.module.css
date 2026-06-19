@@ -310,3 +310,22 @@
   gap: 2rem;
   align-items: center;
 }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 100px 24px 60px 24px;
+  }
+  
+  .contentSection {
+    padding: 60px 24px;
+  }
+
+  .bentoItem {
+    padding: 24px;
+  }
+
+  .heroTitleText {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+}

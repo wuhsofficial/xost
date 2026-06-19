@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AnimatePresence } from 'framer-motion';
 
 import App from './App';
+import { ErrorBoundary } from './ErrorBoundary';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 
 const PlatformPage = lazy(() => import('./pages/PlatformPage/PlatformPage'));
@@ -103,6 +104,8 @@ function Root() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Root />
+    <ErrorBoundary>
+      <Root />
+    </ErrorBoundary>
   </React.StrictMode>
 );

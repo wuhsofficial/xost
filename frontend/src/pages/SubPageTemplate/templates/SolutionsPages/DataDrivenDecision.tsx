@@ -18,12 +18,12 @@ export default function DataDrivenDecision({ pageData }) {
   }, []);
 
   const lineOptions = {
-    chart: { type: 'line', background: 'transparent', toolbar: { show: false } },
+    chart: { type: 'line' as const, background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF', '#D946EF', '#3fb950'],
-    stroke: { curve: 'smooth', width: 3 },
+    stroke: { curve: 'smooth' as const, width: 3 },
     xaxis: { categories: ['Month 1', 'Month 3', 'Month 6', 'Month 9', 'Month 12'], labels: { style: { colors: '#fff' } } },
     yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' }
+    theme: { mode: 'dark' as const }
   };
   const lineSeries = [
     { name: 'Revenue Growth', data: [10, 15, 25, 45, 80] },
@@ -32,13 +32,13 @@ export default function DataDrivenDecision({ pageData }) {
   ];
 
   const radarOptions = {
-    chart: { type: 'radar', background: 'transparent', toolbar: { show: false } },
+    chart: { type: 'radar' as const, background: 'transparent', toolbar: { show: false } },
     labels: ['Reporting', 'Monitoring', 'Analysis', 'Prediction', 'Prescription', 'Automation'],
     stroke: { width: 2, colors: ['#667EEA'] },
     fill: { opacity: 0.2, colors: ['#667EEA'] },
     markers: { size: 4, colors: ['#fff'], strokeColors: '#667EEA', strokeWidth: 2 },
     yaxis: { show: false },
-    theme: { mode: 'dark' },
+    theme: { mode: 'dark' as const },
     plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.1)', connectorColors: 'rgba(255,255,255,0.1)' } } }
   };
   const radarSeries = [{ name: 'Maturity Level', data: [100, 100, 95, 80, 70, 60] }];

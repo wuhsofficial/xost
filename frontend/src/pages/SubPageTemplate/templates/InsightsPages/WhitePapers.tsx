@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import { FileText, Download, Lock, CheckCircle, Search, Layers, BarChart2, BookOpen, ArrowRight } from 'lucide-react';
@@ -164,7 +165,7 @@ export default function WhitePapers({ pageData }) {
           <h3 style={{ color: '#fff' }}>Looking for shorter reads?</h3>
           <p style={{ color: 'var(--text-secondary)' }}>Check out our Tech Blogs for bite-sized engineering updates.</p>
         </div>
-        <button className={styles.filterBtnActive} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>View Blogs <ArrowRight size={16}/></button>
+        <Link to="/insights/tech-blogs" className={styles.filterBtnActive} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>View Blogs <ArrowRight size={16}/></Link>
       </div>
     </div>
   );

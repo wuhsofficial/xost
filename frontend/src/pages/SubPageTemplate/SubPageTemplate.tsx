@@ -131,46 +131,10 @@ export default function SubPageTemplate() {
 
   return (
     <main className={styles.subPageMain}>
-      <section className={styles.heroSection}>
-        <div className={styles.blobPositioner}>
-          <MorphingBlob size={200} duration={8} colors={['rgba(0,212,255,0.1)', 'rgba(102,126,234,0.05)']} />
-        </div>
-        
-        <div className={styles.heroContent}>
-          <motion.div 
-            className={styles.iconWrapper}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          >
-            <FontAwesomeIcon icon={pageData.icon} className={styles.icon} />
-          </motion.div>
-
-          <div className={styles.breadcrumb}>
-            <Link to={`/${category}`} className={styles.breadcrumbLink}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </Link>
-            <span className={styles.breadcrumbSeparator}>/</span>
-            <span className={styles.breadcrumbCurrent}>{pageData.title}</span>
-          </div>
-
-          <TextMaskReveal tag="h1" className={styles.heroTitleText}>
-            {pageData.title}
-          </TextMaskReveal>
-
-          <motion.p
-            className={styles.heroDesc}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            {pageData.desc} This page is dedicated to providing specialized tools, insights, and solutions regarding {pageData.title.toLowerCase()} for enterprise ecosystems.
-          </motion.p>
-        </div>
-      </section>
-
       {/* Dynamic Content Block */}
-      {renderTemplate()}
+      <section className={styles.contentSection}>
+        {renderTemplate()}
+      </section>
     </main>
   );
 }

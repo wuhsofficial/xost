@@ -166,6 +166,55 @@ a.contactItem:hover {
   opacity: 0.8;
 }
 
+/* ─── Accordion Styles ─────────────────────────────────────────────────────── */
+.accordionContainer {
+  flex: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+  align-items: start;
+}
+
+.accordionSection {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+  user-select: none;
+}
+
+.accordionTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--pure-white);
+  margin: 0;
+  transition: color 0.3s;
+}
+
+.accordionHeader:hover .accordionTitle {
+  color: var(--accent-aqua);
+}
+
+.accordionIcon {
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.accordionIcon.expanded {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  overflow: hidden;
+}
+
 /* ─── Copyright bar ────────────────────────────────────────────────────────── */
 .copyrightBar {
   background: var(--footer-bg);
