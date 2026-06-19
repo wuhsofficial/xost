@@ -70,7 +70,7 @@ export default function CaseStudies({ pageData }) {
             </a>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-            <Chart options={barOptions} series={barSeries} type="bar" height={350} width="100%" />
+            <Chart options={barOptions as any} series={barSeries} type="bar" height={350} width="100%" />
           </div>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default function CaseStudies({ pageData }) {
       <div className={styles.splitLayout} style={{ marginTop: '4rem' }}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Client Industry Distribution</h3>
-          <Chart options={donutOptions} series={donutSeries} type="donut" height={300} />
+          <Chart options={donutOptions as any} series={donutSeries} type="donut" height={300} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Aggregate Outcomes</h3>

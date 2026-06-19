@@ -4,10 +4,10 @@ import Lottie from 'lottie-react';
 import { ShieldCheck, Zap, LifeBuoy, MessageSquare, Mail, PhoneCall, MonitorPlay, Book, Terminal, CreditCard, Lock, Plug, Wrench, CheckCircle, AlertCircle, Paperclip } from 'lucide-react';
 import styles from './ContactPages.module.css';
 
-export default function SupportHelp({ pageData }) {
+export default function SupportHelp({ pageData }: { pageData?: any } = {}) {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', product: '', priority: '', title: '', desc: '' });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<any>({});
+  const [touched, setTouched] = useState<any>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [lottieData, setLottieData] = useState(null);
@@ -201,7 +201,7 @@ export default function SupportHelp({ pageData }) {
 
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>Detailed Description *</label>
-              <textarea name="desc" value={formData.desc} onChange={handleChange} onBlur={handleBlur} className={getInputClass('desc')} rows="4"></textarea>
+              <textarea name="desc" value={formData.desc} onChange={handleChange} onBlur={handleBlur} className={getInputClass('desc')} rows={4}></textarea>
               {errors.desc && <span className={styles.errorText}>{errors.desc}</span>}
             </div>
 

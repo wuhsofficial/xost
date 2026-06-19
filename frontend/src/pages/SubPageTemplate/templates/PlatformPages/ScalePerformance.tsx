@@ -75,14 +75,30 @@ export default function ScalePerformance({ pageData }) {
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Live Global Network</h3>
         <div className={styles.leafletMapContainer}>
-          <MapContainer center={[20, 0]} zoom={2} style={{ height: 400, width: '100%', borderRadius: 12, zIndex: 1 }} scrollWheelZoom={false}>
+          <MapContainer
+            {...({
+              center: [20, 0],
+              zoom: 2,
+              style: { height: 400, width: '100%', borderRadius: 12, zIndex: 1 },
+              scrollWheelZoom: false
+            } as any)}
+          >
             <TileLayer
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+              {...({
+                url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+              } as any)}
             />
             {mapLocations.map((loc, idx) => (
-              <CircleMarker key={idx} center={loc.pos} pathOptions={{ color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 0.6 }} radius={6}>
-                <Tooltip direction="top" offset={[0, -10]} opacity={1}>
+              <CircleMarker
+                key={idx}
+                {...({
+                  center: loc.pos,
+                  pathOptions: { color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 0.6 },
+                  radius: 6
+                } as any)}
+              >
+                <Tooltip {...({ direction: "top", offset: [0, -10], opacity: 1 } as any)}>
                   <span style={{ color: '#000', fontWeight: 'bold' }}>{loc.name}</span>
                 </Tooltip>
               </CircleMarker>
@@ -94,12 +110,12 @@ export default function ScalePerformance({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitLeft}>
           <h3 className={styles.sectionTitle}>Request Throughput</h3>
-          <Chart options={areaOptions} series={areaSeries} type="area" height={300} />
+          <Chart options={areaOptions as any} series={areaSeries} type="area" height={300} />
         </div>
         
         <div className={styles.splitRight}>
           <h3 className={styles.sectionTitle}>Latency Benchmark</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={300} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={300} />
         </div>
       </div>
 

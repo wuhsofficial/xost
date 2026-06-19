@@ -55,7 +55,7 @@ export default function CyberSecurity({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Security Posture</h3>
-          <Chart options={radarOptions} series={radarSeries} type="radar" height={350} />
+          <Chart options={radarOptions as any} series={radarSeries} type="radar" height={350} />
         </div>
         
         <div className={styles.splitCard}>

@@ -73,7 +73,7 @@ export default function IntegrationAPIs({ pageData }) {
         <div className={styles.splitLeft}>
           <h3 className={styles.sectionTitle}>API Usage Distribution</h3>
           <div className={styles.chartContainer}>
-            <Chart options={donutOptions} series={donutSeries} type="donut" height={300} />
+            <Chart options={donutOptions as any} series={donutSeries} type="donut" height={300} />
           </div>
           
           <div className={styles.partnerGrid}>

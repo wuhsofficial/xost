@@ -5,7 +5,7 @@ import { Network, CloudCog, ArrowRight, UserCheck, Smartphone, Settings } from '
 import styles from './SolutionsPages.module.css';
 
 export default function DigitalTransformation({ pageData }) {
-  const radarOptions = {
+  const radarOptions: any = {
     chart: { type: 'radar', background: 'transparent', toolbar: { show: false } },
     labels: ['Strategy', 'Culture', 'Technology', 'Operations', 'Data', 'Customer Exp'],
     stroke: { width: 2, colors: ['#00FFFF'] },
@@ -54,7 +54,7 @@ export default function DigitalTransformation({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Digital Maturity Score</h3>
-          <Chart options={radarOptions} series={radarSeries} type="radar" height={350} />
+          <Chart options={radarOptions as any} series={radarSeries} type="radar" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Workflow Evolution</h3>

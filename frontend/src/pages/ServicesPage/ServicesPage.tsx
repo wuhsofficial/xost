@@ -117,7 +117,7 @@ export default function ServicesPage() {
         
         {/* Group services by category */}
         {Object.entries(
-          allServices.reduce((acc, service) => {
+          allServices.reduce((acc: Record<string, any[]>, service) => {
             if (!acc[service.category]) acc[service.category] = [];
             acc[service.category].push(service);
             return acc;
@@ -179,8 +179,10 @@ export default function ServicesPage() {
       {/* ─── Floating Logos Animation ───────────────────────────────────── */}
       <section style={{ margin: '4rem 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <TextMaskReveal tag="h2" style={{ fontSize: '2.5rem', fontWeight: 800 }}>
-            An Ecosystem of Excellence
+          <TextMaskReveal tag="h2">
+            <span style={{ fontSize: '2.5rem', fontWeight: 800 }}>
+              An Ecosystem of Excellence
+            </span>
           </TextMaskReveal>
           <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
             All the moving parts that make your digital vision a reality.

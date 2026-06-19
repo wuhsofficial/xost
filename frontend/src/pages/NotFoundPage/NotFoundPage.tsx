@@ -51,7 +51,7 @@ export default function NotFoundPage() {
       >
         <MagneticButton>
           <Link to="/">
-            <GradientButton text="Return to Base" />
+            <GradientButton label="Return to Base" />
           </Link>
         </MagneticButton>
       </motion.div>

@@ -179,8 +179,8 @@ export default function PlatformPage() {
   /* Marquee scroll-velocity effect */
   const { scrollY } = useScroll();
   const [velocity, setVelocity] = useState(0);
-  useMotionValueEvent(scrollY, 'velocityChange', (v) => {
-    setVelocity(v);
+  useMotionValueEvent(scrollY, 'change', () => {
+    setVelocity(scrollY.getVelocity());
   });
 
   const marqueeSpeed = Math.max(5, 30 / (1 + Math.abs(velocity) * 0.002));
@@ -490,11 +490,13 @@ export default function PlatformPage() {
         <div className={styles.mapContainer}>
           <div className={styles.leafletMapWrapper}>
             <MapContainer
-              center={[25, 10]}
-              zoom={2}
-              scrollWheelZoom={false}
-              style={{ width: '100%', height: '500px', borderRadius: 'var(--radius-xl)', zIndex: 1 }}
-              attributionControl={false}
+              {...({
+                center: [25, 10],
+                zoom: 2,
+                scrollWheelZoom: false,
+                style: { width: '100%', height: '500px', borderRadius: 'var(--radius-xl)', zIndex: 1 },
+                attributionControl: false
+              } as any)}
             >
               <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -502,11 +504,13 @@ export default function PlatformPage() {
 
               {/* HQ Marker */}
               <CircleMarker
-                center={lahorePos}
-                radius={8}
-                pathOptions={{ color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 1 }}
+                {...({
+                  center: lahorePos,
+                  radius: 8,
+                  pathOptions: { color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 1 }
+                } as any)}
               >
-                <Tooltip direction="top" offset={[0, -10]} opacity={1} permanent className={styles.hqTooltip}>
+                <Tooltip {...({ direction: "top", offset: [0, -10], opacity: 1, permanent: true, className: styles.hqTooltip } as any)}>
                   <span style={{ color: '#00FFFF', fontWeight: 'bold' }}>Lahore (HQ)</span>
                 </Tooltip>
               </CircleMarker>
@@ -515,15 +519,19 @@ export default function PlatformPage() {
               {globalCities.map((city, idx) => (
                 <React.Fragment key={idx}>
                   <Polyline
-                    positions={[lahorePos, city.pos]}
-                    pathOptions={{ color: '#00FFFF', weight: 2, opacity: 0.4, dashArray: '4, 8' }}
+                    {...({
+                      positions: [lahorePos, city.pos],
+                      pathOptions: { color: '#00FFFF', weight: 2, opacity: 0.4, dashArray: '4, 8' }
+                    } as any)}
                   />
                   <CircleMarker
-                    center={city.pos}
-                    radius={5}
-                    pathOptions={{ color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.8 }}
+                    {...({
+                      center: city.pos,
+                      radius: 5,
+                      pathOptions: { color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.8 }
+                    } as any)}
                   >
-                    <Tooltip direction="bottom" offset={[0, 10]} opacity={1} permanent className={styles.cityTooltip}>
+                    <Tooltip {...({ direction: "bottom", offset: [0, 10], opacity: 1, permanent: true, className: styles.cityTooltip } as any)}>
                       <span style={{ color: '#00FFFF', fontWeight: '600' }}>{city.name}</span>
                     </Tooltip>
                   </CircleMarker>

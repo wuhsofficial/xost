@@ -46,7 +46,7 @@ export default function ServiceCard({
   const handleMouseEnter = useCallback(
     (e) => {
       setIsHovered(true);
-      if (handlers.onMouseEnter) handlers.onMouseEnter(e);
+      if (handlers.onMouseEnter) handlers.onMouseEnter();
     },
     [handlers],
   );
@@ -54,7 +54,7 @@ export default function ServiceCard({
   const handleMouseLeave = useCallback(
     (e) => {
       setIsHovered(false);
-      if (handlers.onMouseLeave) handlers.onMouseLeave(e);
+      if (handlers.onMouseLeave) handlers.onMouseLeave();
     },
     [handlers],
   );
@@ -66,8 +66,8 @@ export default function ServiceCard({
 
   return (
     <div
-      ref={ref}
-      style={style}
+      ref={ref as any}
+      style={style as any}
       className={styles.tiltWrapper}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

@@ -102,7 +102,7 @@ export default function OurHistory({ pageData }) {
           </div>
         </div>
         <div className={styles.splitCard}>
-          <Chart options={lineOptions} series={lineSeries} type="line" height={300} />
+          <Chart options={lineOptions as any} series={lineSeries} type="line" height={300} />
         </div>
       </div>
 

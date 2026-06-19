@@ -106,18 +106,18 @@ export default function TelecomMedia({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Live Event Traffic Handling (Prime Time)</h3>
-          <Chart options={areaOptions} series={areaSeries} type="area" height={350} />
+          <Chart options={areaOptions as any} series={areaSeries} type="area" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Content Type Distribution</h3>
-          <Chart options={donutOptions} series={donutSeries} type="donut" height={350} />
+          <Chart options={donutOptions as any} series={donutSeries} type="donut" height={350} />
         </div>
       </div>
 
       <div className={styles.splitLayout} style={{ marginTop: '2rem' }}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Latency Benchmarks</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={250} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={250} />
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textAlign: 'center', marginTop: '1rem' }}>
             Tests conducted across US East, EU Central, and AP-South on standard 4G networks.
           </p>

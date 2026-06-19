@@ -63,7 +63,7 @@ export default function AcademicFYP({ pageData }) {
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Timeline Comparison</h3>
-        <Chart options={barOptions} series={barSeries} type="bar" height={300} />
+        <Chart options={barOptions as any} series={barSeries} type="bar" height={300} />
       </section>
 
       <section className={styles.section}>

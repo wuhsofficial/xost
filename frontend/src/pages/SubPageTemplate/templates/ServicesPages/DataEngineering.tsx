@@ -65,11 +65,11 @@ export default function DataEngineering({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Processing Speed</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={300} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={300} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Data Sources</h3>
-          <Chart options={donutOptions} series={donutSeries} type="donut" height={300} />
+          <Chart options={donutOptions as any} series={donutSeries} type="donut" height={300} />
         </div>
       </div>
 

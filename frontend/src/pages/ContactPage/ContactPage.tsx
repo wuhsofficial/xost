@@ -132,7 +132,7 @@ export default function ContactPage() {
           <GradientMesh />
         </div>
         <div className={styles.heroContent}>
-          <TextMaskReveal text="Let's build the future." className={styles.heroTitle} />
+          <TextMaskReveal className={styles.heroTitle}>Let's build the future.</TextMaskReveal>
           <motion.p
             className={styles.heroSubtitle}
             initial={{ opacity: 0, y: 20 }}

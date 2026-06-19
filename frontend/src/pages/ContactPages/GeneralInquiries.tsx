@@ -4,10 +4,10 @@ import Lottie from 'lottie-react';
 import { Clock, Phone, Mail, MessageCircle, MapPin, CheckCircle, AlertCircle, Linkedin, Twitter, Github, Youtube, ChevronDown, ChevronUp } from 'lucide-react';
 import styles from './ContactPages.module.css';
 
-export default function GeneralInquiries({ pageData }) {
+export default function GeneralInquiries({ pageData }: { pageData?: any } = {}) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<any>({});
+  const [touched, setTouched] = useState<any>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [activeFaq, setActiveFaq] = useState(null);
@@ -143,7 +143,7 @@ export default function GeneralInquiries({ pageData }) {
 
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>Message *</label>
-              <textarea name="message" value={formData.message} onChange={handleChange} onBlur={handleBlur} className={getInputClass('message')} rows="5" placeholder="How can we help you?"></textarea>
+              <textarea name="message" value={formData.message} onChange={handleChange} onBlur={handleBlur} className={getInputClass('message')} rows={5} placeholder="How can we help you?"></textarea>
               {errors.message && <span className={styles.errorText}>{errors.message}</span>}
             </div>
 

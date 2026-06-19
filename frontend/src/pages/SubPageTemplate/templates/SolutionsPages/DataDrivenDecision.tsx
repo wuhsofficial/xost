@@ -17,7 +17,7 @@ export default function DataDrivenDecision({ pageData }) {
       .catch(e => console.log('Lottie fetch err', e));
   }, []);
 
-  const lineOptions = {
+  const lineOptions: any = {
     chart: { type: 'line', background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF', '#D946EF', '#3fb950'],
     stroke: { curve: 'smooth', width: 3 },
@@ -31,7 +31,7 @@ export default function DataDrivenDecision({ pageData }) {
     { name: 'Operational Efficiency', data: [40, 50, 70, 85, 95] }
   ];
 
-  const radarOptions = {
+  const radarOptions: any = {
     chart: { type: 'radar', background: 'transparent', toolbar: { show: false } },
     labels: ['Reporting', 'Monitoring', 'Analysis', 'Prediction', 'Prescription', 'Automation'],
     stroke: { width: 2, colors: ['#667EEA'] },
@@ -71,11 +71,11 @@ export default function DataDrivenDecision({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Business Outcomes Post-Adoption</h3>
-          <Chart options={lineOptions} series={lineSeries} type="line" height={300} />
+          <Chart options={lineOptions as any} series={lineSeries} type="line" height={300} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Decision Intelligence Maturity</h3>
-          <Chart options={radarOptions} series={radarSeries} type="radar" height={300} />
+          <Chart options={radarOptions as any} series={radarSeries} type="radar" height={300} />
         </div>
       </div>
 

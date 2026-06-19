@@ -4,10 +4,10 @@ import Lottie from 'lottie-react';
 import { Trophy, Medal, Star, Crown, Check, Calendar, Users, Eye, TrendingUp, Handshake, MessageSquareQuote, MapPin, Globe2 } from 'lucide-react';
 import styles from './ContactPages.module.css';
 
-export default function Sponsorships({ pageData }) {
+export default function Sponsorships({ pageData }: { pageData?: any } = {}) {
   const [formData, setFormData] = useState({ company: '', name: '', email: '', phone: '', tier: '', event: '', budget: '', message: '' });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<any>({});
+  const [touched, setTouched] = useState<any>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [lottieData, setLottieData] = useState(null);
@@ -233,7 +233,7 @@ export default function Sponsorships({ pageData }) {
 
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>Additional Message</label>
-              <textarea name="message" value={formData.message} onChange={handleChange} className={styles.formInput} rows="3"></textarea>
+              <textarea name="message" value={formData.message} onChange={handleChange} className={styles.formInput} rows={3}></textarea>
             </div>
 
             <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>

@@ -87,18 +87,27 @@ export default function OurImpact({ pageData }) {
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Global Footprint</h3>
         <div className={styles.mapContainer} style={{ zIndex: 0 }}>
-          <MapContainer center={[20, 0]} zoom={2} style={{ height: '100%', width: '100%', background: '#0a0f1e' }} scrollWheelZoom={false}>
+          <MapContainer
+            {...({
+              center: [20, 0],
+              zoom: 2,
+              style: { height: '100%', width: '100%', background: '#0a0f1e' },
+              scrollWheelZoom: false
+            } as any)}
+          >
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
             />
             {locations.map((loc, idx) => (
               <CircleMarker 
-                key={idx} 
-                center={loc.coords} 
-                radius={Math.max(5, loc.projects / 2)} 
-                pathOptions={{ color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 0.6 }}
+                key={idx}
+                {...({
+                  center: loc.coords,
+                  radius: Math.max(5, loc.projects / 2),
+                  pathOptions: { color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 0.6 }
+                } as any)}
               >
-                <Tooltip direction="top" opacity={1}>
+                <Tooltip {...({ direction: "top", opacity: 1 } as any)}>
                   <div style={{ background: '#111', color: '#fff', border: 'none' }}>
                     <strong>{loc.name}</strong><br/>{loc.projects} Projects
                   </div>
@@ -111,10 +120,10 @@ export default function OurImpact({ pageData }) {
 
       <div className={styles.splitLayout} style={{ marginTop: '2rem' }}>
         <div className={styles.splitCard}>
-          <Chart options={barOptions} series={barSeries} type="bar" height={300} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={300} />
         </div>
         <div className={styles.splitCard}>
-          <Chart options={areaOptions} series={areaSeries} type="area" height={300} />
+          <Chart options={areaOptions as any} series={areaSeries} type="area" height={300} />
         </div>
       </div>
 

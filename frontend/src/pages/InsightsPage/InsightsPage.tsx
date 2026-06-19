@@ -201,7 +201,7 @@ export default function InsightsPage() {
           <h3 className={styles.chartTitle}>Articles Published by Category</h3>
           <Chart
             options={{
-              chart: { type: 'bar', toolbar: { show: false }, background: 'transparent' },
+              chart: { type: 'bar', toolbar: { show: false  as any}, background: 'transparent' },
               theme: { mode: 'dark' },
               colors: ['#00D4FF'],
               plotOptions: { bar: { borderRadius: 4, horizontal: false } },
@@ -219,7 +219,7 @@ export default function InsightsPage() {
           <h3 className={styles.chartTitle}>Monthly Readership Growth</h3>
           <Chart
             options={{
-              chart: { type: 'area', toolbar: { show: false }, background: 'transparent' },
+              chart: { type: 'area', toolbar: { show: false  as any}, background: 'transparent' },
               theme: { mode: 'dark' },
               colors: ['#8B5CF6'],
               fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.7, opacityTo: 0.1, stops: [0, 90, 100] } },

@@ -102,11 +102,11 @@ export default function EcommerceRetail({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>GMV Growth Trajectory</h3>
-          <Chart options={areaOptions} series={areaSeries} type="area" height={350} />
+          <Chart options={areaOptions as any} series={areaSeries} type="area" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Revenue by Channel</h3>
-          <Chart options={donutOptions} series={donutSeries} type="donut" height={350} />
+          <Chart options={donutOptions as any} series={donutSeries} type="donut" height={350} />
         </div>
       </div>
 

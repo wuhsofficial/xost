@@ -23,7 +23,7 @@ export default function EnterpriseAutomation({ pageData }) {
 
   const estimatedSavings = teamSize * hourlyRate * hoursSavedPerEmployee;
 
-  const barOptions = {
+  const barOptions: any = {
     chart: { type: 'bar', background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
@@ -74,7 +74,7 @@ export default function EnterpriseAutomation({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Hours Saved by Department</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={300} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={300} />
         </div>
         
         <div className={styles.roiCalculator}>
@@ -85,15 +85,15 @@ export default function EnterpriseAutomation({ pageData }) {
           
           <div className={styles.roiInputGroup}>
             <label>Team Size (Employees)</label>
-            <input type="number" value={teamSize} onChange={(e) => setTeamSize(e.target.value)} className={styles.roiInput} />
+            <input type="number" value={teamSize} onChange={(e) => setTeamSize(Number(e.target.value))} className={styles.roiInput} />
           </div>
           <div className={styles.roiInputGroup}>
             <label>Average Hourly Rate ($)</label>
-            <input type="number" value={hourlyRate} onChange={(e) => setHourlyRate(e.target.value)} className={styles.roiInput} />
+            <input type="number" value={hourlyRate} onChange={(e) => setHourlyRate(Number(e.target.value))} className={styles.roiInput} />
           </div>
           <div className={styles.roiInputGroup}>
             <label>Hours Saved per Employee / Month</label>
-            <input type="range" min="5" max="50" value={hoursSavedPerEmployee} onChange={(e) => setHoursSaved(e.target.value)} />
+            <input type="range" min="5" max="50" value={hoursSavedPerEmployee} onChange={(e) => setHoursSaved(Number(e.target.value))} />
             <span style={{ textAlign: 'right', color: 'var(--accent-aqua)', fontWeight: 'bold' }}>{hoursSavedPerEmployee} hrs</span>
           </div>
           

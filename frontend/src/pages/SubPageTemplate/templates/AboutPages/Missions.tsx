@@ -71,7 +71,7 @@ export default function Missions({ pageData }) {
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '2rem' }}>
               We hold ourselves to the highest standards. This radar charts our internal commitments to the principles that govern every line of code we write and every interaction we have.
             </p>
-            <Chart options={radarOptions} series={radarSeries} type="radar" height={350} />
+            <Chart options={radarOptions as any} series={radarSeries} type="radar" height={350} />
           </div>
           
           <div className={styles.bentoGridLarge}>

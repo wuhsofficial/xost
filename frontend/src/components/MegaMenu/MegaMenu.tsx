@@ -8,7 +8,7 @@ import styles from './MegaMenu.module.css';
 export default function MegaMenu({ activeMenu, alignment = 'left', onMouseLeave }) {
   const content = megaMenuData[activeMenu];
 
-  let positionStyle = { left: 0 };
+  let positionStyle: any = { left: 0 };
   if (alignment === 'right') positionStyle = { left: 'auto', right: 0 };
   if (alignment === 'center') positionStyle = { left: '50%', transform: 'translateX(-50%)' };
 

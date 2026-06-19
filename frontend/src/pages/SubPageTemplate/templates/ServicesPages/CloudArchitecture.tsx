@@ -89,17 +89,31 @@ export default function CloudArchitecture({ pageData }) {
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Cost Optimization Over Time</h3>
-        <Chart options={areaOptions} series={areaSeries} type="area" height={350} />
+        <Chart options={areaOptions as any} series={areaSeries} type="area" height={350} />
       </section>
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Global Infrastructure</h3>
         <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--card-border)' }}>
-          <MapContainer center={[20, 0]} zoom={2} style={{ height: 400, width: '100%', zIndex: 1 }} scrollWheelZoom={false}>
+          <MapContainer
+            {...({
+              center: [20, 0],
+              zoom: 2,
+              style: { height: 400, width: '100%', zIndex: 1 },
+              scrollWheelZoom: false
+            } as any)}
+          >
             <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
             {mapLocations.map((loc, idx) => (
-              <CircleMarker key={idx} center={loc.pos} pathOptions={{ color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.6 }} radius={8}>
-                <Tooltip direction="top" offset={[0, -10]} opacity={1}>
+              <CircleMarker
+                key={idx}
+                {...({
+                  center: loc.pos,
+                  pathOptions: { color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.6 },
+                  radius: 8
+                } as any)}
+              >
+                <Tooltip {...({ direction: "top", offset: [0, -10], opacity: 1 } as any)}>
                   <span style={{ color: '#000', fontWeight: 'bold' }}>{loc.name}</span>
                 </Tooltip>
               </CircleMarker>

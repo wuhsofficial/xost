@@ -25,7 +25,7 @@ function generateSpherePoints(count, radius) {
 
 /* ─── Sphere Points Component ───────────────────────────────────────────── */
 function SpherePoints() {
-  const pointsRef = useRef();
+  const pointsRef = useRef<any>(null);
 
   const positions = useMemo(() => generateSpherePoints(2000, 3), []);
 
@@ -75,7 +75,7 @@ function Scene() {
 }
 
 /* ─── WebGL Error Boundary ──────────────────────────────────────────────── */
-class WebGLErrorBoundary extends Component {
+class WebGLErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };

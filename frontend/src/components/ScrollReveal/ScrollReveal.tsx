@@ -17,6 +17,7 @@ export interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   direction?: ScrollDirection;
+  className?: string;
 }
 
 /**
@@ -28,6 +29,7 @@ export default function ScrollReveal({
   delay = 0,
   duration = 600,
   direction = 'up',
+  className = '',
 }: ScrollRevealProps) {
   const { ref, isVisible } = useScrollReveal(0.15);
 
@@ -36,7 +38,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={ref}
-      className={`${styles.wrapper} ${dirClass} ${isVisible ? styles.visible : ''}`}
+      className={`${styles.wrapper} ${dirClass} ${isVisible ? styles.visible : ''} ${className}`}
       style={{
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,

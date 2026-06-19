@@ -11,13 +11,21 @@ import styles from './GlassmorphicCard.module.css';
  *   className?: string
  * }} props
  */
+export interface GlassmorphicCardProps {
+  children: React.ReactNode;
+  padding?: number;
+  borderRadius?: number;
+  onClick?: () => void;
+  className?: string;
+}
+
 export default function GlassmorphicCard({
   children,
   padding = 24,
   borderRadius = 16,
   onClick,
   className = '',
-}) {
+}: GlassmorphicCardProps) {
   return (
     <div
       className={`${styles.card} ${className}`}

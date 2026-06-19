@@ -98,11 +98,11 @@ export default function HealthcareLifeScience({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Healthcare Tech Radar</h3>
-          <Chart options={radarOptions} series={radarSeries} type="radar" height={350} />
+          <Chart options={radarOptions as any} series={radarSeries} type="radar" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Efficiency Improvements</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={350} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={350} />
         </div>
       </div>
 

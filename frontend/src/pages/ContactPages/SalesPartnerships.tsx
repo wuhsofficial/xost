@@ -4,11 +4,11 @@ import Lottie from 'lottie-react';
 import { Handshake, Store, Combine, Route, Users, Banknote, CalendarDays, LineChart, ShieldCheck, Megaphone, CheckCircle, AlertCircle, Linkedin, Mail } from 'lucide-react';
 import styles from './ContactPages.module.css';
 
-export default function SalesPartnerships({ pageData }) {
+export default function SalesPartnerships({ pageData }: { pageData?: any } = {}) {
   const [lottieData, setLottieData] = useState(null);
   const [formData, setFormData] = useState({ company: '', name: '', email: '', phone: '', size: '', type: '', desc: '' });
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<any>({});
+  const [touched, setTouched] = useState<any>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -180,7 +180,7 @@ export default function SalesPartnerships({ pageData }) {
 
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>Brief Description *</label>
-              <textarea name="desc" value={formData.desc} onChange={handleChange} onBlur={handleBlur} className={getInputClass('desc')} rows="4" placeholder="Tell us about how we can collaborate..."></textarea>
+              <textarea name="desc" value={formData.desc} onChange={handleChange} onBlur={handleBlur} className={getInputClass('desc')} rows={4} placeholder="Tell us about how we can collaborate..."></textarea>
               {errors.desc && <span className={styles.errorText}>{errors.desc}</span>}
             </div>
 

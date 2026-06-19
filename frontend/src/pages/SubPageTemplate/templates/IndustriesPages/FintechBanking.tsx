@@ -85,11 +85,11 @@ export default function FintechBanking({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Compliance Radar</h3>
-          <Chart options={radarOptions} series={radarSeries} type="radar" height={350} />
+          <Chart options={radarOptions as any} series={radarSeries} type="radar" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Transaction Volume Growth</h3>
-          <Chart options={lineOptions} series={lineSeries} type="line" height={350} />
+          <Chart options={lineOptions as any} series={lineSeries} type="line" height={350} />
         </div>
       </div>
 

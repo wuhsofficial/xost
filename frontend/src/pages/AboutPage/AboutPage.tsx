@@ -52,7 +52,7 @@ function TeamCard({ member }) {
       style={{
         '--glow-x': `${glowPos.x}%`,
         '--glow-y': `${glowPos.y}%`,
-      }}
+      } as React.CSSProperties}
     >
       {isHovered && <div className={styles.teamCardGlow} />}
       <div className={styles.avatar}>

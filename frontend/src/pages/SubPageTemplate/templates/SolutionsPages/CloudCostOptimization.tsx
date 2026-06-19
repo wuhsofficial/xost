@@ -83,11 +83,11 @@ export default function CloudCostOptimization({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>12-Month Spend Comparison</h3>
-          <Chart options={areaOptions} series={areaSeries} type="area" height={300} />
+          <Chart options={areaOptions as any} series={areaSeries} type="area" height={300} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Cost Breakdown</h3>
-          <Chart options={donutOptions} series={donutSeries} type="donut" height={300} />
+          <Chart options={donutOptions as any} series={donutSeries} type="donut" height={300} />
         </div>
       </div>
 

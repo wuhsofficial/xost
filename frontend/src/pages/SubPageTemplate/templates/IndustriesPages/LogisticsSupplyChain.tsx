@@ -82,10 +82,19 @@ export default function LogisticsSupplyChain({ pageData }) {
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Global Shipment Activity</h3>
         <div className={styles.mapContainer} style={{ zIndex: 0 }}>
-          <MapContainer center={[30, -30]} zoom={2} style={{ height: '100%', width: '100%', background: '#0a0f1e' }} scrollWheelZoom={false}>
+          <MapContainer
+            {...({
+              center: [30, -30],
+              zoom: 2,
+              style: { height: '100%', width: '100%', background: '#0a0f1e' },
+              scrollWheelZoom: false
+            } as any)}
+          >
             <TileLayer
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-              attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+              {...({
+                url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+              } as any)}
             />
             {/* Markers */}
             <Marker position={NY}><Popup>New York Hub</Popup></Marker>
@@ -94,9 +103,9 @@ export default function LogisticsSupplyChain({ pageData }) {
             <Marker position={TYO}><Popup>Tokyo Hub</Popup></Marker>
 
             {/* Routes */}
-            <Polyline positions={[NY, LDN]} color="#3fb950" weight={3} dashArray="5, 10" />
-            <Polyline positions={[LA, TYO]} color="#00FFFF" weight={3} dashArray="5, 10" />
-            <Polyline positions={[NY, LA]} color="#D946EF" weight={3} dashArray="5, 10" />
+            <Polyline {...({ positions: [NY, LDN], color: "#3fb950", weight: 3, dashArray: "5, 10" } as any)} />
+            <Polyline {...({ positions: [LA, TYO], color: "#00FFFF", weight: 3, dashArray: "5, 10" } as any)} />
+            <Polyline {...({ positions: [NY, LA], color: "#D946EF", weight: 3, dashArray: "5, 10" } as any)} />
           </MapContainer>
         </div>
       </section>
@@ -119,11 +128,11 @@ export default function LogisticsSupplyChain({ pageData }) {
       <div className={styles.splitLayout}>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>On-Time Delivery Optimization</h3>
-          <Chart options={lineOptions} series={lineSeries} type="line" height={350} />
+          <Chart options={lineOptions as any} series={lineSeries} type="line" height={350} />
         </div>
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Cost Per Shipment Comparison</h3>
-          <Chart options={barOptions} series={barSeries} type="bar" height={350} />
+          <Chart options={barOptions as any} series={barSeries} type="bar" height={350} />
         </div>
       </div>
 
