@@ -7,62 +7,20 @@
   background: none;
   padding: 0;
   margin: 0;
-}
-
-.horizontal {
-  flex-direction: row;
-  gap: 12px;
-}
-
-.stacked {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
-}
-
-.iconOnly {
-  display: inline-block;
+  cursor: pointer;
 }
 
 .svgSymbol {
   display: block;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  overflow: visible;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .container:hover .svgSymbol {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-.text {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: 2px;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  flex-shrink: 0;
-}
-
-.textHorizontal {
-  font-size: 22px;
-  letter-spacing: 2px;
-}
-
-.textStacked {
-  font-size: 4.5vw;
-  letter-spacing: 8px;
-  margin-top: 8px;
-  text-transform: uppercase;
-  font-weight: 900;
-}
-
-@media (max-width: 768px) {
-  .textStacked {
-    font-size: 8vw;
-    letter-spacing: 5px;
-  }
+.svgText {
+  transition: fill 0.3s ease;
 }

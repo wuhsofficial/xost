@@ -119,7 +119,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
         <div className={styles.inner}>
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <Logo variant="horizontal" size={26} />
+            <Logo variant="horizontal" size={32} />
           </Link>
 
           {/* Desktop links */}
