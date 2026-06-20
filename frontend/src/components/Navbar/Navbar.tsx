@@ -29,7 +29,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState(null);
-  
+
   /* Hover intent timeout ref to prevent flickering */
   const hoverTimeoutRef = useRef(null);
 
@@ -119,7 +119,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
         <div className={styles.inner}>
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <Logo variant="horizontal" size={44} />
+            <Logo variant="horizontal" size={46} />
           </Link>
 
           {/* Desktop links */}
@@ -128,10 +128,10 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
               // Determine alignment based on tab position
               let alignment = 'left';
               if (['Insights', 'Industries', 'About'].includes(link.label)) alignment = 'center';
-              
+
               return (
-                <li 
-                  key={link.path} 
+                <li
+                  key={link.path}
                   onMouseEnter={() => handleMouseEnter(link.label)}
                   style={{ position: 'relative' }}
                 >
@@ -142,9 +142,9 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                   >
                     {link.label}
                     {megaMenuData[link.label] && (
-                      <FontAwesomeIcon 
-                        icon={faChevronDown} 
-                        style={{ fontSize: '10px', opacity: 0.6, marginTop: '2px' }} 
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        style={{ fontSize: '10px', opacity: 0.6, marginTop: '2px' }}
                       />
                     )}
                     <span className={styles.underline} />
@@ -186,9 +186,9 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
 
           {/* Desktop CTAs */}
           <div className={styles.ctaGroup}>
-            <button 
-              className={styles.ctaButtonGhost} 
-              onClick={() => { navigate('/contact'); setMobileOpen(false); }} 
+            <button
+              className={styles.ctaButtonGhost}
+              onClick={() => { navigate('/contact'); setMobileOpen(false); }}
               type="button"
               onMouseEnter={() => handleMouseEnter('Contact Us')}
               style={{ position: 'relative' }}
@@ -198,9 +198,9 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                 <MegaMenu activeMenu={activeMenu} alignment="right" onMouseLeave={handleMouseLeaveNav} />
               )}
             </button>
-            <button 
-              className={styles.ctaButton} 
-              onClick={handleCTA} 
+            <button
+              className={styles.ctaButton}
+              onClick={handleCTA}
               type="button"
               onMouseEnter={() => handleMouseEnter('Careers')}
               style={{ position: 'relative' }}
@@ -236,14 +236,14 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
 
       {/* Mobile bottom-sheet overlay */}
       {mobileOpen && (
-        <div 
-          className={styles.mobileOverlay} 
+        <div
+          className={styles.mobileOverlay}
           onClick={() => setMobileOpen(false)}
           onWheel={(e) => e.preventDefault()}
           onTouchMove={(e) => e.preventDefault()}
         >
-        <div 
-            className={styles.mobileSheet} 
+          <div
+            className={styles.mobileSheet}
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
@@ -279,7 +279,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                         {link.label}
                       </Link>
                       {hasSubLinks && (
-                        <button 
+                        <button
                           className={styles.mobileSubmenuToggle}
                           onClick={(e) => toggleMobileSubmenu(link.label, e)}
                           aria-expanded={isExpanded}
@@ -289,18 +289,18 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                         </button>
                       )}
                     </div>
-                    
+
                     {hasSubLinks && isExpanded && (
                       <ul className={styles.mobileSubLinks}>
                         {megaMenuData[link.label].map(sub => {
                           const routePrefix = link.label === 'Careers' ? '/careers' :
-                                              link.label === 'Contact Us' ? '/contact' :
-                                              `/${link.label.toLowerCase()}`;
+                            link.label === 'Contact Us' ? '/contact' :
+                              `/${link.label.toLowerCase()}`;
                           const destPath = `${routePrefix}/${sub.slug}`;
-                          
+
                           return (
                             <li key={sub.slug}>
-                              <Link 
+                              <Link
                                 to={destPath}
                                 className={styles.mobileSubLink}
                                 onClick={() => setMobileOpen(false)}
@@ -315,7 +315,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                   </li>
                 );
               })}
-              
+
               {/* Add Contact Us to mobile nav */}
               <li className={styles.mobileLinkItem}>
                 <div className={styles.mobileLinkWrapper}>
@@ -327,7 +327,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                     {isActive('/contact') && <span className={styles.activeDot} />}
                     Contact Us
                   </Link>
-                  <button 
+                  <button
                     className={styles.mobileSubmenuToggle}
                     onClick={(e) => toggleMobileSubmenu('Contact Us', e)}
                   >
@@ -338,7 +338,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                   <ul className={styles.mobileSubLinks}>
                     {megaMenuData['Contact Us'].map(sub => (
                       <li key={sub.slug}>
-                        <Link 
+                        <Link
                           to={`/contact/${sub.slug}`}
                           className={styles.mobileSubLink}
                           onClick={() => setMobileOpen(false)}

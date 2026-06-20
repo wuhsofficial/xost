@@ -97,7 +97,7 @@ export default function Footer() {
         <div className={styles.columns}>
           {/* ── Brand column ──────────────────────────────────────────── */}
           <div className={styles.brandCol}>
-            <Logo variant="horizontal" size={32} />
+            <Logo variant="horizontal" size={56} />
             <span className={styles.brandTagline}>Strategy. Execution. Scale.</span>
             <p className={styles.brandDescription}>
               Transforming businesses through cutting-edge technology solutions and digital innovation.
