@@ -5,6 +5,7 @@ import { faBars, faXmark, faSun, faMoon, faChevronDown, faChevronUp, faMagnifyin
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import MegaMenu from '../MegaMenu/MegaMenu';
 import { megaMenuData } from '../../data/megaMenuData';
+import Logo from '../Logo/Logo';
 import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
@@ -117,8 +118,8 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
       <nav className={styles.navbar} style={navStyle} onMouseLeave={handleMouseLeaveNav}>
         <div className={styles.inner}>
           {/* Logo */}
-          <Link to="/" className={styles.logo}>
-            XOST
+          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <Logo variant="horizontal" size={26} />
           </Link>
 
           {/* Desktop links */}

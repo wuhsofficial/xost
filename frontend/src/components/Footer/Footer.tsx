@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faLocationDot, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { megaMenuData } from '../../data/megaMenuData';
+import Logo from '../Logo/Logo';
 import styles from './Footer.module.css';
 
 const SOCIAL_LINKS = [
@@ -96,7 +97,7 @@ export default function Footer() {
         <div className={styles.columns}>
           {/* ── Brand column ──────────────────────────────────────────── */}
           <div className={styles.brandCol}>
-            <span className={styles.brandLogo}>XOST</span>
+            <Logo variant="horizontal" size={32} />
             <span className={styles.brandTagline}>Strategy. Execution. Scale.</span>
             <p className={styles.brandDescription}>
               Transforming businesses through cutting-edge technology solutions and digital innovation.
