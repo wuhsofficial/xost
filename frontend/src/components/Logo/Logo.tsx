@@ -20,6 +20,9 @@ export default function Logo({
   // Determine size based on variant if not provided
   const iconHeight = size || (variant === 'stacked' ? 120 : 32);
 
+  // Use xost.png for main branding (spells Xost), logo.png for icon-only symbol (X-only)
+  const logoSrc = variant === 'icon-only' ? '/logo.png' : '/xost.png';
+
   const containerClasses = [
     styles.container,
     className
@@ -28,7 +31,7 @@ export default function Logo({
   return (
     <div className={containerClasses} onClick={onClick}>
       <img
-        src="/logo.png"
+        src={logoSrc}
         alt="XOST Logo"
         style={{
           height: iconHeight,
