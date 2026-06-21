@@ -85,58 +85,38 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(13, 27, 42, 0.04);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-secondary);
   font-size: 13px;
   font-family: 'Inter', sans-serif;
   padding: 7px 12px;
   cursor: pointer;
   transition: background 200ms, border-color 200ms, color 200ms;
   white-space: nowrap;
+  min-width: 180px;
 }
 
 .searchBtn:hover {
   background: rgba(0, 212, 255, 0.08);
-  border-color: rgba(0, 212, 255, 0.4);
-  color: #00d4ff;
+  border-color: rgba(0, 212, 255, 0.45);
+  color: var(--accent-aqua);
 }
 
 .searchLabel {
   font-size: 13px;
+  margin-right: auto;
 }
 
 .searchKbd {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(13, 27, 42, 0.06);
+  border: 1px solid var(--card-border);
   border-radius: 5px;
   padding: 2px 6px;
   font-size: 10px;
   font-family: 'Space Grotesk', sans-serif;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-/* ─── Dark mode toggle (desktop) ───────────────────────────────────────────── */
-.darkModeToggle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--card-border);
-  background: transparent;
-  color: var(--accent-aqua);
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 200ms ease-out, border-color 200ms ease-out;
-}
-
-.darkModeToggle:hover {
-  background: var(--card-surface);
-  border-color: var(--accent-aqua);
+  color: var(--text-muted);
 }
 
 /* ─── CTA button (desktop) ─────────────────────────────────────────────────── */
@@ -149,14 +129,14 @@
 .ctaButton {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 600;
-  color: var(--bg-primary); /* Changed to background primary for contrast on gradient */
+  font-weight: 700;
+  color: #06212b; /* deep navy for strong contrast on the bright aqua→mint gradient */
   background: var(--gradient-accent);
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
   cursor: pointer;
-  transition: box-shadow 200ms ease-out;
+  transition: box-shadow 200ms ease-out, transform 150ms ease-out;
 }
 
 .ctaButtonGhost {
@@ -369,38 +349,6 @@
   flex-shrink: 0;
 }
 
-/* ─── Mobile dark mode toggle ──────────────────────────────────────────────── */
-.mobileDarkModeToggle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  margin-top: 12px;
-  padding: 12px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--card-border);
-  background: transparent;
-  cursor: pointer;
-  transition: background 200ms ease-out, border-color 200ms ease-out;
-}
-
-.mobileDarkModeToggle:hover {
-  background: rgba(0, 212, 255, 0.06);
-  border-color: var(--accent-aqua);
-}
-
-.mobileDarkModeIcon {
-  color: var(--accent-aqua);
-  font-size: 18px;
-}
-
-.mobileDarkModeLabel {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
 /* ─── Mobile CTA ───────────────────────────────────────────────────────────── */
 .mobileCTA {
   width: 100%;
@@ -429,7 +377,6 @@
 
   .desktopLinks,
   .ctaGroup,
-  .darkModeToggle,
   .searchBtn {
     display: none;
   }
@@ -445,10 +392,6 @@
 
 @media (min-width: 768px) {
   .mobileOverlay {
-    display: none;
-  }
-
-  .mobileDarkModeToggle {
     display: none;
   }
 }

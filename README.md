@@ -1,8 +1,8 @@
-# Tech Digital Agency — Full Website
+# XOST Company Site
 
 > **Strategy. Execution. Scale.**
 
-A premium tech agency website with a **React + Vite** frontend and **Next.js 14 + MongoDB** backend API.
+The XOST company website — a **React + Vite** frontend with a **Next.js 14 + MongoDB** backend API.
 
 ---
 

@@ -202,12 +202,12 @@ export default function InsightsPage() {
           <Chart
             options={{
               chart: { type: 'bar', toolbar: { show: false  as any}, background: 'transparent' },
-              theme: { mode: 'dark' },
-              colors: ['#00D4FF'],
+              theme: { mode: 'light' },
+              colors: ['#00b4d8'],
               plotOptions: { bar: { borderRadius: 4, horizontal: false } },
-              xaxis: { categories: ['AI/ML', 'Design', 'Dev', 'Marketing', 'SEO'], labels: { style: { colors: '#94a3b8' } } },
-              yaxis: { labels: { style: { colors: '#94a3b8' } } },
-              grid: { borderColor: '#1e293b' },
+              xaxis: { categories: ['AI/ML', 'Design', 'Dev', 'Marketing', 'SEO'], labels: { style: { colors: '#64748b' } } },
+              yaxis: { labels: { style: { colors: '#64748b' } } },
+              grid: { borderColor: '#e2e8f0' },
               dataLabels: { enabled: false }
             }}
             series={[{ name: 'Articles Published', data: [45, 32, 68, 24, 18] }]}
@@ -220,14 +220,14 @@ export default function InsightsPage() {
           <Chart
             options={{
               chart: { type: 'area', toolbar: { show: false  as any}, background: 'transparent' },
-              theme: { mode: 'dark' },
+              theme: { mode: 'light' },
               colors: ['#8B5CF6'],
               fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.7, opacityTo: 0.1, stops: [0, 90, 100] } },
               dataLabels: { enabled: false },
               stroke: { curve: 'smooth', width: 2 },
-              xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], labels: { style: { colors: '#94a3b8' } } },
-              yaxis: { labels: { style: { colors: '#94a3b8' } } },
-              grid: { borderColor: '#1e293b' },
+              xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], labels: { style: { colors: '#64748b' } } },
+              yaxis: { labels: { style: { colors: '#64748b' } } },
+              grid: { borderColor: '#e2e8f0' },
             }}
             series={[{ name: 'Monthly Readers', data: [1200, 1900, 3000, 4500, 6200, 8400] }]}
             type="area"

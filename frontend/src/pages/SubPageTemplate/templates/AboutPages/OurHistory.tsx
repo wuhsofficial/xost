@@ -22,11 +22,11 @@ export default function OurHistory({ pageData }) {
     chart: { type: 'line', background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF', '#D946EF', '#43E97B'],
     stroke: { curve: 'smooth', width: 3 },
-    xaxis: { categories: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'Growth Index (Base 100)', style: { color: '#fff' } },
-    legend: { labels: { colors: '#fff' } }
+    xaxis: { categories: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'Growth Index (Base 100)', style: { color: '#334155' } },
+    legend: { labels: { colors: '#334155' } }
   };
   
   // Exponential / linear indexed growth data

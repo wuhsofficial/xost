@@ -19,9 +19,9 @@ export default function CloudCostOptimization({ pageData }) {
     colors: ['#ff7b72', '#3fb950'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 2 },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], labels: { style: { colors: '#fff' } } },
-    yaxis: { title: { text: 'Monthly Spend ($)', style: { color: '#fff' } }, labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
+    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { title: { text: 'Monthly Spend ($)', style: { color: '#334155' } }, labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.1 } }
   };
   const areaSeries = [
@@ -34,7 +34,7 @@ export default function CloudCostOptimization({ pageData }) {
     labels: ['Compute', 'Storage', 'Networking', 'Databases', 'Misc'],
     colors: ['#D946EF', '#00FFFF', '#667EEA', '#ff7b72', '#a8b2c1'],
     stroke: { show: false },
-    theme: { mode: 'dark' }
+    theme: { mode: 'light' }
   };
   const donutSeries = [45, 20, 15, 15, 5];
 

@@ -20,23 +20,24 @@ export default function HealthcareLifeScience({ pageData }) {
     chart: { type: 'radar', background: 'transparent', toolbar: { show: false } },
     labels: ['Patient Safety', 'Data Privacy', 'Interoperability', 'Clinical Efficiency', 'Compliance', 'AI Diagnostics'],
     stroke: { width: 2, colors: ['#ff7b72'] },
-    fill: { opacity: 0.2, colors: ['#ff7b72'] },
+    fill: { opacity: 0.18, colors: ['#ff7b72'] },
     markers: { size: 4, colors: ['#fff'], strokeColors: '#ff7b72', strokeWidth: 2 },
     yaxis: { show: false },
-    theme: { mode: 'dark' },
-    plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.1)', connectorColors: 'rgba(255,255,255,0.1)' } } }
+    theme: { mode: 'light' },
+    plotOptions: { radar: { polygons: { strokeColors: 'rgba(13,27,42,0.1)', connectorColors: 'rgba(13,27,42,0.1)' } } }
   };
   const radarSeries = [{ name: 'Tech Coverage', data: [100, 100, 90, 85, 100, 80] }];
 
   const barOptions = {
     chart: { type: 'bar', background: 'transparent', toolbar: { show: false } },
-    colors: ['#ff7b72', '#00FFFF'],
+    colors: ['#ff7b72', '#00b4d8'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4, dataLabels: { position: 'top' } } },
-    dataLabels: { enabled: true, offsetX: 20, style: { colors: ['#fff'] } },
-    xaxis: { categories: ['Admissions', 'Billing', 'Pharmacy', 'Radiology', 'Outpatient'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'Time Saved per Task (Minutes)', style: { color: '#fff' } }
+    dataLabels: { enabled: true, offsetX: 20, style: { colors: ['#334155'] } },
+    xaxis: { categories: ['Admissions', 'Billing', 'Pharmacy', 'Radiology', 'Outpatient'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    legend: { labels: { colors: '#334155' } },
+    title: { text: 'Time Saved per Task (Minutes)', style: { color: '#334155' } }
   };
   const barSeries = [
     { name: 'Manual Paperwork', data: [45, 60, 30, 40, 35] },

@@ -58,8 +58,3 @@
 .drift4 {
   animation: meshDrift4 28s ease-in-out infinite;
 }
-
-/* ─── Dark mode — reduce intensity ──────────────────────────────────────── */
-:global([data-theme="dark"]) .blob {
-  opacity: 0.25;
-}

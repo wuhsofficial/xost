@@ -1,6 +1,9 @@
 .megaMenuPositioner {
   position: absolute;
-  top: 100%;
+  /* Drop the panel exactly to the navbar's bottom edge. --megamenu-offset is
+     measured live in Navbar.tsx as the gap between the nav links and the
+     navbar's bottom border, so the panel top sits flush against it. */
+  top: calc(100% + var(--megamenu-offset, 16px));
   z-index: 101;
   pointer-events: none;
 }
@@ -10,10 +13,11 @@
   max-width: 800px;
   background: var(--bg-primary); /* Solid background instead of transparent */
   border: 1px solid var(--card-border);
-  border-radius: var(--radius-xl);
+  border-top: none;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   box-shadow: 0 16px 40px var(--card-shadow);
   padding: 1rem;
-  margin-top: 10px; /* Small gap from navbar */
+  margin-top: 0; /* flush with navbar bottom border */
   pointer-events: auto;
 }
 

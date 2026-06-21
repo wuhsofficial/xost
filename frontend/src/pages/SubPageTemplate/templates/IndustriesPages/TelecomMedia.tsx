@@ -21,12 +21,12 @@ export default function TelecomMedia({ pageData }) {
     colors: ['#00FFFF', '#D946EF'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 3 },
-    xaxis: { categories: ['18:00', '19:00', '20:00', '21:00 (Peak)', '22:00', '23:00'], labels: { style: { colors: '#fff' } } },
+    xaxis: { categories: ['18:00', '19:00', '20:00', '21:00 (Peak)', '22:00', '23:00'], labels: { style: { colors: '#64748b' } } },
     yaxis: [
-      { title: { text: 'Concurrent Viewers (M)', style: { color: '#00FFFF' } }, labels: { style: { colors: '#fff' } } },
-      { opposite: true, title: { text: 'Bandwidth Served (Tbps)', style: { color: '#D946EF' } }, labels: { style: { colors: '#fff' } } }
+      { title: { text: 'Concurrent Viewers (M)', style: { color: '#00FFFF' } }, labels: { style: { colors: '#64748b' } } },
+      { opposite: true, title: { text: 'Bandwidth Served (Tbps)', style: { color: '#D946EF' } }, labels: { style: { colors: '#64748b' } } }
     ],
-    theme: { mode: 'dark' },
+    theme: { mode: 'light' },
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.1 } }
   };
   const areaSeries = [
@@ -39,7 +39,7 @@ export default function TelecomMedia({ pageData }) {
     labels: ['VOD', 'Live Sports', 'News Streams', 'Education', 'Audio/Podcasts'],
     colors: ['#00FFFF', '#D946EF', '#ff7b72', '#43E97B', '#667EEA'],
     stroke: { show: false },
-    theme: { mode: 'dark' }
+    theme: { mode: 'light' }
   };
   const donutSeries = [45, 25, 15, 10, 5];
 
@@ -47,11 +47,11 @@ export default function TelecomMedia({ pageData }) {
     chart: { type: 'bar', background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF', '#ff7b72'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4, dataLabels: { position: 'top' } } },
-    dataLabels: { enabled: true, offsetX: 20, style: { colors: ['#fff'] }, formatter: (val) => val + 's' },
+    dataLabels: { enabled: true, offsetX: 20, style: { colors: ['#334155'] }, formatter: (val) => val + 's' },
     xaxis: { labels: { show: false } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'Stream Start Time Latency', style: { color: '#fff' } }
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'Stream Start Time Latency', style: { color: '#334155' } }
   };
   const barSeries = [
     { name: 'XOST Optimized CDN', data: [0.8, 1.2, 1.5] },

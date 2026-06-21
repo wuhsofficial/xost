@@ -22,10 +22,10 @@ export default function LogisticsSupplyChain({ pageData }) {
     chart: { type: 'line', background: 'transparent', toolbar: { show: false } },
     colors: ['#3fb950'],
     stroke: { curve: 'smooth', width: 3 },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'On-time Delivery Rate (%)', style: { color: '#fff' } }
+    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'On-time Delivery Rate (%)', style: { color: '#334155' } }
   };
   const lineSeries = [{ name: 'On-Time Rate', data: [82, 84, 85, 88, 89, 91, 92, 94, 95, 96, 98, 99] }];
 
@@ -34,10 +34,10 @@ export default function LogisticsSupplyChain({ pageData }) {
     colors: ['#ff7b72', '#3fb950'],
     plotOptions: { bar: { horizontal: false, borderRadius: 4, columnWidth: '50%' } },
     dataLabels: { enabled: false },
-    xaxis: { categories: ['Air Freight', 'Ocean Freight', 'Last-Mile', 'Warehouse Ops'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'Cost Per Unit ($)', style: { color: '#fff' } }
+    xaxis: { categories: ['Air Freight', 'Ocean Freight', 'Last-Mile', 'Warehouse Ops'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'Cost Per Unit ($)', style: { color: '#334155' } }
   };
   const barSeries = [
     { name: 'Before XOST', data: [120, 45, 15, 8] },

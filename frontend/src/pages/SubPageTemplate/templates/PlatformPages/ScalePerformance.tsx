@@ -21,9 +21,9 @@ export default function ScalePerformance({ pageData }) {
     colors: ['#00FFFF'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 2 },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
+    xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.1 } }
   };
   const areaSeries = [{ name: 'Requests (Millions)', data: [30, 40, 35, 50, 49, 60] }];
@@ -33,9 +33,9 @@ export default function ScalePerformance({ pageData }) {
     colors: ['#D946EF', '#667EEA'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
     dataLabels: { enabled: false },
-    xaxis: { categories: ['US East', 'Europe', 'Asia', 'Oceania'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
+    xaxis: { categories: ['US East', 'Europe', 'Asia', 'Oceania'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
     tooltip: { theme: 'dark' }
   };
   const barSeries = [

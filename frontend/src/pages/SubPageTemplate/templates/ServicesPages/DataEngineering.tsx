@@ -10,9 +10,9 @@ export default function DataEngineering({ pageData }) {
     colors: ['#00FFFF', '#D946EF'],
     plotOptions: { bar: { horizontal: false, borderRadius: 4, columnWidth: '50%' } },
     dataLabels: { enabled: false },
-    xaxis: { categories: ['Batch (Legacy)', 'Micro-batch', 'Real-time Streaming (Ours)'], labels: { style: { colors: '#fff' } } },
-    yaxis: { title: { text: 'Throughput (MB/s)', style: { color: '#fff' } }, labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' }
+    xaxis: { categories: ['Batch (Legacy)', 'Micro-batch', 'Real-time Streaming (Ours)'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { title: { text: 'Throughput (MB/s)', style: { color: '#334155' } }, labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' }
   };
   const barSeries = [{ name: 'Processing Speed', data: [50, 200, 850] }];
 
@@ -21,7 +21,7 @@ export default function DataEngineering({ pageData }) {
     labels: ['SQL Databases', 'APIs/Webhooks', 'IoT Devices', 'Flat Files', 'Data Streams'],
     colors: ['#00FFFF', '#D946EF', '#667EEA', '#764BA2', '#43E97B'],
     stroke: { show: false },
-    theme: { mode: 'dark' }
+    theme: { mode: 'light' }
   };
   const donutSeries = [35, 25, 20, 10, 10];
 

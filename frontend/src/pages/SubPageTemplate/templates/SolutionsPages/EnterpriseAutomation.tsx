@@ -28,9 +28,9 @@ export default function EnterpriseAutomation({ pageData }) {
     colors: ['#00FFFF'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
     dataLabels: { enabled: false },
-    xaxis: { categories: ['HR', 'Finance', 'IT Ops', 'Sales', 'Support'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' }
+    xaxis: { categories: ['HR', 'Finance', 'IT Ops', 'Sales', 'Support'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' }
   };
   const barSeries = [{ name: 'Hours Saved/Month', data: [120, 350, 400, 200, 500] }];
 

@@ -21,9 +21,9 @@ export default function EcommerceRetail({ pageData }) {
     colors: ['#D946EF'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 3 },
-    xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4 (Holiday)', 'Q1', 'Q2', 'Q3'], labels: { style: { colors: '#fff' } } },
-    yaxis: { title: { text: 'GMV ($ Millions)', style: { color: '#fff' } }, labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
+    xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4 (Holiday)', 'Q1', 'Q2', 'Q3'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { title: { text: 'GMV ($ Millions)', style: { color: '#334155' } }, labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.1 } }
   };
   const areaSeries = [{ name: 'Gross Merchandise Value', data: [15, 22, 28, 85, 45, 60, 75] }];
@@ -33,7 +33,7 @@ export default function EcommerceRetail({ pageData }) {
     labels: ['Web (Desktop)', 'Mobile App', 'Social Commerce', 'Marketplaces'],
     colors: ['#D946EF', '#00FFFF', '#ff7b72', '#43E97B'],
     stroke: { show: false },
-    theme: { mode: 'dark' }
+    theme: { mode: 'light' }
   };
   const donutSeries = [35, 40, 15, 10];
 

@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark, faSun, faMoon, faChevronDown, faChevronUp, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useDarkMode } from '../../contexts/DarkModeContext';
+import { faBars, faXmark, faChevronDown, faChevronUp, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import MegaMenu from '../MegaMenu/MegaMenu';
 import { megaMenuData } from '../../data/megaMenuData';
 import Logo from '../Logo/Logo';
@@ -24,17 +23,17 @@ const NAV_LINKS = [
 export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isDark, toggle: toggleDarkMode } = useDarkMode();
   const [glassOpacity, setGlassOpacity] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState(null);
 
+  /* Navbar ref + measured height so the mega menu can sit flush below it */
+  const navRef = useRef(null);
+  const linksRef = useRef(null);
+
   /* Hover intent timeout ref to prevent flickering */
   const hoverTimeoutRef = useRef(null);
-
-  /* Track rotation state so icon spins 180° each toggle */
-  const [rotationDeg, setRotationDeg] = useState(0);
 
   /* ── Scroll listener for glass transition ────────────────────────── */
   useEffect(() => {
@@ -74,11 +73,6 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
     setMobileExpandedMenu(prev => prev === label ? null : label);
   };
 
-  const handleDarkModeToggle = useCallback(() => {
-    setRotationDeg((prev) => prev + 180);
-    toggleDarkMode();
-  }, [toggleDarkMode]);
-
   const handleMouseEnter = (label) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
@@ -99,6 +93,21 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
 
   const isActive = (path) => location.pathname === path;
 
+  /* ── Measure vertical gap between the nav links and the navbar's bottom
+        edge so the mega menu can drop flush against the navbar border ──── */
+  const [megaMenuOffset, setMegaMenuOffset] = useState(16);
+  useEffect(() => {
+    const measure = () => {
+      if (!navRef.current || !linksRef.current) return;
+      const navBottom = navRef.current.getBoundingClientRect().bottom;
+      const linksBottom = linksRef.current.getBoundingClientRect().bottom;
+      setMegaMenuOffset(Math.max(0, Math.round(navBottom - linksBottom)));
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   /* ── Dynamic glass styles ────────────────────────────────────────── */
   const navStyle = {
     background: 'var(--card-surface)',
@@ -106,16 +115,12 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
     WebkitBackdropFilter: 'blur(20px)',
     borderBottom: '1px solid var(--card-border)',
     boxShadow: '0 0 24px var(--card-shadow)',
-  };
-
-  const toggleIconStyle = {
-    transform: `rotate(${rotationDeg}deg)`,
-    transition: 'transform 400ms ease-out',
+    ['--megamenu-offset' as any]: `${megaMenuOffset}px`,
   };
 
   return (
     <>
-      <nav className={styles.navbar} style={navStyle} onMouseLeave={handleMouseLeaveNav}>
+      <nav ref={navRef} className={styles.navbar} style={navStyle} onMouseLeave={handleMouseLeaveNav}>
         <div className={styles.inner}>
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
@@ -123,7 +128,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
           </Link>
 
           {/* Desktop links */}
-          <ul className={styles.desktopLinks}>
+          <ul ref={linksRef} className={styles.desktopLinks}>
             {NAV_LINKS.map((link) => {
               // Determine alignment based on tab position
               let alignment = 'left';
@@ -169,19 +174,6 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             <span className={styles.searchLabel}>Search</span>
             <kbd className={styles.searchKbd}>⌘K</kbd>
-          </button>
-
-          {/* Desktop dark mode toggle */}
-          <button
-            className={styles.darkModeToggle}
-            onClick={handleDarkModeToggle}
-            type="button"
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            <FontAwesomeIcon
-              icon={isDark ? faSun : faMoon}
-              style={toggleIconStyle}
-            />
           </button>
 
           {/* Desktop CTAs */}
@@ -351,23 +343,6 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                 )}
               </li>
             </ul>
-
-            {/* Mobile dark mode toggle */}
-            <button
-              className={styles.mobileDarkModeToggle}
-              onClick={handleDarkModeToggle}
-              type="button"
-              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
-              <FontAwesomeIcon
-                icon={isDark ? faSun : faMoon}
-                className={styles.mobileDarkModeIcon}
-                style={toggleIconStyle}
-              />
-              <span className={styles.mobileDarkModeLabel}>
-                {isDark ? 'Light Mode' : 'Dark Mode'}
-              </span>
-            </button>
 
             {/* Mobile CTA */}
             <button className={styles.mobileCTA} onClick={handleCTA} type="button">

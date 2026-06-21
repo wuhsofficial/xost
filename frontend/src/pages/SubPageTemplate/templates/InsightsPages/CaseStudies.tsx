@@ -12,9 +12,9 @@ export default function CaseStudies({ pageData }) {
     colors: ['#ff7b72', '#3fb950'],
     plotOptions: { bar: { horizontal: false, borderRadius: 4, columnWidth: '50%' } },
     dataLabels: { enabled: false },
-    xaxis: { categories: ['Infrastructure Cost', 'Deployment Time', 'Downtime Incidents'], labels: { style: { colors: '#fff' } } },
+    xaxis: { categories: ['Infrastructure Cost', 'Deployment Time', 'Downtime Incidents'], labels: { style: { colors: '#64748b' } } },
     yaxis: { labels: { show: false } },
-    theme: { mode: 'dark' },
+    theme: { mode: 'light' },
     tooltip: { theme: 'dark' }
   };
   const barSeries = [
@@ -27,7 +27,7 @@ export default function CaseStudies({ pageData }) {
     labels: ['FinTech', 'Healthcare', 'E-commerce', 'Logistics', 'EdTech'],
     colors: ['#00FFFF', '#D946EF', '#667EEA', '#ff7b72', '#43E97B'],
     stroke: { show: false },
-    theme: { mode: 'dark' }
+    theme: { mode: 'light' }
   };
   const donutSeries = [30, 25, 20, 15, 10];
 

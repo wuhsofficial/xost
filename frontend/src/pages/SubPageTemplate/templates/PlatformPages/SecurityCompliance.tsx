@@ -23,8 +23,8 @@ export default function SecurityCompliance({ pageData }) {
     fill: { opacity: 0.2, colors: ['#00FFFF'] },
     markers: { size: 4, colors: ['#fff'], strokeColors: '#00FFFF', strokeWidth: 2 },
     yaxis: { show: false },
-    theme: { mode: 'dark' },
-    plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.1)', connectorColors: 'rgba(255,255,255,0.1)' } } }
+    theme: { mode: 'light' },
+    plotOptions: { radar: { polygons: { strokeColors: 'rgba(13,27,42,0.1)', connectorColors: 'rgba(13,27,42,0.1)' } } }
   };
   
   const radarSeries = [{ name: 'Security Coverage', data: [98, 95, 100, 92, 96, 99] }];

@@ -8,7 +8,6 @@ import BackToTop from './components/BackToTop/BackToTop';
 import Spotlight from './components/Spotlight/Spotlight';
 import GenAIAssistant from './components/GenAIAssistant/GenAIAssistant';
 import AISearchModal from './components/AISearchModal/AISearchModal';
-import { DarkModeProvider } from './contexts/DarkModeContext';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    App Shell — Layout with Lenis smooth scroll, page transitions,
@@ -77,16 +76,14 @@ export default function App(): JSX.Element {
   }, [pathname]);
 
   return (
-    <DarkModeProvider>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          backgroundColor: 'var(--bg-primary)',
-          transition: 'background-color 400ms ease',
-        }}
-      >
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        backgroundColor: 'var(--bg-primary)',
+      }}
+    >
         {/* Noise / Grain Texture Overlay */}
         <div className="noiseOverlay" />
 
@@ -112,7 +109,6 @@ export default function App(): JSX.Element {
         {/* AI Integrations — global */}
         <GenAIAssistant />
         <AISearchModal isOpen={searchOpen} onClose={closeSearch} />
-      </div>
-    </DarkModeProvider>
+    </div>
   );
 }

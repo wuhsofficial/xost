@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faLocationDot, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { megaMenuData } from '../../data/megaMenuData';
 import Logo from '../Logo/Logo';
@@ -15,17 +15,23 @@ const SOCIAL_LINKS = [
   { icon: faXTwitter, href: 'https://x.com/xostagency', label: 'X (Twitter)' },
 ];
 
+/* Sitemap columns rendered from the same data that powers the mega menu. */
+const FOOTER_COLUMNS = ['Platform', 'Services', 'Solutions', 'Insights', 'Industries', 'About', 'Careers', 'Contact Us'];
+
+const basePathFor = (catKey: string) => {
+  const key = catKey.toLowerCase();
+  if (key === 'contact us') return 'contact';
+  if (key === 'careers') return 'careers';
+  return key.replace(/\s+/g, '-');
+};
+
 /**
- * Footer — massive dark footer rendering data directly from megaMenuData.
+ * Footer — professional, expanded sitemap footer with brand block,
+ * contact details, newsletter, and a legal bottom bar.
  */
 export default function Footer() {
-  // We'll extract specific categories to render in the massive footer
-  const footerCategories = ['Platform', 'Services', 'Solutions', 'Insights', 'Industries', 'About'];
+  const year = new Date().getFullYear();
 
-  // State for accordion functionality
-  const [expandedTabs, setExpandedTabs] = useState<Record<string, boolean>>({});
-
-  // Newsletter state
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
@@ -36,19 +42,11 @@ export default function Footer() {
     }
   };
 
-  const toggleTab = (tab: string) => {
-    setExpandedTabs(prev => ({
-      ...prev,
-      [tab]: !prev[tab]
-    }));
-  };
-
   return (
     <footer className={styles.footer}>
       {/* Gradient top border */}
       <div className={styles.gradientBorder} />
 
-      {/* Main body */}
       <div className={styles.body}>
         {/* ── Newsletter Section ──────────────────────────────────────── */}
         <motion.div
@@ -62,7 +60,7 @@ export default function Footer() {
             <div className={styles.newsletterText}>
               <h3 className={styles.newsletterHeadline}>Stay Ahead of the Curve</h3>
               <p className={styles.newsletterSubtext}>
-                Get weekly insights on AI, cloud, and digital innovation
+                Get weekly insights on AI, cloud, and digital innovation — straight to your inbox.
               </p>
             </div>
             {newsletterSubmitted ? (
@@ -94,14 +92,33 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        <div className={styles.columns}>
-          {/* ── Brand column ──────────────────────────────────────────── */}
+        {/* ── Main: brand + sitemap columns ───────────────────────────── */}
+        <div className={styles.main}>
+          {/* Brand block */}
           <div className={styles.brandCol}>
-            <Logo variant="horizontal" size={56} />
+            <Logo variant="horizontal" size={52} />
             <span className={styles.brandTagline}>Strategy. Execution. Scale.</span>
             <p className={styles.brandDescription}>
-              Transforming businesses through cutting-edge technology solutions and digital innovation.
+              XOST is a product engineering studio building secure, scalable digital
+              platforms — from cloud architecture to AI integration — for teams that
+              refuse to compromise on craft.
             </p>
+
+            <div className={styles.contactList}>
+              <a href="mailto:hello@xost.pro" className={styles.contactItem}>
+                <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
+                hello@xost.pro
+              </a>
+              <a href="tel:+923001234567" className={styles.contactItem}>
+                <FontAwesomeIcon icon={faPhone} className={styles.contactIcon} />
+                +92 300 1234567
+              </a>
+              <span className={styles.contactItem}>
+                <FontAwesomeIcon icon={faLocationDot} className={styles.contactIcon} />
+                Lahore, Pakistan
+              </span>
+            </div>
+
             <div className={styles.socialRow}>
               {SOCIAL_LINKS.map((social) => (
                 <a
@@ -118,73 +135,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Dynamic Accordion from MegaMenuData ─────────────────────── */}
-          <div className={styles.accordionContainer}>
-            {[...footerCategories, 'Contact Us'].map((catKey) => {
+          {/* Sitemap link columns */}
+          <div className={styles.linksGrid}>
+            {FOOTER_COLUMNS.map((catKey) => {
               const items = megaMenuData[catKey];
               if (!items) return null;
-              const isExpanded = expandedTabs[catKey];
+              const base = basePathFor(catKey);
 
               return (
-                <div key={catKey} className={styles.accordionSection}>
-                  <div className={styles.accordionHeader} onClick={() => toggleTab(catKey)}>
-                    <h4 className={styles.accordionTitle}>{catKey}</h4>
-                    <FontAwesomeIcon 
-                      icon={faChevronDown} 
-                      className={`${styles.accordionIcon} ${isExpanded ? styles.expanded : ''}`} 
-                    />
-                  </div>
-                  
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={styles.accordionContent}
-                      >
-                        <ul className={styles.linkList}>
-                          {items.map((link) => {
-                            const basePath = catKey.toLowerCase() === 'contact us' 
-                              ? 'contact' 
-                              : catKey.toLowerCase().replace(/\s+/g, '-');
-                            return (
-                              <li key={link.slug}>
-                                <Link to={`/${basePath}/${link.slug}`} className={styles.footerLink}>
-                                  {link.title}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                          
-                          {/* Static contact details inside Contact Us accordion */}
-                          {catKey === 'Contact Us' && (
-                            <>
-                              <li style={{ marginTop: '1rem' }}>
-                                <a href="mailto:hello@xost.agency" className={styles.contactItem}>
-                                  <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
-                                  hello@xost.agency
-                                </a>
-                              </li>
-                              <li>
-                                <a href="tel:+923001234567" className={styles.contactItem}>
-                                  <FontAwesomeIcon icon={faPhone} className={styles.contactIcon} />
-                                  +92 300 1234567
-                                </a>
-                              </li>
-                              <li>
-                                <span className={styles.contactItem}>
-                                  <FontAwesomeIcon icon={faLocationDot} className={styles.contactIcon} />
-                                  Lahore, Pakistan
-                                </span>
-                              </li>
-                            </>
-                          )}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                <div key={catKey} className={styles.linkColumn}>
+                  <h4 className={styles.columnTitle}>{catKey}</h4>
+                  <ul className={styles.linkList}>
+                    {items.map((link) => (
+                      <li key={link.slug}>
+                        <Link to={`/${base}/${link.slug}`} className={styles.footerLink}>
+                          {link.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               );
             })}
@@ -195,11 +164,12 @@ export default function Footer() {
       {/* ── Copyright bar ──────────────────────────────────────────────── */}
       <div className={styles.copyrightBar}>
         <span className={styles.copyrightText}>
-          © 2025 XOST Agency. Crafted with precision in Lahore, Pakistan.
+          © {year} XOST. All rights reserved.
         </span>
+        <span className={styles.craftedText}>Crafted with precision in Lahore, Pakistan.</span>
         <div className={styles.legalLinks}>
           <Link to="/privacy" className={styles.legalLink}>Privacy Policy</Link>
-          <span className={styles.legalSeparator}>|</span>
+          <span className={styles.legalSeparator}>·</span>
           <Link to="/terms" className={styles.legalLink}>Terms of Service</Link>
         </div>
       </div>

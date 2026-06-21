@@ -22,11 +22,11 @@ export default function OurImpact({ pageData }) {
     chart: { type: 'bar', background: 'transparent', toolbar: { show: false } },
     colors: ['#00FFFF'],
     plotOptions: { bar: { borderRadius: 4, dataLabels: { position: 'top' } } },
-    dataLabels: { enabled: true, style: { colors: ['#fff'] } },
-    xaxis: { categories: ['2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'New Enterprise Clients per Year', style: { color: '#fff' } }
+    dataLabels: { enabled: true, style: { colors: ['#334155'] } },
+    xaxis: { categories: ['2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'New Enterprise Clients per Year', style: { color: '#334155' } }
   };
   const barSeries = [{ name: 'Clients', data: [15, 28, 45, 70, 110] }];
 
@@ -35,10 +35,10 @@ export default function OurImpact({ pageData }) {
     colors: ['#D946EF'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 3 },
-    xaxis: { categories: ['2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#fff' } } },
-    yaxis: { labels: { style: { colors: '#fff' } } },
-    theme: { mode: 'dark' },
-    title: { text: 'Cumulative End-Users Impacted (Millions)', style: { color: '#fff' } },
+    xaxis: { categories: ['2020', '2021', '2022', '2023', '2024'], labels: { style: { colors: '#64748b' } } },
+    yaxis: { labels: { style: { colors: '#64748b' } } },
+    theme: { mode: 'light' },
+    title: { text: 'Cumulative End-Users Impacted (Millions)', style: { color: '#334155' } },
     fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.5, opacityTo: 0.1 } }
   };
   const areaSeries = [{ name: 'End-Users (M)', data: [0.1, 0.5, 2.1, 5.8, 12.5] }];

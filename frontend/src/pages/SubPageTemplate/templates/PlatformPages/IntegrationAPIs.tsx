@@ -52,11 +52,11 @@ export default function IntegrationAPIs({ pageData }) {
     labels: ['REST API', 'GraphQL', 'Webhooks', 'gRPC'],
     colors: ['#00FFFF', '#D946EF', '#667EEA', '#764BA2'],
     stroke: { show: false },
-    theme: { mode: 'dark' },
+    theme: { mode: 'light' },
     plotOptions: {
       pie: {
         donut: {
-          labels: { show: true, name: { color: '#fff' }, value: { color: '#fff' } }
+          labels: { show: true, name: { color: '#64748b' }, value: { color: '#0f172a' } }
         }
       }
     }

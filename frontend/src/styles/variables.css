@@ -1,7 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    CSS Custom Properties — Design Tokens
-   Maps every Flutter AppColors + AppGradients value to CSS variables.
-   Includes dark mode overrides via [data-theme="dark"]
+   Single light theme. Maps brand AppColors + AppGradients to CSS variables.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -67,34 +66,4 @@
 
   /* ─── Noise Overlay ───────────────────────────────────────────────── */
   --noise-opacity: 0.035;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   DARK MODE — Override all color tokens
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-[data-theme="dark"] {
-  --bg-primary: #0A0F1E;
-  --bg-secondary: #0F1629;
-  --bg-gradient-end: #111827;
-
-  --text-primary: #E2E8F0;
-  --text-secondary: #A0AEC0;
-  --text-muted: #718096;
-
-  --card-surface: rgba(255, 255, 255, 0.06);
-  --card-border: rgba(0, 212, 255, 0.18);
-  --card-shadow: rgba(0, 0, 0, 0.3);
-  --hover-glow: rgba(0, 212, 255, 0.35);
-
-  --footer-bg: #050810;
-  --footer-bg-end: #0A0F1E;
-  --footer-text: #94A3B8;
-
-  --pure-white: #E2E8F0;
-
-  --gradient-bg: linear-gradient(to bottom, #0A0F1E, #111827);
-  --gradient-card-hover: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,255,179,0.08));
-
-  --noise-opacity: 0.025;
 }

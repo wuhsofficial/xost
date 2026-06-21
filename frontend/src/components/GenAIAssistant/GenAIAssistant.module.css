@@ -44,7 +44,9 @@
   bottom: 100px;
   right: 28px;
   width: min(380px, calc(100vw - 40px));
-  max-height: 520px;
+  /* Never let the window grow past the top of the screen. It is anchored at
+     bottom:100px, so cap height to the space above that minus a top margin. */
+  max-height: min(520px, calc(100dvh - 130px));
   background: rgba(8, 10, 18, 0.95);
   border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 20px;
