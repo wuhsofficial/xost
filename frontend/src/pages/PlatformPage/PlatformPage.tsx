@@ -195,9 +195,21 @@ export default function PlatformPage() {
       <section className={styles.heroSection} ref={heroRef}>
         <div className={styles.videoBackground}>
           <div className={styles.videoOverlay}></div>
-          <video autoPlay loop muted playsInline className={styles.video}>
-            <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          </video>
+          <iframe
+            className={styles.video}
+            src="https://player.vimeo.com/video/1203176983?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            title="XOST background reel"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="eager"
+            aria-hidden="true"
+            tabIndex={-1}
+            onLoad={() => {
+              (window as any).xostVideoLoaded = true;
+              window.dispatchEvent(new CustomEvent('xost-video-loaded'));
+            }}
+          />
         </div>
 
         {/* Morphing blobs with parallax */}

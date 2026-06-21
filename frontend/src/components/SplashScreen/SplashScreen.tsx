@@ -6,16 +6,15 @@ interface SplashScreenProps {
 }
 
 /* Minimum time the splash stays up so the logo intro animation can play. */
-const MIN_DISPLAY = 1400;
-/* Hard cap so a stalled video/asset can never trap the user on the splash. */
-const MAX_DISPLAY = 9000;
-/* How "ready" the hero video must be (HAVE_FUTURE_DATA) before we reveal. */
-const VIDEO_READY = 3;
+const MIN_DISPLAY = 1500;
+/* Hard cap so a slow asset can never trap the user on the splash. */
+const MAX_DISPLAY = 8000;
 
 /**
- * SplashScreen — holds the brand "X" loader on screen until the real site is
- * actually ready: the document has finished loading and the hero video has
- * buffered enough to play. Falls back to a max timeout so it never hangs.
+ * SplashScreen — holds the brand "X" loader on a clean light backdrop until the
+ * real site is ready: the document has finished loading and web fonts are
+ * resolved. Falls back to a max timeout so it can never hang. (The hero
+ * background streams from YouTube independently and is not blocked on.)
  */
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [fadeOut, setFadeOut] = useState(false);
@@ -31,6 +30,14 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     const start = Date.now();
     let done = false;
 
+    // Web fonts resolved → no text reflow/flash when the site is revealed.
+    let fontsReady = false;
+    if ('fonts' in document) {
+      (document as Document).fonts.ready.then(() => { fontsReady = true; });
+    } else {
+      fontsReady = true;
+    }
+
     const complete = () => {
       if (done) return;
       done = true;
@@ -38,21 +45,18 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       finish();
     };
 
-    /* Poll for the real readiness signals. The hero video lives inside a
-       lazily-loaded route, so it appears in the DOM a moment after mount —
-       polling lets us catch it whenever it shows up. */
     const poll = setInterval(() => {
       const elapsed = Date.now() - start;
       const docReady = document.readyState === 'complete';
-      const video = document.querySelector('video');
-      const videoReady = !video || video.readyState >= VIDEO_READY;
+      const isHomePage = window.location.pathname === '/';
+      const videoReady = !isHomePage || !!(window as any).xostVideoLoaded;
 
       if (elapsed >= MAX_DISPLAY) {
         complete();
-      } else if (docReady && videoReady && elapsed >= MIN_DISPLAY) {
+      } else if (docReady && fontsReady && videoReady && elapsed >= MIN_DISPLAY) {
         complete();
       }
-    }, 120);
+    }, 100);
 
     return () => clearInterval(poll);
   }, [finish]);
@@ -60,16 +64,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <div className={`${styles.overlay} ${fadeOut ? styles.fadeOut : ''}`}>
       <div className={styles.content}>
-        {/* ── Brand Logo Image with CSS animation ──────────────────────── */}
+        {/* ── Brand "X" mark (transparent) with glow + intro animation ──── */}
         <img
-          src="/logo.png"
-          alt="XOST Logo"
+          src="/x-logo.webp"
+          alt="XOST"
           className={styles.splashImage}
         />
-        {/* ── Loading shimmer bar ──────────────────────────────────────── */}
-        <div className={styles.loaderBar}>
-          <span className={styles.loaderFill} />
-        </div>
       </div>
     </div>
   );

@@ -45,6 +45,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route element={<App />}>
           <Route index element={<PageWrapper><PlatformPage /></PageWrapper>} />
+          <Route path="platform" element={<Navigate to="/" replace />} />
           <Route path="services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
           <Route path="solutions" element={<PageWrapper><SolutionsPage /></PageWrapper>} />
           <Route path="insights" element={<PageWrapper><InsightsPage /></PageWrapper>} />
