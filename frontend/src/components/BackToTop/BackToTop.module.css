@@ -25,11 +25,12 @@
   transform: scale(0.6);
   pointer-events: none;
 
-  /* Smooth appear / disappear */
+  /* Smooth appear / disappear / slide */
   transition:
     opacity 300ms ease-out,
     transform 300ms ease-out,
-    box-shadow 250ms ease-out;
+    box-shadow 250ms ease-out,
+    right 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
   /* Subtle idle pulse */
   animation: gentlePulse 3s ease-in-out infinite;
@@ -54,4 +55,20 @@
   font-size: 18px;
   color: var(--text-primary);
   line-height: 1;
+}
+
+.button.shifted {
+  right: 424px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    bottom: 88px;
+    right: 20px;
+  }
+  .button.shifted {
+    opacity: 0 !important;
+    transform: scale(0.6) !important;
+    pointer-events: none !important;
+  }
 }

@@ -10,17 +10,16 @@
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  background: var(--gradient-accent);
   border: none;
-  color: #fff;
+  color: #06212b;
   font-size: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9000;
-  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.35), 0 0 0 0 rgba(0, 212, 255, 0.4);
-  position: fixed;
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3), 0 0 0 0 rgba(0, 212, 255, 0.35);
 }
 
 .fabPulse {
@@ -47,13 +46,15 @@
   /* Never let the window grow past the top of the screen. It is anchored at
      bottom:100px, so cap height to the space above that minus a top margin. */
   max-height: min(520px, calc(100dvh - 130px));
-  background: rgba(8, 10, 18, 0.95);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
   box-shadow:
     0 0 0 1px rgba(0, 212, 255, 0.08),
-    0 24px 64px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(0, 212, 255, 0.06);
+    0 24px 64px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(0, 212, 255, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -66,8 +67,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 16px;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 255, 179, 0.08));
+  border-bottom: 1px solid var(--card-border);
 }
 
 .headerLeft {
@@ -80,13 +81,13 @@
   position: relative;
   width: 38px;
   height: 38px;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  background: #000000;
+  border: 1px solid rgba(0, 212, 255, 0.25);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #fff;
 }
 
 .onlineDot {
@@ -97,14 +98,14 @@
   height: 10px;
   background: #10b981;
   border-radius: 50%;
-  border: 2px solid rgba(8, 10, 18, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.95);
 }
 
 .botName {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .botStatus {
@@ -112,8 +113,9 @@
   align-items: center;
   gap: 5px;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
+  opacity: 0.85;
 }
 
 .statusDot {
@@ -131,8 +133,8 @@
 
 .closeBtn {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--text-secondary);
   width: 28px;
   height: 28px;
   border-radius: 8px;
@@ -145,9 +147,9 @@
 }
 
 .closeBtn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
 }
 
 /* ── Messages ────────────────────────────────────────────── */
@@ -160,7 +162,7 @@
   flex-direction: column;
   gap: 14px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 212, 255, 0.15) transparent;
+  scrollbar-color: rgba(0, 212, 255, 0.25) transparent;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 }
@@ -179,17 +181,18 @@
   width: 28px;
   height: 28px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  background: #000000;
+  border: 1px solid rgba(0, 212, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  color: #fff;
   flex-shrink: 0;
 }
 
 .userAvatar {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--text-primary);
 }
 
 .bubble {
@@ -204,18 +207,18 @@
 }
 
 .aiBubble {
-  background: rgba(0, 212, 255, 0.07);
+  background: rgba(0, 212, 255, 0.04);
   border: 1px solid rgba(0, 212, 255, 0.15);
   border-bottom-left-radius: 4px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-primary);
 }
 
 .userBubble {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(0, 255, 179, 0.12));
+  border: 1px solid rgba(0, 212, 255, 0.22);
   border-bottom-right-radius: 4px;
-  color: #fff;
-  text-align: right;
+  color: var(--text-primary);
+  text-align: left;
 }
 
 /* ── Typing animation ────────────────────────────────────── */
@@ -247,25 +250,26 @@
   flex-wrap: wrap;
   gap: 6px;
   padding: 8px 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--card-border);
 }
 
 .chip {
-  background: rgba(0, 212, 255, 0.07);
-  border: 1px solid rgba(0, 212, 255, 0.18);
-  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  color: var(--text-secondary);
   font-size: 11.5px;
   font-family: 'Inter', sans-serif;
   padding: 5px 12px;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 212, 255, 0.02);
 }
 
 .chip:hover {
-  background: rgba(0, 212, 255, 0.15);
-  color: #00d4ff;
-  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(0, 212, 255, 0.08);
+  color: var(--text-primary);
+  border-color: rgba(0, 212, 255, 0.4);
 }
 
 /* ── Input area ──────────────────────────────────────────── */
@@ -274,30 +278,31 @@
   align-items: center;
   gap: 8px;
   padding: 12px 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--card-border);
 }
 
 .input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 12px;
   padding: 9px 14px;
   font-size: 13.5px;
   font-family: 'Inter', sans-serif;
-  color: #fff;
+  color: var(--text-primary);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   caret-color: #00d4ff;
 }
 
 .input:focus {
-  border-color: rgba(0, 212, 255, 0.4);
-  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.45);
+  background: var(--pure-white);
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--text-muted);
+  opacity: 0.8;
 }
 
 .input:disabled {
@@ -308,9 +313,9 @@
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  background: var(--gradient-accent);
   border: none;
-  color: #fff;
+  color: #06212b;
   font-size: 14px;
   cursor: pointer;
   display: flex;

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faWandMagicSparkles, faPaperPlane, faXmark, faMinus, faRobot, faUser
 } from '@fortawesome/free-solid-svg-icons';
+import Logo from '../Logo/Logo';
 import styles from './GenAIAssistant.module.css';
 
 /* ─── Knowledge base for smart responses ────────────────────────────────── */
@@ -74,6 +75,12 @@ export default function GenAIAssistant() {
   /* ── Focus input when opened ──────────────────────────────────────── */
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 200);
+  }, [isOpen]);
+
+  /* ── Dispatch custom event on open state change ───────────────────── */
+  useEffect(() => {
+    const event = new CustomEvent('xost-assistant-toggle', { detail: { isOpen } });
+    window.dispatchEvent(event);
   }, [isOpen]);
 
   /* ── Simulate AI "typing" response ──────────────────────────────── */
@@ -166,7 +173,7 @@ export default function GenAIAssistant() {
             <div className={styles.header}>
               <div className={styles.headerLeft}>
                 <div className={styles.botAvatar}>
-                  <FontAwesomeIcon icon={faRobot} />
+                  <Logo variant="icon-only" size={20} />
                   <span className={styles.onlineDot} />
                 </div>
                 <div>
@@ -199,7 +206,7 @@ export default function GenAIAssistant() {
                 >
                   {msg.role === 'ai' && (
                     <div className={styles.msgAvatar}>
-                      <FontAwesomeIcon icon={faRobot} />
+                      <Logo variant="icon-only" size={16} />
                     </div>
                   )}
                   <div className={`${styles.bubble} ${msg.role === 'user' ? styles.userBubble : styles.aiBubble}`}>

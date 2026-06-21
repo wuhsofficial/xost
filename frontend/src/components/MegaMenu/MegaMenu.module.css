@@ -13,8 +13,7 @@
   max-width: 800px;
   background: var(--bg-primary); /* Solid background instead of transparent */
   border: 1px solid var(--card-border);
-  border-top: none;
-  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  border-radius: var(--radius-xl);
   box-shadow: 0 16px 40px var(--card-shadow);
   padding: 1rem;
   margin-top: 0; /* flush with navbar bottom border */
