@@ -1,0 +1,481 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TechGalaxy — SVG Animation & Information Panels (Premium Glassmorphic Style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 60px;
+}
+
+@media (max-width: 1023px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ─── LEFT: SVG GALAXY GRAPHICS ────────────────────────────────────────── */
+.svgContainer {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+.galaxySvg {
+  overflow: visible;
+}
+
+/* Concentric orbits paths */
+.orbitPath {
+  fill: none;
+  stroke: var(--accent-aqua);
+  stroke-width: 1.2px;
+  opacity: 0.35;
+}
+
+/* Centered XOST Branding circle styling */
+.pulseCenter {
+  animation: pulseGrad 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGrad {
+  0% { transform: scale(0.9); opacity: 0.25; }
+  100% { transform: scale(1.15); opacity: 0.55; }
+}
+
+.centerLogoImage {
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 212, 255, 0.4));
+}
+
+/* Revolving nodes base layout and keyframes */
+@keyframes orbitClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.orbitGroup {
+  transform-origin: 300px 300px;
+  will-change: transform;
+}
+
+.orbitClockwise {
+  animation: orbitClockwise var(--dur, 30s) linear infinite;
+}
+
+.orbitCounter {
+  animation: orbitCounter var(--dur, 30s) linear infinite;
+}
+
+/* Revolve speed and play controls */
+.nodeInteractiveGroup {
+  cursor: pointer;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active node animations */
+@keyframes pulseActiveGlow {
+  0% { transform: scale(0.85); opacity: 0.4; }
+  100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.pulseActive {
+  animation: pulseActiveGlow 1.5s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.nodeCircle {
+  fill: var(--card-surface);
+  stroke: var(--card-border);
+  stroke-width: 0.5px;
+  stroke-opacity: 0.25;
+  transition: stroke-width 0.22s, stroke-opacity 0.22s, stroke 0.22s;
+}
+
+.nodeCircleActive {
+  stroke: var(--accent-aqua);
+  stroke-width: 1.5px;
+  stroke-opacity: 1;
+}
+
+.techIconImage {
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.nodeLabel {
+  font-family: 'Space Grotesk', 'Courier New', monospace;
+  font-size: 8.5px;
+  fill: var(--text-secondary);
+  opacity: 0.35;
+  transition: opacity 0.22s, fill-opacity 0.22s, font-weight 0.22s, fill 0.22s;
+}
+
+.nodeLabelActive {
+  fill: var(--accent-aqua);
+  opacity: 1;
+  font-weight: 700;
+}
+
+
+/* ─── RIGHT: DETAILS AND LEGEND PANELS ───────────────────────────────── */
+.infoColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoCard {
+  position: relative;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--card-border);
+  background: var(--card-surface);
+  box-shadow: 0 8px 32px var(--card-shadow), inset 0 0 40px -10px rgba(0, 212, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 32px;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logoBadge {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.headerLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.nodeNumber {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent-aqua);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.techTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.categoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.badgeIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-aqua);
+}
+
+.categoryText {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.separator {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-aqua), transparent);
+  margin: 24px 0;
+}
+
+.sectionLabel {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-aqua);
+  margin-bottom: 16px;
+}
+
+.connectionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.connectionBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.connectionLogo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.noConnections {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ─── RIGHT: LEGEND AND INSTRUCTIONS ───────────────────────────────── */
+.legendContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instructionBanner {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: rgba(0, 212, 255, 0.02);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-aqua);
+  flex-shrink: 0;
+  animation: pulseDotAnim 1.6s infinite ease-out;
+}
+
+@keyframes pulseDotAnim {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.instructionText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.legendRow {
+  position: relative;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--card-border);
+  background: var(--card-surface);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  transition: transform 250ms ease, border-color 250ms ease;
+}
+
+.legendRow:hover {
+  transform: translateX(4px);
+  border-color: var(--accent-aqua);
+}
+
+.legendCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: rgba(0, 212, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.legendId {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-aqua);
+}
+
+.legendDetails {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.legendMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.legendTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.legendOrbit {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid var(--card-border);
+  color: var(--accent-aqua);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.legendSub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    padding: 20px 12px;
+  }
+
+  .gridContainer {
+    gap: 24px;
+  }
+
+  .svgContainer {
+    max-width: 380px;
+  }
+
+  /* Make details panel cards more compact */
+  .infoCard {
+    padding: 20px 16px;
+  }
+
+  .cardHeader {
+    gap: 12px;
+  }
+
+  .logoBadge {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+  }
+
+  .headerLogo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .techTitle {
+    font-size: 18px;
+  }
+
+  .separator {
+    margin: 16px 0;
+  }
+
+  .connectionsGrid {
+    gap: 8px;
+  }
+
+  .connectionBadge {
+    padding: 6px 12px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .connectionLogo {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Legend row mobile tuning */
+  .legendRow {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .legendCircle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .legendTitle {
+    font-size: 13px;
+  }
+
+  .legendSub {
+    font-size: 11px;
+  }
+
+  .instructionBanner {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .instructionText {
+    font-size: 12px;
+  }
+}

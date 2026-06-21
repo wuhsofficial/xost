@@ -48,7 +48,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     const poll = setInterval(() => {
       const elapsed = Date.now() - start;
       const docReady = document.readyState === 'complete';
-      const isHomePage = window.location.pathname === '/';
+      const isHomePage = window.location.pathname === '/' || window.location.pathname === '/platform';
       const videoReady = !isHomePage || !!(window as any).xostVideoLoaded;
 
       if (elapsed >= MAX_DISPLAY) {

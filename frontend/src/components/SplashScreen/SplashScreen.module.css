@@ -28,7 +28,7 @@
 /* ─── Animated Logo Image ──────────────────────────────────────────────────── */
 .splashImage {
   width: 35vw;
-  max-width: 320px;
+  max-width: 380px;
   height: auto;
   object-fit: contain;
   opacity: 0;

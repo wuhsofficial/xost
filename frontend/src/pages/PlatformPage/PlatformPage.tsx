@@ -17,6 +17,7 @@ import TextMaskReveal from '../../components/TextMaskReveal/TextMaskReveal';
 import { MapContainer, TileLayer, CircleMarker, Polyline, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import SEO from '../../components/SEO/SEO';
+import TechGalaxy from '../../components/TechGalaxy/TechGalaxy';
 import styles from './PlatformPage.module.css';
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
@@ -48,9 +49,7 @@ const approachSteps = [
   { icon: faRocket, title: 'Deploy', desc: 'Launch with confidence — monitoring, optimization, and ongoing support ensure lasting success.' },
 ];
 
-const techRow1 = ['Flutter', 'Dart', 'React', 'Next.js', 'Python', 'TensorFlow', 'MongoDB'];
-const techRow2 = ['PostgreSQL', 'Redis', 'AWS', 'Figma', 'Node.js', 'FastAPI', 'Docker'];
-const techRow3 = ['Kubernetes', 'GraphQL', 'Tailwind', 'Vite', 'Kafka', 'Supabase', 'PyTorch'];
+
 
 const stats = [
   { endValue: 50, suffix: '+', label: 'Projects' },
@@ -165,11 +164,18 @@ function ScrollRevealWrapper({ children, delay = 0, className }: ScrollRevealWra
 export default function PlatformPage() {
   const heroRef = useRef(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(!!(window as any).xostVideoLoaded);
 
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
+
+  useEffect(() => {
+    const handleLoaded = () => setVideoLoaded(true);
+    window.addEventListener('xost-video-loaded', handleLoaded);
+    return () => window.removeEventListener('xost-video-loaded', handleLoaded);
+  }, []);
 
   /* Parallax transforms for each blob */
   const parallaxY0 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[0].parallaxFactor]);
@@ -178,20 +184,14 @@ export default function PlatformPage() {
   const parallaxY3 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[3].parallaxFactor]);
   const parallaxValues = [parallaxY0, parallaxY1, parallaxY2, parallaxY3];
 
-  /* Marquee scroll-velocity effect */
-  const { scrollY } = useScroll();
-  const [velocity, setVelocity] = useState(0);
-  useMotionValueEvent(scrollY, 'change', () => {
-    setVelocity(scrollY.getVelocity());
-  });
 
-  const marqueeSpeed = Math.max(5, 30 / (1 + Math.abs(velocity) * 0.002));
 
   useEffect(() => {
     // Fallback timer: force mark loaded after 4.5 seconds in case of block/slow network
     const fallbackTimer = setTimeout(() => {
       if (!(window as any).xostVideoLoaded) {
         (window as any).xostVideoLoaded = true;
+        setVideoLoaded(true);
         window.dispatchEvent(new CustomEvent('xost-video-loaded'));
       }
     }, 4500);
@@ -208,6 +208,7 @@ export default function PlatformPage() {
           
           const handleReady = () => {
             (window as any).xostVideoLoaded = true;
+            setVideoLoaded(true);
             window.dispatchEvent(new CustomEvent('xost-video-loaded'));
             clearTimeout(fallbackTimer);
           };
@@ -240,7 +241,7 @@ export default function PlatformPage() {
           <div className={styles.videoOverlay}></div>
           <iframe
             ref={iframeRef}
-            className={styles.video}
+            className={`${styles.video} ${videoLoaded ? styles.videoLoaded : ''}`}
             src="https://player.vimeo.com/video/1203176983?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
             title="XOST background reel"
             frameBorder="0"
@@ -385,38 +386,7 @@ export default function PlatformPage() {
             Industry-leading technologies powering every solution we build.
           </p>
         </div>
-        <div className={styles.marqueeContainer}>
-          <div className={styles.marqueeStrip}>
-            <div
-              className={`${styles.marqueeTrack} ${styles.marqueeForward}`}
-              style={{ animationDuration: `${marqueeSpeed}s` }}
-            >
-              {[...techRow1, ...techRow1, ...techRow1].map((tech, i) => (
-                <span key={i} className={styles.techPill}>{tech}</span>
-              ))}
-            </div>
-          </div>
-          <div className={styles.marqueeStrip}>
-            <div
-              className={`${styles.marqueeTrack} ${styles.marqueeReverse}`}
-              style={{ animationDuration: `${marqueeSpeed}s` }}
-            >
-              {[...techRow2, ...techRow2, ...techRow2].map((tech, i) => (
-                <span key={i} className={styles.techPill}>{tech}</span>
-              ))}
-            </div>
-          </div>
-          <div className={styles.marqueeStrip}>
-            <div
-              className={`${styles.marqueeTrack} ${styles.marqueeForward}`}
-              style={{ animationDuration: `${marqueeSpeed * 1.2}s` }}
-            >
-              {[...techRow3, ...techRow3, ...techRow3].map((tech, i) => (
-                <span key={i} className={styles.techPill}>{tech}</span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <TechGalaxy />
       </section>
 
       {/* ═══ PLATFORM CORE SECTIONS ═══ */}
