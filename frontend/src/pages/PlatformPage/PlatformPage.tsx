@@ -164,6 +164,8 @@ function ScrollRevealWrapper({ children, delay = 0, className }: ScrollRevealWra
 /* ─── PlatformPage ─────────────────────────────────────────────────────── */
 export default function PlatformPage() {
   const heroRef = useRef(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -185,6 +187,47 @@ export default function PlatformPage() {
 
   const marqueeSpeed = Math.max(5, 30 / (1 + Math.abs(velocity) * 0.002));
 
+  useEffect(() => {
+    // Fallback timer: force mark loaded after 4.5 seconds in case of block/slow network
+    const fallbackTimer = setTimeout(() => {
+      if (!(window as any).xostVideoLoaded) {
+        (window as any).xostVideoLoaded = true;
+        window.dispatchEvent(new CustomEvent('xost-video-loaded'));
+      }
+    }, 4500);
+
+    const script = document.createElement('script');
+    script.src = "https://player.vimeo.com/api/player.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      if (iframeRef.current) {
+        try {
+          const player = new (window as any).Vimeo.Player(iframeRef.current);
+          
+          const handleReady = () => {
+            (window as any).xostVideoLoaded = true;
+            window.dispatchEvent(new CustomEvent('xost-video-loaded'));
+            clearTimeout(fallbackTimer);
+          };
+
+          player.on('play', handleReady);
+          player.on('playing', handleReady);
+        } catch (e) {
+          console.error("Vimeo Player initialization error", e);
+        }
+      }
+    };
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
+
   return (
     <main>
       <SEO 
@@ -196,6 +239,7 @@ export default function PlatformPage() {
         <div className={styles.videoBackground}>
           <div className={styles.videoOverlay}></div>
           <iframe
+            ref={iframeRef}
             className={styles.video}
             src="https://player.vimeo.com/video/1203176983?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
             title="XOST background reel"
@@ -205,10 +249,6 @@ export default function PlatformPage() {
             loading="eager"
             aria-hidden="true"
             tabIndex={-1}
-            onLoad={() => {
-              (window as any).xostVideoLoaded = true;
-              window.dispatchEvent(new CustomEvent('xost-video-loaded'));
-            }}
           />
         </div>
 
