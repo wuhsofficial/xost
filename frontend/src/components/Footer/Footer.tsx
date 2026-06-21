@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faLocationDot, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { megaMenuData } from '../../data/megaMenuData';
 import Logo from '../Logo/Logo';
@@ -34,12 +34,20 @@ export default function Footer() {
 
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [expandedColumns, setExpandedColumns] = useState<Record<string, boolean>>({});
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (newsletterEmail.trim()) {
       setNewsletterSubmitted(true);
     }
+  };
+
+  const toggleColumn = (catKey: string) => {
+    setExpandedColumns((prev) => ({
+      ...prev,
+      [catKey]: !prev[catKey],
+    }));
   };
 
   return (
@@ -141,19 +149,36 @@ export default function Footer() {
               const items = megaMenuData[catKey];
               if (!items) return null;
               const base = basePathFor(catKey);
+              const isExpanded = !!expandedColumns[catKey];
 
               return (
                 <div key={catKey} className={styles.linkColumn}>
-                  <h4 className={styles.columnTitle}>{catKey}</h4>
-                  <ul className={styles.linkList}>
-                    {items.map((link) => (
-                      <li key={link.slug}>
-                        <Link to={`/${base}/${link.slug}`} className={styles.footerLink}>
-                          {link.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <h4 className={styles.columnTitle} onClick={() => toggleColumn(catKey)}>
+                    <span>{catKey}</span>
+                    <motion.span
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className={styles.chevronIcon}
+                    >
+                      <FontAwesomeIcon icon={faChevronDown} />
+                    </motion.span>
+                  </h4>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <ul className={styles.linkList}>
+                      {items.map((link) => (
+                        <li key={link.slug}>
+                          <Link to={`/${base}/${link.slug}`} className={styles.footerLink}>
+                            {link.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
                 </div>
               );
             })}
