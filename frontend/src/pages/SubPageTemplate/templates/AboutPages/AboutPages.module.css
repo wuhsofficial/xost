@@ -242,3 +242,33 @@
   overflow: hidden;
   border: 1px solid var(--card-border);
 }
+
+/* ─── Mobile 2-Column Grid ─── */
+@media (max-width: 768px) {
+  .statsGrid, .bentoGridLarge {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .statCard, .bentoCard {
+    flex: none !important;
+    max-width: 100%;
+    padding: 12px 8px !important;
+    min-width: 0 !important;
+  }
+  .statValue {
+    font-size: 1.15rem !important; /* ~18.4px */
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+  }
+  .statLabel {
+    font-size: 0.7rem !important; /* ~11.2px */
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+  }
+  .bentoIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+

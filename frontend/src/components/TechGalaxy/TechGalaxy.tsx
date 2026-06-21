@@ -215,19 +215,20 @@ export default function TechGalaxy() {
                       <g
                         key={node.name}
                         transform={`translate(${node.x}, ${node.y})`}
-                        onMouseEnter={() => handleMouseEnter(node.name)}
-                        onMouseLeave={handleMouseLeave}
+                        /* Hover preview is mouse-only; touch taps must not also
+                           fire the synthesized mouseenter (which fought the click
+                           and made taps flicker select/deselect). */
+                        onPointerEnter={(e) => { if (e.pointerType === 'mouse') handleMouseEnter(node.name); }}
+                        onPointerLeave={(e) => { if (e.pointerType === 'mouse') handleMouseLeave(); }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (hoveredNode === node.name) {
-                            handleMouseLeave();
-                          } else {
-                            handleMouseEnter(node.name);
-                          }
+                          setHoveredNode((prev) => (prev === node.name ? null : node.name));
                         }}
                         className={styles.nodeInteractiveGroup}
                         style={{ opacity: isDimmed ? 0.08 : 1 }}
                       >
+                        {/* Invisible enlarged hit-area for comfortable tapping on touch */}
+                        <circle r={26} fill="transparent" />
                         {/* Opposite rotation to keep text/icon upright */}
                         <g
                           className={isClockwise ? styles.orbitCounter : styles.orbitClockwise}
@@ -353,39 +354,14 @@ export default function TechGalaxy() {
               </motion.div>
             ) : (
               <motion.div
-                key="legend-card"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                key="logo-card"
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className={styles.legendContainer}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className={styles.logoShowcase}
               >
-                {/* Instruction Banner */}
-                <div className={styles.instructionBanner}>
-                  <div className={styles.pulseDot} />
-                  <p className={styles.instructionText}>
-                    Hover any technology node in the galaxy to freeze rotation and explore connections.
-                  </p>
-                </div>
-
-                {/* Category Legends */}
-                {[
-                  { id: '01', title: 'Core Languages', sub: 'JavaScript, TypeScript, Python, Dart', orbit: '↻ Clockwise' },
-                  { id: '02', title: 'Frameworks & Platforms', sub: 'React, Next.js, Node.js, Flutter, AWS', orbit: '↺ Counter-Clockwise' },
-                  { id: '03', title: 'Tools & Utilities', sub: 'Docker, Supabase, GraphQL, Git, Tailwind...', orbit: '↻ Clockwise' },
-                ].map((item, idx) => (
-                  <div key={idx} className={styles.legendRow}>
-                    <div className={styles.legendCircle}>
-                      <span className={styles.legendId}>{item.id}</span>
-                    </div>
-                    <div className={styles.legendDetails}>
-                      <div className={styles.legendMeta}>
-                        <span className={styles.legendTitle}>{item.title}</span>
-                        <span className={styles.legendOrbit}>{item.orbit}</span>
-                      </div>
-                      <p className={styles.legendSub}>{item.sub}</p>
-                    </div>
-                  </div>
-                ))}
+                <img src="/x-logo.webp" alt="XOST" className={styles.showcaseLogo} />
               </motion.div>
             )}
           </AnimatePresence>

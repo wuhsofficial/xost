@@ -208,11 +208,19 @@ export default function InsightsPage() {
               xaxis: { categories: ['AI/ML', 'Design', 'Dev', 'Marketing', 'SEO'], labels: { style: { colors: '#64748b' } } },
               yaxis: { labels: { style: { colors: '#64748b' } } },
               grid: { borderColor: '#e2e8f0' },
-              dataLabels: { enabled: false }
+              dataLabels: { enabled: false },
+              responsive: [{
+                breakpoint: 768,
+                options: {
+                  xaxis: { labels: { show: false } },
+                  yaxis: { labels: { show: false } },
+                  grid: { padding: { left: -10, right: 0, bottom: 0 } }
+                }
+              }]
             }}
             series={[{ name: 'Articles Published', data: [45, 32, 68, 24, 18] }]}
             type="bar"
-            height={300}
+            height={200}
           />
         </div>
         <div className={styles.chartCard}>
@@ -228,10 +236,18 @@ export default function InsightsPage() {
               xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], labels: { style: { colors: '#64748b' } } },
               yaxis: { labels: { style: { colors: '#64748b' } } },
               grid: { borderColor: '#e2e8f0' },
+              responsive: [{
+                breakpoint: 768,
+                options: {
+                  xaxis: { labels: { show: false } },
+                  yaxis: { labels: { show: false } },
+                  grid: { padding: { left: -10, right: 0, bottom: 0 } }
+                }
+              }]
             }}
             series={[{ name: 'Monthly Readers', data: [1200, 1900, 3000, 4500, 6200, 8400] }]}
             type="area"
-            height={300}
+            height={200}
           />
         </div>
       </section>

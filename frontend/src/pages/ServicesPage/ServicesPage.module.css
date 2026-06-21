@@ -239,7 +239,29 @@
   }
 
   .servicesGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .serviceCard {
+    padding: 16px;
+  }
+  .iconBox {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+  }
+  .iconBox svg {
+    width: 16px;
+    height: 16px;
+  }
+  .serviceTitle {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .serviceDesc {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+    margin-bottom: 12px;
   }
 }
 /* --- CATEGORIZED SECTIONS ---------------------------------------------- */

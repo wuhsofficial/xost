@@ -409,3 +409,5 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
+
+@media (max-width: 768px) { .bentoCard, .statCard, .stepCard, .badgeCard { min-width: 0 !important; max-width: 100% !important; word-break: break-word; } }

@@ -43,6 +43,11 @@ export default function App(): JSX.Element {
 
   /* ── Initialize Lenis smooth scroll ─────────────────────────────── */
   useEffect(() => {
+    // Skip JS smooth-scroll on touch devices: native scrolling is GPU-smooth,
+    // while Lenis' per-frame rAF loop fights it and causes stutter on phones.
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isTouch) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

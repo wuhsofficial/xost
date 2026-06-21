@@ -188,22 +188,23 @@
   color: #fff;
 }
 
-/* ─── Mobile Horizontal Scroll Override ─── */
+/* ─── Mobile 2-Column Grid ─── */
 @media (max-width: 768px) {
   .statsGrid, .bentoGridLarge, .cardGrid, .jobsGrid, .benefitsGrid {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1.5rem !important;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
   }
   .statCard, .bentoCard, .contentCard, .jobCard, .benefitCard {
-    flex: 0 0 85% !important;
-    scroll-snap-align: center;
-    max-width: 85vw;
-  }
-  .statsGrid::-webkit-scrollbar, .bentoGridLarge::-webkit-scrollbar, .cardGrid::-webkit-scrollbar, .jobsGrid::-webkit-scrollbar, .benefitsGrid::-webkit-scrollbar { display: none; }
-  .statsGrid, .bentoGridLarge, .cardGrid, .jobsGrid, .benefitsGrid { -ms-overflow-style: none; scrollbar-width: none; }
+    flex: none !important;
+    max-width: 100%;
+    padding: 16px !important;
+      min-width: 0 !important;
+    word-break: break-word;
+}
+  .statValue { font-size: 1.5rem; }
+  .statLabel { font-size: 0.75rem; }
+  .bentoIcon { width: 24px; height: 24px; }
 }

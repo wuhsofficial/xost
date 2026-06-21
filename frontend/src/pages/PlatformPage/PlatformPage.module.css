@@ -561,8 +561,13 @@
 
 @media (max-width: 767px) {
   .heroSection {
-    padding: 80px 24px;
-    min-height: auto;
+    padding: 104px 22px 76px;
+    min-height: 86vh;            /* Give the hero real presence on phones */
+  }
+
+  /* Decorative blobs are pure cost on mobile — drop them */
+  .blobPositioner {
+    display: none;
   }
 
   .headlineWord {
@@ -570,16 +575,18 @@
   }
 
   .heroTitleText {
-    font-size: 36px; /* Decreased to fit nicely on mobile */
+    font-size: clamp(2rem, 8.5vw, 2.6rem);
     letter-spacing: -0.5px;
+    line-height: 1.12;
   }
 
   .subheadline {
-    font-size: 15px; /* Decreased for mobile */
+    font-size: 15px;
+    margin-top: 18px;
   }
 
   .section {
-    padding: 80px 24px;
+    padding: 64px 22px;
   }
 
   .sectionTitleText {
@@ -603,39 +610,85 @@
     margin-right: 24px; /* padding at end of scroll */
   }
 
-  /* Vertical timeline on mobile */
+  /* 2×2 grid on mobile so all four steps are visible at a glance */
   .approachTimeline {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 14px;
+    align-items: start;
+    max-width: 440px;
+    margin: 0 auto;
   }
 
   .stepConnector {
-    width: 2px;
-    height: 40px;
-    margin: 8px 0;
-    flex-direction: column;
+    display: none;
   }
 
-  .connectorLine {
-    width: 2px;
-    height: 100%;
-    background: var(--gradient-accent);
+  .stepIconCircle {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 12px;
+  }
+
+  .stepTitle {
+    font-size: 18px;
+  }
+
+  .stepDesc {
+    font-size: 12.5px;
+    line-height: 1.5;
+    max-width: 100%;
   }
 
   .whyGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .whyCard {
+    padding: 16px;
     margin-bottom: 0;
   }
 
+  .whyCardTitle {
+    font-size: 15px;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .whyCardDesc {
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .statsSection {
-    padding: 80px 24px;
+    padding: 56px 22px;
+  }
+
+  /* Stats as a tight 2×2 grid instead of a tall vertical stack */
+  .statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .statCard {
+    width: auto;
+    padding: 22px 14px;
+  }
+
+  .statValue {
+    font-size: 30px;
   }
 
   .promiseSection {
-    padding: 80px 32px;
+    padding: 64px 28px;
   }
 
   .promiseText {
@@ -927,34 +980,51 @@
 }
 
 @media (max-width: 767px) {
-  .heroTitleText { font-size: clamp(1.5rem, 6vw, 2.2rem); }
-  .platformCoreSection, .globalReachSection { padding: 80px 24px; }
+  /* The heading element inherits 2em from the UA stylesheet; on mobile make the
+     hero heading take the wrapper size directly so a single long word like
+     "infrastructure" can't overflow the viewport. */
+  .heroTitleText { font-size: clamp(1.9rem, 8vw, 2.4rem); line-height: 1.14; }
+  .heroTitleText h1 { font-size: inherit; line-height: inherit; }
+  .platformCoreSection, .globalReachSection { padding: 56px 22px; }
   .abstractMap { height: 300px; }
-  .leafletMapWrapper { height: 350px; }
-  .globalStats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .leafletMapWrapper { height: 320px; }
+  .globalStats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 32px; }
   .ctaRow { flex-direction: column; width: 100%; align-items: stretch; }
-  .ctaGradient, .ctaGhost { width: 100%; justify-content: center; min-height: 44px; }
+  .ctaGradient, .ctaGhost { width: 100%; justify-content: center; min-height: 48px; }
 
-  /* Horizontal scrolling for Engineering Engine */
+  /* Engineering Engine: clean, uniform single-column stack on mobile */
   .coreGrid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 16px;
-    padding-bottom: 24px;
-    margin: 0 -24px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .coreGrid::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
   }
   .coreCard {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
+    padding: 16px;
+    border-radius: var(--radius-lg);
   }
-  .coreCard:last-child {
-    margin-right: 24px;
+  .coreCardIcon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+  }
+  .coreCardIcon svg {
+    font-size: 16px;
+  }
+  .coreCardTitle {
+    font-size: 15px;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .coreCardDesc {
+    font-size: 13px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

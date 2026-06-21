@@ -408,7 +408,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Core Architecture</h3>
               <p className={styles.coreCardDesc}>
-                Our foundations use distributed microservices patterns orchestrated via Kubernetes for high availability. By decoupling components, we achieve independent scalability and streamlined CI/CD. We use polyglot persistence, employing specialized databases tailored to specific workloads for maximum efficiency.
+                Distributed microservices orchestrated on Kubernetes, with polyglot persistence per workload — independently scalable and CI/CD-ready.
               </p>
             </div>
           </ScrollReveal>
@@ -420,7 +420,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Integration & APIs</h3>
               <p className={styles.coreCardDesc}>
-                We prioritize API-first design methodologies to facilitate seamless interoperability across ecosystems. Our RESTful and GraphQL interfaces are rigorously documented and secured. We implement robust event-driven architectures utilizing message brokers like Kafka for asynchronous data sync.
+                API-first REST &amp; GraphQL interfaces, documented and secured, with event-driven Kafka pipelines for seamless real-time sync.
               </p>
             </div>
           </ScrollReveal>
@@ -432,7 +432,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Security & Compliance</h3>
               <p className={styles.coreCardDesc}>
-                Security is embedded into our lifecycle via DevSecOps practices. We employ automated vulnerability scanning and strict adherence to OWASP mitigation strategies. Data is protected with AES-256 encryption at rest and TLS 1.3 in transit, ensuring compliance with SOC 2, HIPAA, and GDPR.
+                DevSecOps with automated scanning and OWASP hardening. AES-256 at rest, TLS 1.3 in transit — SOC 2, HIPAA, and GDPR compliant.
               </p>
             </div>
           </ScrollReveal>
@@ -444,7 +444,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Scale & Performance</h3>
               <p className={styles.coreCardDesc}>
-                We engineer platforms designed to handle massive concurrency without degradation. Through global edge caching, intelligent load balancing, and read-replicas, we ensure sub-100ms response times. Our infrastructure automatically scales horizontally to absorb traffic spikes seamlessly.
+                Global edge caching, intelligent load balancing, and horizontal auto-scaling deliver sub-100ms responses through any traffic spike.
               </p>
             </div>
           </ScrollReveal>

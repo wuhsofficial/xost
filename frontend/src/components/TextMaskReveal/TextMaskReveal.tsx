@@ -30,7 +30,7 @@ export default function TextMaskReveal({
       className={`${styles.wrapper} ${isVisible ? styles.visible : ''} ${className}`}
     >
       <Tag
-        className={styles.content}
+        className={`${styles.content} ${className}`}
         style={{ transitionDelay: `${delay}ms` }}
       >
         {children}

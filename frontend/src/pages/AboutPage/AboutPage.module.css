@@ -2,6 +2,7 @@
    AboutPage Styles (Premium Upgrade)
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* ─── Layout & Page ─────────────────────────────────────────────────────── */
 .page {
   padding: 60px 80px;
 }
@@ -46,6 +47,138 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.quoteCardInline {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0,212,255,0.2);
+}
+
+/* ─── Bento Grid & Stats ────────────────────────────────────────────────── */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(280px, auto);
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.bentoItem {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: 0 4px 20px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bentoItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--hover-glow);
+}
+
+.bentoMissions {
+  grid-column: span 2;
+  background: var(--gradient-bg);
+  justify-content: center;
+}
+
+.bentoHistory {
+  grid-column: span 1;
+  background: #0D1B2A;
+  color: #fff;
+}
+
+.bentoHistory .bentoHeading, 
+.bentoHistory .bentoText {
+  color: #fff;
+}
+
+.bentoImpact {
+  grid-column: span 2;
+}
+
+.bentoCenters {
+  grid-column: span 1;
+  background: var(--bg-secondary);
+}
+
+.bentoHeading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.bentoText {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.historyYear {
+  margin-top: auto;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent-aqua);
+  opacity: 0.8;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.statBox {
+  background: var(--bg-primary);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.statValue {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent-aqua);
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bentoCentersVisual {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.cityPill {
+  background: var(--bg-primary);
+  border: 1px solid var(--accent-aqua);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* ─── Section Headings ──────────────────────────────────────────────────── */
@@ -96,7 +229,6 @@
   box-shadow: 0 8px 28px var(--hover-glow);
 }
 
-/* Radial glow overlay that follows cursor */
 .teamCardGlow {
   position: absolute;
   inset: 0;
@@ -177,7 +309,7 @@
   color: var(--accent-aqua);
 }
 
-/* ─── Values Section ────────────────────────────────────────────────────── */
+/* ─── Legacy Values Section (Keep for safety) ───────────────────────────── */
 .valuesGrid {
   display: flex;
   flex-wrap: wrap;
@@ -218,54 +350,495 @@
   color: var(--text-secondary);
 }
 
-/* ─── Responsive ────────────────────────────────────────────────────────── */
+/* ─── Values Accordion Section ──────────────────────────────────────────── */
+.valuesAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accordionItem {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.accordionItem:hover {
+  border-color: var(--accent-aqua);
+  box-shadow: 0 4px 20px var(--hover-glow);
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  gap: 16px;
+}
+
+.accordionIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-bg);
+  border-radius: 50%;
+  color: var(--accent-aqua);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.accordionTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.accordionToggle {
+  font-size: 24px;
+  color: var(--accent-aqua);
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.accordionContent {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 24px;
+  transition: all 0.4s ease;
+}
+
+.accordionDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding-bottom: 24px;
+  padding-left: 64px;
+  margin: 0;
+}
+
+.accordionActive {
+  border-color: var(--accent-aqua);
+  box-shadow: 0 4px 20px var(--hover-glow);
+}
+
+.accordionActive .accordionContent {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.accordionActive .accordionToggle {
+  transform: rotate(180deg);
+}
+
+/* ─── Founders Showcase Section ─────────────────────────────────────────── */
+.foundersShowcase {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.showcaseTabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  border-bottom: 1.5px solid var(--card-border);
+  padding-bottom: 8px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabBtn:hover {
+  color: var(--accent-aqua);
+}
+
+.tabInitials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.1);
+  font-size: 10px;
+  color: var(--accent-aqua);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.tabName {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.tabActive {
+  color: var(--accent-aqua) !important;
+}
+
+.tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: -9.5px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: 3px;
+}
+
+.showcaseContent {
+  display: flex;
+  gap: 56px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: showcaseFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.portraitCol {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.portraitWrapper {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 12px 32px var(--card-shadow);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portraitWrapper:hover {
+  border-color: var(--accent-aqua);
+  box-shadow: 0 16px 44px var(--hover-glow);
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portraitWrapper:hover .portraitImg {
+  transform: scale(1.04);
+}
+
+.portraitGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 212, 255, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.detailsCol {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailsRole {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-aqua);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.detailsName {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.detailsQuote {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-primary);
+  border-left: 3px solid var(--accent-aqua);
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.detailsBio {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.detailsSocials {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socialBtn:hover {
+  background: var(--accent-aqua);
+  border-color: var(--accent-aqua);
+  color: #0d1b2a;
+  box-shadow: 0 4px 20px var(--hover-glow);
+  transform: translateY(-2px);
+}
+
+@keyframes showcaseFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Media Queries (Responsive) ────────────────────────────────────────── */
+
+/* Tablet Views */
+@media (max-width: 1023px) {
+  .page {
+    padding: 60px 40px;
+  }
+  
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .bentoMissions, 
+  .bentoImpact {
+    grid-column: span 2;
+  }
+  
+  .bentoHistory, 
+  .bentoCenters {
+    grid-column: span 1;
+  }
+
+  .sectionSubtitle {
+    max-width: 100%;
+  }
+}
+
+/* Mobile Views */
 @media (max-width: 767px) {
   .page {
-    padding: 60px 20px;
+    padding: 40px 16px;
+  }
+
+  .missionTitle {
+    font-size: 28px !important;
+  }
+
+  .missionBody {
+    font-size: 15px;
+    margin-bottom: 24px;
   }
 
   .quoteCard {
     padding: 24px;
+    margin-bottom: 40px;
   }
 
   .quoteText {
     font-size: 18px;
   }
 
-  .teamCard {
-    width: calc(100vw - 40px);
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
   }
+
+  .bentoMissions, 
+  .bentoHistory, 
+  .bentoImpact, 
+  .bentoCenters {
+    grid-column: span 2;
+  }
+
+  .bentoItem {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  /* Founders Showcase on Mobile */
+  .foundersShowcase {
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .showcaseTabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+    width: 100%;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .showcaseTabs::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  .tabBtn {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+
+  .tabActive::after {
+    bottom: -5.5px;
+  }
+
+  .showcaseContent {
+    flex-direction: column;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .portraitCol {
+    width: 100%;
+  }
+
+  .portraitWrapper {
+    width: 100%;
+    max-width: 320px;
+    height: 380px;
+    margin: 0 auto;
+  }
+
+  .detailsCol {
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .detailsName {
+    font-size: 28px;
+  }
+
+  .detailsQuote {
+    font-size: 17px;
+    border-left: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    padding: 16px 8px;
+    margin: 4px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .detailsBio {
+    font-size: 14px;
+  }
+
+  .socialBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
 
   .valueCard {
     width: 100%;
   }
-}
 
-.bentoGrid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(280px, auto); gap: 24px; margin-bottom: 80px; }
-.bentoItem { background: var(--card-surface); border: 1px solid var(--card-border); border-radius: 32px; padding: 40px; box-shadow: 0 4px 20px var(--card-shadow); display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.bentoItem:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--hover-glow); }
-.bentoMissions { grid-column: span 2; background: var(--gradient-bg); justify-content: center; }
-.bentoHistory { grid-column: span 1; background: #0D1B2A; color: #fff; }
-.bentoHistory .bentoHeading, .bentoHistory .bentoText { color: #fff; }
-.bentoImpact { grid-column: span 2; }
-.bentoCenters { grid-column: span 1; background: var(--bg-secondary); }
-.bentoHeading { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
-.bentoText { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; color: var(--text-secondary); }
-.historyYear { margin-top: auto; font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: var(--accent-aqua); opacity: 0.8; }
-.statsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
-.statBox { background: var(--bg-primary); padding: 24px; border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.1); }
-.statValue { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--accent-aqua); margin-bottom: 8px; }
-.statLabel { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-.bentoCentersVisual { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 24px; }
-.cityPill { background: var(--bg-primary); border: 1px solid var(--accent-aqua); color: var(--text-primary); padding: 8px 16px; border-radius: 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; }
-.quoteCardInline { margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(0,212,255,0.2); }
-@media (max-width: 1023px) {
-  .bentoGrid { grid-template-columns: repeat(2, 1fr); }
-  .bentoMissions, .bentoImpact { grid-column: span 2; }
-  .bentoHistory, .bentoCenters { grid-column: span 1; }
-}
-@media (max-width: 767px) {
-  .bentoGrid { grid-template-columns: 1fr; }
-  .bentoMissions, .bentoHistory, .bentoImpact, .bentoCenters { grid-column: span 1; }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  /* Stats elements in Impact Box */
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .statBox {
+    padding: 10px 8px !important;
+    min-width: 0;
+    border-radius: 12px;
+  }
+
+  .statValue {
+    font-size: 14px !important;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .statLabel {
+    font-size: 8.5px !important;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+  }
+
+  /* Accordion text tweaks on mobile */
+  .accordionHeader {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .accordionIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .accordionTitle {
+    font-size: 16px;
+  }
+
+  .accordionDesc {
+    font-size: 14px;
+    padding-left: 48px;
+    padding-bottom: 16px;
+  }
 }

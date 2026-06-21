@@ -31,76 +31,10 @@ const aboutValues = [
   },
 ];
 
-/* ─── TeamCard with radial glow ────────────────────────────────────────── */
-function TeamCard({ member }) {
-  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = useCallback((e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setGlowPos({ x, y });
-  }, []);
-
-  return (
-    <div
-      className={styles.teamCard}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        '--glow-x': `${glowPos.x}%`,
-        '--glow-y': `${glowPos.y}%`,
-      } as React.CSSProperties}
-    >
-      {isHovered && <div className={styles.teamCardGlow} />}
-      <div className={styles.avatar}>
-        <span className={styles.avatarInitials}>{member.initials}</span>
-      </div>
-      <h3 className={styles.memberName}>{member.name}</h3>
-      <p className={styles.memberRole}>{member.role}</p>
-      <p className={styles.memberBio}>{member.bio}</p>
-      <div className={styles.socialRow}>
-        {member.linkedinUrl && (
-          <a
-            href={member.linkedinUrl}
-            className={styles.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${member.name} LinkedIn`}
-          >
-            <FontAwesomeIcon icon={faLinkedinIn} />
-          </a>
-        )}
-        {member.githubUrl && (
-          <a
-            href={member.githubUrl}
-            className={styles.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${member.name} GitHub`}
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-        )}
-        {member.portfolioUrl && (
-          <a
-            href={member.portfolioUrl}
-            className={styles.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${member.name} Portfolio`}
-          >
-            <FontAwesomeIcon icon={faGlobe} />
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function AboutPage() {
+  const [activeValueIndex, setActiveValueIndex] = useState<number | null>(0);
+  const [activeFounderIndex, setActiveFounderIndex] = useState<number>(0);
+
   return (
     <main className={styles.page}>
       <SEO 
@@ -176,41 +110,125 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* ─── Team ───────────────────────────────────────────────────────── */}
+      {/* ─── Team/Founders Showcase ─────────────────────────────────────── */}
       <TextMaskReveal tag="h2" className={styles.sectionTitle}>
         The Founders
       </TextMaskReveal>
       <p className={styles.sectionSubtitle}>
         Three builders obsessed with craft, quality, and delivering results that matter.
       </p>
-      <div className={styles.teamGrid}>
-        {allTeamMembers.map((member) => (
-          <TeamCard key={member.name} member={member} />
-        ))}
+
+      <div className={styles.foundersShowcase}>
+        {/* Tab Selectors */}
+        <div className={styles.showcaseTabs}>
+          {allTeamMembers.map((member, idx) => (
+            <button
+              key={member.name}
+              className={`${styles.tabBtn} ${activeFounderIndex === idx ? styles.tabActive : ''}`}
+              onClick={() => setActiveFounderIndex(idx)}
+              type="button"
+            >
+              <span className={styles.tabInitials}>{member.initials}</span>
+              <span className={styles.tabName}>{member.name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Selected Founder Content */}
+        <div 
+          className={styles.showcaseContent} 
+          key={activeFounderIndex} /* Forces re-run of entry animation on change */
+        >
+          {/* Portrait Column */}
+          <div className={styles.portraitCol}>
+            <div className={styles.portraitWrapper}>
+              <img
+                src={allTeamMembers[activeFounderIndex].image}
+                alt={allTeamMembers[activeFounderIndex].name}
+                className={styles.portraitImg}
+              />
+              <div className={styles.portraitGlow} />
+            </div>
+          </div>
+
+          {/* Details Column */}
+          <div className={styles.detailsCol}>
+            <span className={styles.detailsRole}>{allTeamMembers[activeFounderIndex].role}</span>
+            <h3 className={styles.detailsName}>{allTeamMembers[activeFounderIndex].name}</h3>
+            
+            <blockquote className={styles.detailsQuote}>
+              &ldquo;{allTeamMembers[activeFounderIndex].quote}&rdquo;
+            </blockquote>
+
+            <p className={styles.detailsBio}>{allTeamMembers[activeFounderIndex].bio}</p>
+
+            <div className={styles.detailsSocials}>
+              {allTeamMembers[activeFounderIndex].linkedinUrl && (
+                <a
+                  href={allTeamMembers[activeFounderIndex].linkedinUrl}
+                  className={styles.socialBtn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${allTeamMembers[activeFounderIndex].name} LinkedIn`}
+                >
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </a>
+              )}
+              {allTeamMembers[activeFounderIndex].githubUrl && (
+                <a
+                  href={allTeamMembers[activeFounderIndex].githubUrl}
+                  className={styles.socialBtn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${allTeamMembers[activeFounderIndex].name} GitHub`}
+                >
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
+              )}
+              {allTeamMembers[activeFounderIndex].portfolioUrl && (
+                <a
+                  href={allTeamMembers[activeFounderIndex].portfolioUrl}
+                  className={styles.socialBtn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${allTeamMembers[activeFounderIndex].name} Portfolio`}
+                >
+                  <FontAwesomeIcon icon={faGlobe} />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ─── Values ─────────────────────────────────────────────────────── */}
       <TextMaskReveal tag="h2" className={styles.sectionTitle}>
         Our Values
       </TextMaskReveal>
-      <div className={styles.valuesGrid}>
-        {aboutValues.map((val) => (
-          <div key={val.title} className={styles.valueCard}>
-            <div className={styles.valueIcon}>
-              <FontAwesomeIcon
-                icon={val.icon}
-                style={{
-                  background: 'var(--gradient-accent)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              />
+      <div className={styles.valuesAccordion}>
+        {aboutValues.map((val, idx) => {
+          const isActive = activeValueIndex === idx;
+          return (
+            <div 
+              key={val.title} 
+              className={`${styles.accordionItem} ${isActive ? styles.accordionActive : ''}`}
+              onClick={() => setActiveValueIndex(isActive ? null : idx)}
+            >
+              <div className={styles.accordionHeader}>
+                <div className={styles.accordionIcon}>
+                  <FontAwesomeIcon icon={val.icon} />
+                </div>
+                <h3 className={styles.accordionTitle}>{val.title}</h3>
+                <div className={styles.accordionToggle}>
+                  {isActive ? '−' : '+'}
+                </div>
+              </div>
+              <div className={styles.accordionContent}>
+                <p className={styles.accordionDesc}>{val.desc}</p>
+              </div>
             </div>
-            <h3 className={styles.valueTitle}>{val.title}</h3>
-            <p className={styles.valueDesc}>{val.desc}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </main>
   );
