@@ -10,7 +10,7 @@ import {
 import useScrollReveal from '../../hooks/useScrollReveal';
 import useAnimatedCounter from '../../hooks/useAnimatedCounter';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
-import MorphingBlob from '../../components/MorphingBlob/MorphingBlob';
+
 import TypewriterText from '../../components/TypewriterText/TypewriterText';
 import MagneticButton from '../../components/MagneticButton/MagneticButton';
 import TextMaskReveal from '../../components/TextMaskReveal/TextMaskReveal';
@@ -65,13 +65,7 @@ const whyItems = [
   { icon: faHeadset, title: '24/7 Support', desc: "Your project doesn't sleep and neither does our support. Dedicated channels, real humans, and fast response times — always." },
 ];
 
-/* ─── Blob Config ──────────────────────────────────────────────────────── */
-const blobConfig = [
-  { top: 60, left: '10%', size: 140, duration: 8, parallaxFactor: 0.3 },
-  { top: 200, left: '75%', size: 100, duration: 10, parallaxFactor: 0.2 },
-  { top: 350, left: '85%', size: 120, duration: 9, parallaxFactor: 0.35 },
-  { top: 100, left: '60%', size: 80, duration: 11, parallaxFactor: 0.25 },
-];
+
 
 /* ─── Map Data ─────────────────────────────────────────────────────────── */
 const lahorePos = [31.5204, 74.3587];
@@ -165,27 +159,11 @@ export default function PlatformPage() {
   const heroRef = useRef(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(!!(window as any).xostVideoLoaded);
-
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-
   useEffect(() => {
     const handleLoaded = () => setVideoLoaded(true);
     window.addEventListener('xost-video-loaded', handleLoaded);
     return () => window.removeEventListener('xost-video-loaded', handleLoaded);
   }, []);
-
-  /* Parallax transforms for each blob */
-  const parallaxY0 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[0].parallaxFactor]);
-  const parallaxY1 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[1].parallaxFactor]);
-  const parallaxY2 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[2].parallaxFactor]);
-  const parallaxY3 = useTransform(heroScroll, [0, 1], [0, 200 * blobConfig[3].parallaxFactor]);
-  const parallaxValues = [parallaxY0, parallaxY1, parallaxY2, parallaxY3];
-
-
-
   useEffect(() => {
     // Fallback timer: force mark loaded after 4.5 seconds in case of block/slow network
     const fallbackTimer = setTimeout(() => {
@@ -253,24 +231,7 @@ export default function PlatformPage() {
           />
         </div>
 
-        {/* Morphing blobs with parallax */}
-        {blobConfig.map((blob, i) => (
-          <motion.div
-            key={i}
-            className={styles.blobPositioner}
-            style={{
-              top: blob.top,
-              left: blob.left,
-              y: parallaxValues[i],
-            }}
-          >
-            <MorphingBlob
-              size={blob.size}
-              colors={['rgba(0,212,255,0.08)', 'rgba(0,255,179,0.05)']}
-              duration={blob.duration}
-            />
-          </motion.div>
-        ))}
+
 
         <div className={styles.heroContent}>
           <TextMaskReveal tag="h1" className={styles.heroTitleText}>

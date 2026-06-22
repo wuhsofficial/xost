@@ -61,7 +61,7 @@ export default function CaseStudies({ pageData }) {
         <div className={styles.featuredCard} style={{ background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(217, 70, 239, 0.05))', border: '1px solid var(--accent-aqua)' }}>
           <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center' }}>
             <span className={styles.cardTag} style={{ background: 'var(--accent-aqua)', color: '#000' }}>Featured Transformation</span>
-            <h3 style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1.2' }}>GlobalPay: Scaling to 10,000 TPS</h3>
+            <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)', lineHeight: '1.2' }}>GlobalPay: Scaling to 10,000 TPS</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
               How we broke down a 10-year-old monolith into high-performance microservices, reducing infrastructure costs by 60% and enabling 10x transaction throughput.
             </p>
@@ -92,7 +92,7 @@ export default function CaseStudies({ pageData }) {
           <motion.div key={i} className={styles.contentCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ color: '#fff' }}>{c.client}</h3>
+                <h3 style={{ color: 'var(--text-primary)' }}>{c.client}</h3>
                 <span className={styles.cardTag} style={{ color: '#D946EF', background: 'rgba(217, 70, 239, 0.1)' }}>{c.ind}</span>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}><strong>Challenge:</strong> {c.chal}</p>

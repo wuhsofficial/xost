@@ -150,7 +150,7 @@ export default function DataDrivenDecision({ pageData }) {
         viewport={{ once: true }}
         style={{ marginTop: '2rem', padding: '3rem', background: 'rgba(255,255,255,0.02)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}
       >
-        <p style={{ fontSize: '1.5rem', fontStyle: 'italic', color: '#c9d1d9' }}>
+        <p style={{ fontSize: '1.5rem', fontStyle: 'italic', color: 'var(--text-primary)' }}>
           "Since partnering with XOST for data analytics, our executive team no longer argues over opinions. We look at the dashboard, understand the reality, and execute. It's completely transformed our corporate culture."
         </p>
         <p style={{ marginTop: '1rem', fontWeight: 'bold', color: 'var(--accent-aqua)' }}>- Sarah Jenkins, COO at TechCorp</p>

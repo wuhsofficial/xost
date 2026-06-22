@@ -64,8 +64,8 @@ export default function EnterpriseAutomation({ pageData }) {
         <div className={styles.flowContainer}>
           {['Manual Trigger', 'Process Detection', 'RPA Bot Exec', 'Validation', 'Output', 'Reporting'].map((step, i, arr) => (
             <React.Fragment key={step}>
-              <div className={styles.flowNode} style={{ borderColor: '#00FFFF', color: '#00FFFF', background: 'rgba(0, 255, 255, 0.1)' }}>{step}</div>
-              {i < arr.length - 1 && <div className={styles.flowLine} style={{ background: '#00FFFF' }} />}
+              <div className={styles.flowNode}>{step}</div>
+              {i < arr.length - 1 && <div className={styles.flowLine} />}
             </React.Fragment>
           ))}
         </div>

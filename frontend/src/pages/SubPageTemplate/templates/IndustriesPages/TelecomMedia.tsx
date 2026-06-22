@@ -91,14 +91,14 @@ export default function TelecomMedia({ pageData }) {
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>OTT Delivery Pipeline</h3>
         <div className={styles.flowContainer}>
-          <div className={styles.flowNode} style={{ borderColor: '#00FFFF', color: '#00FFFF' }}><Upload size={16}/> Content Upload</div>
-          <div className={styles.flowLine} style={{ background: '#00FFFF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#00FFFF', color: '#00FFFF' }}><Cpu size={16}/> Transcoding</div>
-          <div className={styles.flowLine} style={{ background: '#00FFFF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#00FFFF', color: '#00FFFF' }}><Network size={16}/> CDN Edge</div>
-          <div className={styles.flowLine} style={{ background: '#00FFFF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#00FFFF', color: '#00FFFF' }}><MonitorPlay size={16}/> Viewer App</div>
-          <div className={styles.flowLine} style={{ background: 'linear-gradient(90deg, #00FFFF, transparent)' }} />
+          <div className={styles.flowNode}><Upload size={16}/> Content Upload</div>
+          <div className={styles.flowLine} />
+          <div className={styles.flowNode}><Cpu size={16}/> Transcoding</div>
+          <div className={styles.flowLine} />
+          <div className={styles.flowNode}><Network size={16}/> CDN Edge</div>
+          <div className={styles.flowLine} />
+          <div className={styles.flowNode}><MonitorPlay size={16}/> Viewer App</div>
+          <div className={styles.flowLine} style={{ background: 'linear-gradient(90deg, var(--accent-aqua), transparent)' }} />
           <div className={styles.flowNode} style={{ borderColor: 'var(--text-secondary)', color: 'var(--text-secondary)', borderStyle: 'dashed' }}><Activity size={16}/> Telemetry Feedback Loop</div>
         </div>
       </section>
@@ -126,7 +126,7 @@ export default function TelecomMedia({ pageData }) {
           <h3 className={styles.sectionTitle}>Streaming Tech Stack</h3>
           <div className={styles.techStackGrid}>
             {['HLS / DASH Protocol', 'FFmpeg Transcoding', 'AWS MediaLive', 'Cloudflare Stream', 'WebRTC for Ultra-low Latency', 'DRM Encryption (Widevine/FairPlay)', 'Redis Session Cache'].map(badge => (
-              <div key={badge} className={styles.techBadge} style={{ borderColor: '#00FFFF', color: '#fff' }}>
+              <div key={badge} className={styles.techBadge}>
                 {badge}
               </div>
             ))}

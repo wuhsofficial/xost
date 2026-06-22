@@ -101,7 +101,7 @@
 
 /* ─── Generic Content Block ────────────────────────────────────────────── */
 .contentSection {
-  padding: 100px 5%;
+  padding: 20px 5% 100px 5%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -318,7 +318,7 @@
   }
   
   .contentSection {
-    padding: 60px 24px;
+    padding: 20px 24px 60px 24px;
   }
 
   .bentoItem {

@@ -64,7 +64,7 @@ const connections: Record<string, string[]> = {
   FastAPI: ['Python', 'Node.js'],
 };
 
-const ringRadii = [110, 190, 270];
+const ringRadii = [110, 180, 250];
 const ringDurations = [28, 45, 62];
 const centerPoint = { x: 300, y: 300 };
 const svgSize = 600;
@@ -228,7 +228,7 @@ export default function TechGalaxy() {
                         style={{ opacity: isDimmed ? 0.08 : 1 }}
                       >
                         {/* Invisible enlarged hit-area for comfortable tapping on touch */}
-                        <circle r={26} fill="transparent" />
+                        <circle r={34} fill="transparent" />
                         {/* Opposite rotation to keep text/icon upright */}
                         <g
                           className={isClockwise ? styles.orbitCounter : styles.orbitClockwise}
@@ -240,9 +240,9 @@ export default function TechGalaxy() {
                           <g
                             style={{
                               transform: isHovered
-                                ? 'scale(1.35)'
+                                ? 'scale(1.25)'
                                 : isConnected
-                                ? 'scale(1.15)'
+                                ? 'scale(1.12)'
                                 : 'scale(1)',
                               transition: 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
                             }}
@@ -250,7 +250,7 @@ export default function TechGalaxy() {
                             {/* Glow behind active node */}
                             {isHovered && (
                               <circle
-                                r={24}
+                                r={30}
                                 fill="url(#nodeActiveGlow)"
                                 className={styles.pulseActive}
                               />
@@ -258,7 +258,7 @@ export default function TechGalaxy() {
 
                             {/* Node border/circle */}
                             <circle
-                              r={18}
+                              r={24}
                               className={`${styles.nodeCircle} ${
                                 isHovered || isConnected ? styles.nodeCircleActive : ''
                               }`}
@@ -267,16 +267,16 @@ export default function TechGalaxy() {
                             {/* Tech Logo */}
                             <image
                               href={node.slug === 'amazonwebservices' ? 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg' : `https://cdn.simpleicons.org/${node.slug}`}
-                              width={22}
-                              height={22}
-                              x={-11}
-                              y={-11}
+                              width={28}
+                              height={28}
+                              x={-14}
+                              y={-14}
                               className={styles.techIconImage}
                             />
 
                             {/* Label */}
                             <text
-                              y={30}
+                              y={38}
                               textAnchor="middle"
                               className={`${styles.nodeLabel} ${
                                 isHovered || isConnected ? styles.nodeLabelActive : ''
