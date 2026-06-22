@@ -25,3 +25,4 @@ out/
 .idea/
 .DS_Store
 Thumbs.db
+.claude/
