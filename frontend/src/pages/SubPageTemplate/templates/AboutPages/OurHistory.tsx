@@ -115,7 +115,7 @@ export default function OurHistory({ pageData }) {
         border: '1px solid var(--accent-aqua)'
       }}>
         <h2 style={{ fontSize: '2.5rem', color: '#fff', fontStyle: 'italic', maxWidth: '800px', margin: '0 auto' }}>
-          "We didn't just adapt to change — we engineered it."
+          "We didn't just adapt to change; we engineered it."
         </h2>
       </div>
 

@@ -51,7 +51,7 @@ export default function AboutPage() {
           <p className={styles.missionBody}>
             We are a premium digital agency founded by technologists who believe
             that strategy, execution, and scale are the pillars of digital success.
-            Every project we take on is a partnership — built on transparency,
+            Every project we take on is a partnership, built on transparency,
             technical excellence, and an obsession with results.
           </p>
           <div className={styles.quoteCardInline}>

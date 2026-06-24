@@ -355,7 +355,7 @@ export default function OfferedJobs() {
           <div className={styles.benefitsHeader}>
             <h2 className={styles.benefitsTitle}>Why Work at XOST?</h2>
             <p className={styles.benefitsSubtitle}>
-              We invest in our team the same way we invest in our products — without compromise.
+              We invest in our team the same way we invest in our products, without compromise.
             </p>
           </div>
 

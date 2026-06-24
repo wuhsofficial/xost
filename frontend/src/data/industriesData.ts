@@ -6,7 +6,7 @@ import {
 const allIndustries = [
   {
     title: 'E-Commerce & Retail',
-    description: 'End-to-end digital commerce solutions — from storefront design to payment integration and conversion optimization.',
+    description: 'End-to-end digital commerce solutions, from storefront design to payment integration and conversion optimization.',
     icon: faCartShopping,
     gradientStart: '#00D4FF',
     gradientEnd: '#00FFB3',

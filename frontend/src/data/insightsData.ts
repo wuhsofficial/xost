@@ -13,7 +13,7 @@ const fallbackInsights = [
   {
     id: '2',
     title: 'The 2026 Guide to Cross-Platform App Development with Flutter',
-    excerpt: "Flutter has evolved beyond mobile. From web to desktop to embedded devices — here's how we architect Flutter projects that ship everywhere from a single codebase.",
+    excerpt: "Flutter has evolved beyond mobile. Covering web, desktop, and embedded devices, here's how we architect Flutter projects that ship everywhere from a single codebase.",
     category: 'Development',
     author: 'XOST Agency',
     date: '2026-05-20',

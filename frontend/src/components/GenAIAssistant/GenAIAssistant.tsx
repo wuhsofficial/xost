@@ -10,13 +10,13 @@ import styles from './GenAIAssistant.module.css';
 /* ─── Knowledge base for smart responses ────────────────────────────────── */
 const AI_KNOWLEDGE: Record<string, string> = {
   default:
-    "Hi! I'm XOST AI — your digital transformation guide. I can help you explore our **services**, **solutions**, **industries** we serve, or answer questions about **working with us**. What would you like to know?",
+    "Hi! I'm XOST AI, your digital transformation guide. I can help you explore our **services**, **solutions**, **industries** we serve, or answer questions about **working with us**. What would you like to know?",
   services:
-    "XOST offers a full suite of tech services:\n\n• **Enterprise & Software Development** — Custom business-grade applications\n• **Cloud Architecture & Migration** — AWS, Azure, GCP strategy & execution\n• **AI & Machine Learning Integration** — Intelligent automation pipelines\n• **Data Engineering & Analytics** — Real-time dashboards & data lakes\n• **Cybersecurity & Risk Management** — Zero-trust architecture\n• **Academic & FYP Solutions** — End-to-end student project support\n\nWould you like details on any specific service?",
+    "XOST offers a full suite of tech services:\n\n• **Enterprise & Software Development**: Custom business-grade applications\n• **Cloud Architecture & Migration**: AWS, Azure, GCP strategy & execution\n• **AI & Machine Learning Integration**: Intelligent automation pipelines\n• **Data Engineering & Analytics**: Real-time dashboards & data lakes\n• **Cybersecurity & Risk Management**: Zero-trust architecture\n• **Academic & FYP Solutions**: End-to-end student project support\n\nWould you like details on any specific service?",
   platform:
-    "Our platform is built on four pillars:\n\n• **Core Architecture** — Cloud-native, microservices-first\n• **Integration & APIs** — REST, GraphQL, event-driven\n• **Security & Compliance** — SOC2, GDPR, HIPAA-ready\n• **Scale & Performance** — Auto-scaling global infrastructure\n\nThis ensures enterprise-grade reliability from day one.",
+    "Our platform is built on four pillars:\n\n• **Core Architecture**: Cloud-native, microservices-first\n• **Integration & APIs**: REST, GraphQL, event-driven\n• **Security & Compliance**: SOC2, GDPR, HIPAA-ready\n• **Scale & Performance**: Auto-scaling global infrastructure\n\nThis ensures enterprise-grade reliability from day one.",
   solutions:
-    "We deliver strategic technology solutions:\n\n• **Digital Transformation** — Modernize your entire tech stack\n• **Enterprise Automation** — RPA and workflow orchestration\n• **Cloud Cost Optimization** — Reduce infra spend by up to 40%\n• **Data-driven Decision Making** — BI dashboards and predictive analytics",
+    "We deliver strategic technology solutions:\n\n• **Digital Transformation**: Modernize your entire tech stack\n• **Enterprise Automation**: RPA and workflow orchestration\n• **Cloud Cost Optimization**: Reduce infra spend by up to 40%\n• **Data-driven Decision Making**: BI dashboards and predictive analytics",
   ai:
     "Our AI & ML capabilities include:\n\n• **Generative AI integration** into your existing products\n• **Semantic search** and NLP pipelines\n• **Predictive analytics** and recommendation engines\n• **Computer Vision** for industrial automation\n• **LLM fine-tuning** on your proprietary data\n\nWe make AI practical, not just experimental.",
   healthcare:
@@ -39,7 +39,7 @@ const resolveResponse = (message: string): string => {
   if (msg.includes('fintech') || msg.includes('bank') || msg.includes('finance') || msg.includes('payment')) return AI_KNOWLEDGE.fintech;
   if (msg.includes('contact') || msg.includes('email') || msg.includes('reach') || msg.includes('phone')) return AI_KNOWLEDGE.contact;
   if (msg.includes('price') || msg.includes('cost') || msg.includes('budget') || msg.includes('quote')) return AI_KNOWLEDGE.pricing;
-  return "That's a great question! I'd recommend reaching out to our team directly at **hello@xost.agency** for a tailored answer. Or try asking about our **services**, **solutions**, **AI capabilities**, or **specific industries** — I know those really well!";
+  return "That's a great question! I'd recommend reaching out to our team directly at **hello@xost.agency** for a tailored answer. Or try asking about our **services**, **solutions**, **AI capabilities**, or **specific industries**; I know those really well!";
 };
 
 /* ─── Suggested prompt chips ────────────────────────────────────────────── */

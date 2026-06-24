@@ -79,7 +79,7 @@ export default function ServicesPage() {
           Services That Drive Real Results
         </motion.h1>
         <motion.p className={styles.heroSubtitle} {...fadeUp(0.3)}>
-          From concept to conversion — we cover every layer of your digital presence.
+          From concept to conversion, we cover every layer of your digital presence.
         </motion.p>
       </section>
 

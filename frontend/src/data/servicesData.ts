@@ -24,7 +24,7 @@ const allServices = [
   {
     title: 'Content Writing',
     category: 'Marketing & SEO',
-    description: 'Words that rank, resonate, and convert — crafted by storytellers who understand your audience.',
+    description: 'Words that rank, resonate, and convert, crafted by storytellers who understand your audience.',
     icon: faPenFancy,
     gradientStart: '#667EEA',
     gradientEnd: '#764BA2',
@@ -64,7 +64,7 @@ const allServices = [
   {
     title: 'App Development',
     category: 'Development',
-    description: 'Cross-platform mobile apps — Flutter-powered, beautifully engineered, built to last.',
+    description: 'Cross-platform mobile apps, Flutter-powered, beautifully engineered, and built to last.',
     icon: faMobileScreenButton,
     gradientStart: '#00FFB3',
     gradientEnd: '#0BA360',
@@ -80,7 +80,7 @@ const allServices = [
   {
     title: 'Advertisements',
     category: 'Marketing & SEO',
-    description: 'Paid media that converts — Google, Meta, TikTok, and beyond. Maximum ROI, minimum waste.',
+    description: 'Paid media that converts, spanning Google, Meta, TikTok, and beyond. Maximum ROI, minimum waste.',
     icon: faRectangleAd,
     gradientStart: '#FFB800',
     gradientEnd: '#FF8C00',

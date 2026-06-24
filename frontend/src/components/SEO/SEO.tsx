@@ -9,7 +9,7 @@ export interface SEOProps {
 }
 
 const SEO = ({ 
-  title = "XOST — World-Class Digital Agency", 
+  title = "XOST | World-Class Digital Agency", 
   description = "XOST is a world-class digital agency crafting premium web applications, branding, and digital experiences.", 
   type = "website",
   name = "XOST" 

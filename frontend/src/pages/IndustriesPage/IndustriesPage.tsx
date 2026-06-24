@@ -51,7 +51,7 @@ const detailedIndustries = [
     icon: faCartShopping,
     gradientStart: '#00D4FF',
     gradientEnd: '#00FFB3',
-    description: 'Building end-to-end digital commerce solutions—from custom storefront design to advanced inventory management and conversion rate optimization. We help brands thrive in the competitive retail landscape.',
+    description: 'Building end-to-end digital commerce solutions, from custom storefront design to advanced inventory management and conversion rate optimization. We help brands thrive in the competitive retail landscape.',
     bullets: [
       'Custom Headless Commerce Solutions',
       'Omnichannel Retail Experiences',
@@ -117,7 +117,7 @@ export default function IndustriesPage() {
           Industries We Serve
         </TextMaskReveal>
         <p className={styles.pageSubtitle}>
-          Deep domain expertise across key verticals. We don&apos;t just build software—we solve complex, industry-specific problems for global leaders.
+          Deep domain expertise across key verticals. We don&apos;t just build software; we solve complex, industry-specific problems for global leaders.
         </p>
       </div>
 

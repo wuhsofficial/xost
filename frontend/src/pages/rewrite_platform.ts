@@ -44,7 +44,7 @@ const heroReplacement = `      {/* ═══ A) HERO ═══ */}
             transition={{ duration: 0.3, delay: 0.8, ease: 'easeOut' }}
           >
             <TypewriterText
-              text="Strategy. Execution. Scale. — Delivered by experts who live technology."
+              text="Strategy. Execution. Scale. Delivered by experts who live technology."
               startDelay={1200}
               speed={40}
             />
@@ -101,7 +101,7 @@ const newSections = `      {/* ═══ PLATFORM CORE SECTIONS ═══ */}
               </div>
               <h3 className={styles.coreCardTitle}>Core Architecture</h3>
               <p className={styles.coreCardDesc}>
-                Our foundations are constructed utilizing distributed microservices patterns, orchestrated via Kubernetes to ensure high availability and resilient self-healing capabilities. By decoupling application components, we achieve independent scalability and streamlined CI/CD pipelines, allowing us to iterate rapidly without compromising on robust system integrity. The backend leverages polyglot persistence, employing specialized databases tailored to specific workload profiles—from real-time graph traversal to heavy transactional processing.
+                Our foundations are constructed utilizing distributed microservices patterns, orchestrated via Kubernetes to ensure high availability and resilient self-healing capabilities. By decoupling application components, we achieve independent scalability and streamlined CI/CD pipelines, allowing us to iterate rapidly without compromising on robust system integrity. The backend leverages polyglot persistence, employing specialized databases tailored to specific workload profiles, from real-time graph traversal to heavy transactional processing.
               </p>
             </div>
           </ScrollReveal>

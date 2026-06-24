@@ -37,7 +37,7 @@ const features = [
   {
     icon: faChartLine,
     title: 'Growth & Marketing',
-    desc: "We don't just build — we grow. SEO, paid media, content strategy, and analytics combine to turn your digital presence into a revenue-generating machine.",
+    desc: "We don't just build; we grow. SEO, paid media, content strategy, and analytics combine to turn your digital presence into a revenue-generating machine.",
     gradient: 'linear-gradient(135deg, #FA709A, #FEE140)',
   },
 ];
@@ -46,7 +46,7 @@ const approachSteps = [
   { icon: faMagnifyingGlass, title: 'Discovery', desc: 'Deep-dive into your business, audience, and competitive landscape to uncover hidden opportunities.' },
   { icon: faCompassDrafting, title: 'Design', desc: 'Translate insights into wireframes, prototypes, and visual systems that users intuitively understand.' },
   { icon: faCode, title: 'Develop', desc: 'Build robust, scalable solutions using cutting-edge technologies with continuous integration and testing.' },
-  { icon: faRocket, title: 'Deploy', desc: 'Launch with confidence — monitoring, optimization, and ongoing support ensure lasting success.' },
+  { icon: faRocket, title: 'Deploy', desc: 'Launch with confidence; monitoring, optimization, and ongoing support ensure lasting success.' },
 ];
 
 
@@ -59,10 +59,10 @@ const stats = [
 ];
 
 const whyItems = [
-  { icon: faLightbulb, title: 'Innovation', desc: "We stay on the cutting edge — from AI-powered tools to the latest frameworks — ensuring your product is future-proof from day one." },
+  { icon: faLightbulb, title: 'Innovation', desc: "We stay on the cutting edge, using AI-powered tools and the latest frameworks to ensure your product is future-proof from day one." },
   { icon: faBolt, title: 'Speed', desc: "Our agile workflows and parallel team structure deliver results in weeks, not months. Your time-to-market is our top priority." },
   { icon: faGem, title: 'Quality', desc: "Every line of code is reviewed, every pixel is placed with purpose. We ship production-grade work that stands the test of scale." },
-  { icon: faHeadset, title: '24/7 Support', desc: "Your project doesn't sleep and neither does our support. Dedicated channels, real humans, and fast response times — always." },
+  { icon: faHeadset, title: '24/7 Support', desc: "Your project doesn't sleep and neither does our support. Enjoy dedicated channels, real humans, and fast response times, always." },
 ];
 
 
@@ -429,7 +429,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Core Architecture</h3>
               <p className={styles.coreCardDesc}>
-                Distributed microservices orchestrated on Kubernetes, with polyglot persistence per workload — independently scalable and CI/CD-ready.
+                Distributed microservices orchestrated on Kubernetes, with polyglot persistence per workload, designed to be independently scalable and CI/CD-ready.
               </p>
             </div>
           </ScrollReveal>
@@ -453,7 +453,7 @@ export default function PlatformPage() {
               </div>
               <h3 className={styles.coreCardTitle}>Security & Compliance</h3>
               <p className={styles.coreCardDesc}>
-                DevSecOps with automated scanning and OWASP hardening. AES-256 at rest, TLS 1.3 in transit — SOC 2, HIPAA, and GDPR compliant.
+                DevSecOps with automated scanning and OWASP hardening. AES-256 at rest, TLS 1.3 in transit, fully SOC 2, HIPAA, and GDPR compliant.
               </p>
             </div>
           </ScrollReveal>

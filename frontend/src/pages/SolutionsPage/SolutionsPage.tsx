@@ -9,7 +9,7 @@ import styles from './SolutionsPage.module.css';
 const solutions = [
   {
     title: 'Startup Launch Package',
-    desc: 'MVP development, branding, and initial marketing — everything you need to go from idea to launch in 8 weeks.',
+    desc: 'MVP development, branding, and initial marketing, offering everything you need to go from idea to launch in 8 weeks.',
     features: ['Brand Identity', 'Responsive Website', 'SEO Setup', 'Social Media Kit'],
   },
   {
@@ -41,7 +41,7 @@ const showcaseCards = [
     gradient: 'linear-gradient(135deg, #00D4FF, #00FFB3)',
     number: '01',
     title: 'Brand Identity Overhaul',
-    desc: 'Complete visual transformation for a fintech startup — from logo to landing page.',
+    desc: 'Complete visual transformation for a fintech startup, from logo to landing page.',
   },
   {
     gradient: 'linear-gradient(135deg, #667EEA, #764BA2)',

@@ -66,7 +66,7 @@ export default function Footer() {
             <div className={styles.newsletterText}>
               <h3 className={styles.newsletterHeadline}>Stay Ahead of the Curve</h3>
               <p className={styles.newsletterSubtext}>
-                Get weekly insights on AI, cloud, and digital innovation — straight to your inbox.
+                Get weekly insights on AI, cloud, and digital innovation, delivered straight to your inbox.
               </p>
             </div>
             {newsletterSubmitted ? (
@@ -106,7 +106,7 @@ export default function Footer() {
             <span className={styles.brandTagline}>Strategy. Execution. Scale.</span>
             <p className={styles.brandDescription}>
               XOST is a product engineering studio building secure, scalable digital
-              platforms — from cloud architecture to AI integration — for teams that
+              platforms, spanning cloud architecture to AI integration, for teams that
               refuse to compromise on craft.
             </p>
 
