@@ -226,7 +226,7 @@ export default function PlatformPage() {
           <iframe
             ref={iframeRef}
             className={`${styles.video} ${videoLoaded ? styles.videoLoaded : ''}`}
-            src="https://player.vimeo.com/video/1204087817?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            src="https://player.vimeo.com/video/1204087817?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1&quality=1080p"
             title="XOST background reel"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"

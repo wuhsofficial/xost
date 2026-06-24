@@ -47,6 +47,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 3.5rem 4rem;
+  background: rgba(10, 15, 30, 0.45); /* Deep semi-transparent slate */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
 }
 
 .headlineRow {
@@ -982,6 +989,11 @@
 }
 
 @media (max-width: 767px) {
+  .heroContent {
+    padding: 2.5rem 1.5rem;
+    max-width: 100%;
+    border-radius: var(--radius-xl);
+  }
   /* The heading element inherits 2em from the UA stylesheet; on mobile make the
      hero heading take the wrapper size directly so a single long word like
      "infrastructure" can't overflow the viewport. */
