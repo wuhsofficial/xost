@@ -165,14 +165,14 @@ export default function PlatformPage() {
     return () => window.removeEventListener('xost-video-loaded', handleLoaded);
   }, []);
   useEffect(() => {
-    // Fallback timer: force mark loaded after 4.5 seconds in case of block/slow network
+    // Fallback timer: force mark loaded after 8.0 seconds in case of block/slow network
     const fallbackTimer = setTimeout(() => {
       if (!(window as any).xostVideoLoaded) {
         (window as any).xostVideoLoaded = true;
         setVideoLoaded(true);
         window.dispatchEvent(new CustomEvent('xost-video-loaded'));
       }
-    }, 4500);
+    }, 8000);
 
     const script = document.createElement('script');
     script.src = "https://player.vimeo.com/api/player.js";
@@ -191,9 +191,14 @@ export default function PlatformPage() {
             clearTimeout(fallbackTimer);
           };
 
-          player.on('loaded', handleReady);
+          // Wait strictly for play or playing events (actually rendering)
           player.on('play', handleReady);
           player.on('playing', handleReady);
+
+          // Force play command to guarantee playback trigger
+          player.play().catch((err: any) => {
+            console.warn("Vimeo autoplay policy check:", err);
+          });
         } catch (e) {
           console.error("Vimeo Player initialization error", e);
         }
