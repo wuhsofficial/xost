@@ -97,9 +97,9 @@ export default function CentreFacilities({ pageData }) {
           </div>
 
           {activeZone && (
-            <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(0, 255, 255, 0.1)', borderLeft: '4px solid #00FFFF', borderRadius: '4px' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#00FFFF' }}>{zoneInfo[activeZone].title}</h4>
-              <p style={{ margin: 0, fontSize: '0.9rem' }}>{zoneInfo[activeZone].desc}</p>
+            <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(0, 212, 255, 0.08)', borderLeft: '4px solid var(--accent-aqua)', borderRadius: '8px' }}>
+              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-primary)', fontWeight: 'bold' }}>{zoneInfo[activeZone].title}</h4>
+              <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{zoneInfo[activeZone].desc}</p>
             </div>
           )}
         </div>
@@ -140,10 +140,12 @@ export default function CentreFacilities({ pageData }) {
         </div>
       </section>
 
-      <div style={{ background: 'var(--gradient-accent)', padding: '2rem', borderRadius: '12px', textAlign: 'center', marginTop: '2rem' }}>
-        <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Want to see it for yourself?</h3>
-        <p style={{ margin: '0 0 1.5rem 0', color: 'rgba(255,255,255,0.9)' }}>Schedule a visit or request a comprehensive virtual tour of our campus.</p>
-        <button style={{ background: '#fff', color: '#000', border: 'none', padding: '0.8rem 2rem', borderRadius: '50px', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+      <div style={{ background: 'var(--gradient-accent)', padding: '2.5rem', borderRadius: '12px', textAlign: 'center', marginTop: '2rem', boxShadow: '0 8px 24px var(--card-shadow)' }}>
+        <h3 style={{ margin: '0 0 1rem 0', color: '#06212b', fontWeight: 800 }}>Want to see it for yourself?</h3>
+        <p style={{ margin: '0 0 1.5rem 0', color: 'rgba(6, 33, 43, 0.8)', fontWeight: 500 }}>Schedule a visit or request a comprehensive virtual tour of our campus.</p>
+        <button style={{ background: '#06212b', color: '#fff', border: 'none', padding: '0.8rem 2rem', borderRadius: '50px', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(6, 33, 43, 0.3)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
           Request Virtual Tour <ArrowRight size={18} />
         </button>
       </div>

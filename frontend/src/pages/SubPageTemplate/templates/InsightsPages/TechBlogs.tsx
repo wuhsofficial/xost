@@ -58,7 +58,7 @@ export default function TechBlogs({ pageData }) {
     <div className={styles.pageWrapper}>
       <div className={styles.heroHeader}>
         <h2 className={styles.heroHeadline}>
-          Latest thoughts on <span style={{ color: '#00FFFF' }}>{typewriterText}</span><span className="cursor" style={{ opacity: 1, animation: 'blink 1s infinite' }}>|</span>
+          Latest thoughts on <span style={{ color: 'var(--accent-aqua)' }}>{typewriterText}</span><span className="cursor" style={{ opacity: 1, animation: 'blink 1s infinite' }}>|</span>
         </h2>
         <p className={styles.heroSubhead}>Deep dives into the tech shaping our future.</p>
       </div>
@@ -83,7 +83,7 @@ export default function TechBlogs({ pageData }) {
           <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800" alt="Featured" className={styles.featuredImage} />
           <div className={styles.cardBody} style={{ justifyContent: 'center' }}>
             <span className={styles.cardTag}>CyberSecurity</span>
-            <h3 style={{ fontSize: '2rem', color: '#fff', margin: '1rem 0' }}>The Evolution of Malware Analysis using AI</h3>
+            <h3 style={{ fontSize: '2rem', color: 'var(--text-primary)', margin: '1rem 0' }}>The Evolution of Malware Analysis using AI</h3>
             <p className={styles.cardDesc} style={{ WebkitLineClamp: 3, fontSize: '1.1rem' }}>
               How modern SOC teams are leveraging Large Language Models to reverse engineer malicious binaries and detect zero-day exploits faster than ever before.
             </p>
@@ -140,21 +140,21 @@ export default function TechBlogs({ pageData }) {
             <div className={styles.authorItem}>
               <img src="https://i.pravatar.cc/100?img=68" alt="Sarah" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>Sarah Jenkins</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>Sarah Jenkins</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Cloud Architecture • 12 Articles</p>
               </div>
             </div>
             <div className={styles.authorItem}>
               <img src="https://i.pravatar.cc/100?img=33" alt="David" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>David Chen</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>David Chen</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>AI/ML Engineer • 8 Articles</p>
               </div>
             </div>
             <div className={styles.authorItem} style={{ borderBottom: 'none' }}>
               <img src="https://i.pravatar.cc/100?img=47" alt="Elena" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>Elena Rostova</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>Elena Rostova</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Data Science • 15 Articles</p>
               </div>
             </div>
@@ -177,8 +177,8 @@ export default function TechBlogs({ pageData }) {
       </div>
 
       <div className={styles.newsletterStrip}>
-        <Mail size={40} color="#00FFFF" />
-        <h3 style={{ color: '#fff', fontSize: '1.8rem' }}>Never miss an update</h3>
+        <Mail size={40} color="var(--accent-aqua)" />
+        <h3 style={{ color: 'var(--text-primary)', fontSize: '1.8rem', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800 }}>Never miss an update</h3>
         <p style={{ color: 'var(--text-secondary)' }}>Join 10,000+ tech leaders receiving our weekly engineering insights.</p>
         <div className={styles.newsletterForm}>
           <input type="email" placeholder="Enter your work email" className={styles.newsletterInput} />

@@ -103,7 +103,7 @@ export default function WebinarsEvents({ pageData }) {
           {upcoming.map((ev, i) => (
             <div key={i} className={styles.contentCard} style={{ padding: '2rem', background: i === 0 ? 'linear-gradient(180deg, rgba(0, 255, 255, 0.05), var(--card-surface))' : 'var(--card-surface)', border: i === 0 ? '1px solid var(--accent-aqua)' : '1px solid var(--card-border)' }}>
               <span className={styles.cardTag} style={{ alignSelf: 'flex-start', marginBottom: '1rem' }}>{ev.tag}</span>
-              <h4 style={{ fontSize: '1.4rem', color: '#fff', marginBottom: '1.5rem' }}>{ev.title}</h4>
+              <h4 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginBottom: '1.5rem' }}>{ev.title}</h4>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '2rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><CalIcon size={16}/> {ev.date} at {ev.time}</span>
@@ -143,21 +143,21 @@ export default function WebinarsEvents({ pageData }) {
             <div className={styles.authorItem}>
               <img src="https://i.pravatar.cc/100?img=68" alt="Sarah" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>Sarah Jenkins</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>Sarah Jenkins</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>COO @ TechCorp • DevOps Expert</p>
               </div>
             </div>
             <div className={styles.authorItem}>
               <img src="https://i.pravatar.cc/100?img=33" alt="David" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>David Chen</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>David Chen</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Lead AI Researcher • GenAI</p>
               </div>
             </div>
             <div className={styles.authorItem} style={{ borderBottom: 'none' }}>
               <img src="https://i.pravatar.cc/100?img=11" alt="Alan" className={styles.authorAvatar} />
               <div>
-                <h4 style={{ color: '#fff' }}>Dr. Alan Walker</h4>
+                <h4 style={{ color: 'var(--text-primary)' }}>Dr. Alan Walker</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>CISO @ SecureNet • Zero Trust</p>
               </div>
             </div>
@@ -203,11 +203,11 @@ export default function WebinarsEvents({ pageData }) {
 
       <div className={styles.newsletterStrip} style={{ background: 'linear-gradient(90deg, rgba(217, 70, 239, 0.1), rgba(0, 255, 255, 0.1))', borderColor: '#D946EF' }}>
         <Bell size={40} color="#D946EF" />
-        <h3 style={{ color: '#fff', fontSize: '1.8rem' }}>Never miss a session</h3>
+        <h3 style={{ color: 'var(--text-primary)', fontSize: '1.8rem', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800 }}>Never miss a session</h3>
         <p style={{ color: 'var(--text-secondary)' }}>Get notified when we announce new masterclasses and live coding events.</p>
         <div className={styles.newsletterForm}>
           <input type="email" placeholder="Enter your work email" className={styles.newsletterInput} style={{ borderColor: 'rgba(217, 70, 239, 0.5)' }} />
-          <button className={styles.newsletterBtn} style={{ background: 'linear-gradient(90deg, #D946EF, #00FFFF)' }}>Get Reminders</button>
+          <button className={styles.newsletterBtn} style={{ background: 'linear-gradient(90deg, #D946EF, #00FFFF)', color: '#06212b' }}>Get Reminders</button>
         </div>
       </div>
     </div>

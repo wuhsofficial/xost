@@ -58,7 +58,7 @@ export default function WhitePapers({ pageData }) {
           <div style={{ background: 'url("https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800") center/cover', minHeight: '300px' }}></div>
           <div className={styles.cardBody} style={{ justifyContent: 'center' }}>
             <span className={styles.cardTag}>Premium Report</span>
-            <h3 style={{ fontSize: '1.8rem', color: '#fff', margin: '1rem 0' }}>The Future of Serverless Computing (2026 Edition)</h3>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', margin: '1rem 0' }}>The Future of Serverless Computing (2026 Edition)</h3>
             <div style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
               <p><strong>Table of Contents Preview:</strong></p>
               <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', marginTop: '0.5rem' }}>
@@ -69,11 +69,11 @@ export default function WhitePapers({ pageData }) {
               </ul>
             </div>
             
-            <div style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px' }}>
-              <h4 style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}><Lock size={16} color="#00FFFF" /> Enter email to download (PDF, 6MB)</h4>
+            <div style={{ background: 'rgba(0, 212, 255, 0.05)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px' }}>
+              <h4 style={{ color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}><Lock size={16} color="var(--accent-aqua)" /> Enter email to download (PDF, 6MB)</h4>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <input type="email" placeholder="work email address" style={{ flex: 1, padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--card-border)', background: '#1a1a1a', color: '#fff' }} />
-                <button style={{ padding: '0.8rem 1.5rem', background: 'var(--accent-aqua)', color: '#000', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Download</button>
+                <input type="email" placeholder="work email address" style={{ flex: 1, padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--card-border)', background: 'var(--pure-white)', color: 'var(--text-primary)' }} />
+                <button style={{ padding: '0.8rem 1.5rem', background: 'var(--accent-aqua)', color: '#06212b', fontWeight: 'bold', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Download</button>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function WhitePapers({ pageData }) {
             >
               <div style={{ position: 'absolute', top: '-15px', right: '-10px', fontSize: '5rem', fontWeight: '900', color: 'rgba(255,255,255,0.04)', zIndex: 0, lineHeight: 1 }}>{item.step}</div>
               <div style={{ background: 'rgba(0,0,0,0.4)', padding: '1.2rem', borderRadius: '50%', zIndex: 1 }}>{item.icon}</div>
-              <h4 style={{ color: '#fff', fontSize: '1.2rem', zIndex: 1, margin: 0 }}>{item.title}</h4>
+              <h4 style={{ color: 'var(--text-primary)', fontSize: '1.2rem', zIndex: 1, margin: 0 }}>{item.title}</h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', zIndex: 1, margin: 0, lineHeight: 1.4 }}>{item.desc}</p>
             </motion.div>
           ))}
@@ -162,7 +162,7 @@ export default function WhitePapers({ pageData }) {
 
       <div style={{ marginTop: '4rem', padding: '2rem', background: 'var(--card-surface)', borderRadius: '12px', border: '1px solid var(--card-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <h3 style={{ color: '#fff' }}>Looking for shorter reads?</h3>
+          <h3 style={{ color: 'var(--text-primary)' }}>Looking for shorter reads?</h3>
           <p style={{ color: 'var(--text-secondary)' }}>Check out our Tech Blogs for bite-sized engineering updates.</p>
         </div>
         <Link to="/insights/tech-blogs" className={styles.filterBtnActive} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>View Blogs <ArrowRight size={16}/></Link>

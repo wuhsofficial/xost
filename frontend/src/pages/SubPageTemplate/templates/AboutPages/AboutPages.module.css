@@ -223,7 +223,7 @@
 }
 .bentoCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px var(--card-shadow), 0 0 15px rgba(0, 212, 255, 0.15);
   border-color: rgba(0, 255, 255, 0.3);
 }
 
@@ -270,5 +270,14 @@
     width: 24px;
     height: 24px;
   }
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+  opacity: 0.95;
+}
+.ctaBtn:active {
+  transform: translateY(0);
 }
 

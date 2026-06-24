@@ -117,24 +117,24 @@ export default function CaseStudies({ pageData }) {
         <div className={styles.splitCard}>
           <h3 className={styles.sectionTitle}>Aggregate Outcomes</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem', height: '100%' }}>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <Zap color="#00FFFF" style={{ marginBottom: '0.5rem' }}/>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>3x Faster</span>
+            <div style={{ background: 'rgba(0, 212, 255, 0.05)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Zap color="var(--accent-aqua)" style={{ marginBottom: '0.5rem' }}/>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>3x Faster</span>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Deployment Speed</span>
             </div>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ background: 'rgba(0, 212, 255, 0.05)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <BarChart2 color="#D946EF" style={{ marginBottom: '0.5rem' }}/>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>60% Cut</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>60% Cut</span>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Infrastructure Cost</span>
             </div>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ background: 'rgba(0, 212, 255, 0.05)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Clock color="#43E97B" style={{ marginBottom: '0.5rem' }}/>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>99.99%</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>99.99%</span>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Uptime Achieved</span>
             </div>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ background: 'rgba(0, 212, 255, 0.05)', border: '1px solid var(--card-border)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Database color="#667EEA" style={{ marginBottom: '0.5rem' }}/>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fff' }}>10M+</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>10M+</span>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Records Migrated</span>
             </div>
           </div>
