@@ -131,6 +131,39 @@ function AnimatedCounter({ endValue, suffix = '', label }: LocalAnimatedCounterP
   );
 }
 
+interface GlobalAnimatedCounterProps {
+  endValue: number;
+  suffix?: string;
+  label: string;
+}
+
+function GlobalAnimatedCounter({ endValue, suffix = '', label }: GlobalAnimatedCounterProps) {
+  const { ref, value } = useAnimatedCounter(endValue);
+  const springValue = useSpring(value, { stiffness: 100, damping: 15 });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useMotionValueEvent(springValue, 'change', (latest) => {
+    setDisplayValue(Math.round(latest));
+  });
+
+  useEffect(() => {
+    if (value === endValue && value > 0) {
+      springValue.set(endValue * 1.05);
+      const timer = setTimeout(() => {
+        springValue.set(endValue);
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [value, endValue, springValue]);
+
+  return (
+    <div className={styles.globalStat} ref={ref}>
+      <span className={styles.globalStatValue}>{displayValue}{suffix}</span>
+      <span className={styles.globalStatLabel}>{label}</span>
+    </div>
+  );
+}
+
 interface ScrollRevealWrapperProps {
   children: React.ReactNode;
   delay?: number;
@@ -476,19 +509,34 @@ export default function PlatformPage() {
           A globally distributed infrastructure, centralized around engineering excellence.
         </p>
 
-        <div className={styles.mapContainer}>
-          <div className={styles.leafletMapWrapper}>
+        <motion.div
+          className={styles.mapContainer}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.div
+            className={styles.leafletMapWrapper}
+            whileHover={{ scale: 1.01, boxShadow: "0 10px 30px rgba(0, 212, 255, 0.25)" }}
+            transition={{ duration: 0.3 }}
+          >
             <MapContainer
               {...({
                 center: [25, 10],
                 zoom: 2,
+                minZoom: 2,
+                maxBounds: [[-85, -180], [85, 180]],
+                maxBoundsViscosity: 1.0,
                 scrollWheelZoom: false,
+                dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
+                touchZoom: true,
                 style: { width: '100%', height: '500px', borderRadius: 'var(--radius-xl)', zIndex: 1 },
                 attributionControl: false
               } as any)}
             >
               <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               />
 
               {/* HQ Marker */}
@@ -496,7 +544,12 @@ export default function PlatformPage() {
                 {...({
                   center: lahorePos,
                   radius: 8,
-                  pathOptions: { color: '#00FFFF', fillColor: '#00FFFF', fillOpacity: 1 }
+                  pathOptions: {
+                    className: styles.hqMarker,
+                    color: '#00FFFF',
+                    fillColor: '#00FFFF',
+                    fillOpacity: 1
+                  }
                 } as any)}
               >
                 <Tooltip {...({ direction: "top", offset: [0, -10], opacity: 1, permanent: true, className: styles.hqTooltip } as any)}>
@@ -510,14 +563,24 @@ export default function PlatformPage() {
                   <Polyline
                     {...({
                       positions: [lahorePos, city.pos],
-                      pathOptions: { color: '#00FFFF', weight: 2, opacity: 0.4, dashArray: '4, 8' }
+                      pathOptions: {
+                        className: styles.connectingLine,
+                        color: 'var(--accent-aqua)',
+                        weight: 2,
+                        opacity: 0.6
+                      }
                     } as any)}
                   />
                   <CircleMarker
                     {...({
                       center: city.pos,
                       radius: 5,
-                      pathOptions: { color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.8 }
+                      pathOptions: {
+                        className: styles.cityMarker,
+                        color: 'var(--accent-mint)',
+                        fillColor: 'var(--accent-mint)',
+                        fillOpacity: 0.8
+                      }
                     } as any)}
                   >
                     <Tooltip {...({ direction: "bottom", offset: [0, 10], opacity: 1, permanent: true, className: styles.cityTooltip } as any)}>
@@ -527,19 +590,13 @@ export default function PlatformPage() {
                 </React.Fragment>
               ))}
             </MapContainer>
-          </div>
+          </motion.div>
           
           <div className={styles.globalStats}>
-             <div className={styles.globalStat}>
-                <span className={styles.globalStatValue}>50+</span>
-                <span className={styles.globalStatLabel}>Countries Served</span>
-             </div>
-             <div className={styles.globalStat}>
-                <span className={styles.globalStatValue}>10M+</span>
-                <span className={styles.globalStatLabel}>Active Users</span>
-             </div>
+             <GlobalAnimatedCounter endValue={50} suffix="+" label="Countries Served" />
+             <GlobalAnimatedCounter endValue={10} suffix="M+" label="Active Users" />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ═══ G) PLATFORM PROMISE ═══ */}

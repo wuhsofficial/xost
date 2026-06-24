@@ -79,13 +79,18 @@ export default function ScalePerformance({ pageData }) {
             {...({
               center: [20, 0],
               zoom: 2,
+              minZoom: 2,
+              maxBounds: [[-85, -180], [85, 180]],
+              maxBoundsViscosity: 1.0,
+              dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
+              touchZoom: true,
               style: { height: 400, width: '100%', borderRadius: 12, zIndex: 1 },
               scrollWheelZoom: false
             } as any)}
           >
             <TileLayer
               {...({
-                url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
               } as any)}
             />

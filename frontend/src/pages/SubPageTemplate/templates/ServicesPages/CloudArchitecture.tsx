@@ -99,17 +99,22 @@ export default function CloudArchitecture({ pageData }) {
             {...({
               center: [20, 0],
               zoom: 2,
+              minZoom: 2,
+              maxBounds: [[-85, -180], [85, 180]],
+              maxBoundsViscosity: 1.0,
+              dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
+              touchZoom: true,
               style: { height: 400, width: '100%', zIndex: 1 },
               scrollWheelZoom: false
             } as any)}
           >
-            <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+            <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
             {mapLocations.map((loc, idx) => (
               <CircleMarker
                 key={idx}
                 {...({
                   center: loc.pos,
-                  pathOptions: { color: '#D946EF', fillColor: '#D946EF', fillOpacity: 0.6 },
+                  pathOptions: { color: 'var(--accent-aqua)', fillColor: 'var(--accent-aqua)', fillOpacity: 0.6 },
                   radius: 8
                 } as any)}
               >

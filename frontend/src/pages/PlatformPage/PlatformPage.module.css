@@ -983,6 +983,55 @@
   margin-top: 8px;
 }
 
+/* ─── Leaflet Path Custom Animation Styles ─── */
+@keyframes flowLine {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.connectingLine {
+  stroke-dasharray: 6, 8;
+  animation: flowLine 1.5s linear infinite;
+  stroke: var(--accent-aqua);
+}
+
+@keyframes pulseMarker {
+  0% {
+    r: 4;
+    fill-opacity: 0.6;
+  }
+  100% {
+    r: 6.5;
+    fill-opacity: 1;
+  }
+}
+
+.cityMarker {
+  transform-origin: center;
+  animation: pulseMarker 1.5s infinite alternate ease-in-out;
+  stroke: var(--accent-mint);
+  fill: var(--accent-mint);
+}
+
+@keyframes pulseHQ {
+  0% {
+    r: 7;
+    fill-opacity: 0.8;
+  }
+  100% {
+    r: 10.5;
+    fill-opacity: 1;
+  }
+}
+
+.hqMarker {
+  transform-origin: center;
+  animation: pulseHQ 1.2s infinite alternate ease-in-out;
+  stroke: var(--accent-aqua);
+  fill: var(--accent-aqua);
+}
+
 @media (max-width: 1023px) {
   .heroTitleText { font-size: clamp(2.5rem, 5vw, 3.5rem); }
   .platformCoreSection, .globalReachSection { padding: 80px 48px; }

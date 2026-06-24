@@ -86,13 +86,18 @@ export default function LogisticsSupplyChain({ pageData }) {
             {...({
               center: [30, -30],
               zoom: 2,
-              style: { height: '100%', width: '100%', background: '#0a0f1e' },
+              minZoom: 2,
+              maxBounds: [[-85, -180], [85, 180]],
+              maxBoundsViscosity: 1.0,
+              dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
+              touchZoom: true,
+              style: { height: '100%', width: '100%', background: 'transparent' },
               scrollWheelZoom: false
             } as any)}
           >
             <TileLayer
               {...({
-                url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
               } as any)}
             />
@@ -105,7 +110,7 @@ export default function LogisticsSupplyChain({ pageData }) {
             {/* Routes */}
             <Polyline {...({ positions: [NY, LDN], color: "#3fb950", weight: 3, dashArray: "5, 10" } as any)} />
             <Polyline {...({ positions: [LA, TYO], color: "#00FFFF", weight: 3, dashArray: "5, 10" } as any)} />
-            <Polyline {...({ positions: [NY, LA], color: "#D946EF", weight: 3, dashArray: "5, 10" } as any)} />
+            <Polyline {...({ positions: [NY, LA], color: "var(--accent-mint)", weight: 3, dashArray: "5, 10" } as any)} />
           </MapContainer>
         </div>
       </section>

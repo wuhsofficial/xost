@@ -18,7 +18,7 @@ export default function EcommerceRetail({ pageData }) {
 
   const areaOptions = {
     chart: { type: 'area', background: 'transparent', toolbar: { show: false } },
-    colors: ['#D946EF'],
+    colors: ['#00D4FF'],
     dataLabels: { enabled: false },
     stroke: { curve: 'smooth', width: 3 },
     xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4 (Holiday)', 'Q1', 'Q2', 'Q3'], labels: { style: { colors: '#64748b' } } },
@@ -31,7 +31,7 @@ export default function EcommerceRetail({ pageData }) {
   const donutOptions = {
     chart: { type: 'donut', background: 'transparent' },
     labels: ['Web (Desktop)', 'Mobile App', 'Social Commerce', 'Marketplaces'],
-    colors: ['#D946EF', '#00FFFF', '#ff7b72', '#43E97B'],
+    colors: ['#00D4FF', '#00FFB3', '#FFB800', '#43E97B'],
     stroke: { show: false },
     theme: { mode: 'light' }
   };
@@ -42,13 +42,13 @@ export default function EcommerceRetail({ pageData }) {
       <div className={styles.heroHeader}>
         <div className={styles.lottieHero}>
           {/* <Lottie animationData={lottieData} loop={true} style={{ height: 200 }} /> */}
-          <ShoppingCart size={80} color="#D946EF" style={{ marginBottom: '1rem' }} />
+          <ShoppingCart size={80} color="var(--accent-aqua)" style={{ marginBottom: '1rem' }} />
         </div>
         <h2 className={styles.heroHeadline}>Scalable shopping experiences</h2>
         <p className={styles.heroSubhead}>From headless storefronts to AI-driven multi-vendor marketplaces.</p>
       </div>
 
-      <div className={styles.highlightStrip} style={{ background: 'rgba(217, 70, 239, 0.1)', borderColor: 'rgba(217, 70, 239, 0.3)', margin: '0 auto 2rem', maxWidth: '800px', display: 'flex', justifyContent: 'space-around', gap: '1rem', flexWrap: 'wrap' }}>
+      <div className={styles.highlightStrip} style={{ background: 'rgba(0, 212, 255, 0.1)', borderColor: 'rgba(0, 212, 255, 0.3)', margin: '0 auto 2rem', maxWidth: '800px', display: 'flex', justifyContent: 'space-around', gap: '1rem', flexWrap: 'wrap' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
           <Gauge size={20} color="var(--accent-aqua)" /> 
           <span style={{ background: 'linear-gradient(90deg, var(--text-primary), var(--accent-aqua))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Page load &lt; 1.2s</span>
@@ -85,17 +85,17 @@ export default function EcommerceRetail({ pageData }) {
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Conversion Funnel Flow</h3>
         <div className={styles.flowContainer}>
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><Eye size={16}/> Visitor</div>
-          <div className={styles.flowLine} style={{ background: '#D946EF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><ShoppingCart size={16}/> View</div>
-          <div className={styles.flowLine} style={{ background: '#D946EF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><PlusSquare size={16}/> Cart</div>
-          <div className={styles.flowLine} style={{ background: '#D946EF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><CreditCard size={16}/> Checkout</div>
-          <div className={styles.flowLine} style={{ background: '#D946EF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><CheckCircle size={16}/> Purchase</div>
-          <div className={styles.flowLine} style={{ background: '#D946EF' }} />
-          <div className={styles.flowNode} style={{ borderColor: '#D946EF', color: '#D946EF' }}><RefreshCcw size={16}/> Retain</div>
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><Eye size={16}/> Visitor</div>
+          <div className={styles.flowLine} style={{ background: 'var(--accent-aqua)' }} />
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><ShoppingCart size={16}/> View</div>
+          <div className={styles.flowLine} style={{ background: 'var(--accent-aqua)' }} />
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><PlusSquare size={16}/> Cart</div>
+          <div className={styles.flowLine} style={{ background: 'var(--accent-aqua)' }} />
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><CreditCard size={16}/> Checkout</div>
+          <div className={styles.flowLine} style={{ background: 'var(--accent-aqua)' }} />
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><CheckCircle size={16}/> Purchase</div>
+          <div className={styles.flowLine} style={{ background: 'var(--accent-aqua)' }} />
+          <div className={styles.flowNode} style={{ borderColor: 'var(--accent-aqua)', color: 'var(--accent-aqua)', background: 'rgba(0, 212, 255, 0.05)' }}><RefreshCcw size={16}/> Retain</div>
         </div>
       </section>
 
@@ -114,7 +114,7 @@ export default function EcommerceRetail({ pageData }) {
         <h3 className={styles.sectionTitle}>E-Commerce Tech Stack</h3>
         <div className={styles.techStackGrid}>
           {['Shopify Plus', 'WooCommerce', 'Magento 2', 'Custom React/Next.js', 'Stripe API', 'Razorpay', 'Algolia Search', 'Contentful CMS'].map(badge => (
-            <div key={badge} className={styles.techBadge} style={{ fontSize: '1.1rem', padding: '0.8rem 1.5rem', borderColor: '#D946EF', fontWeight: 'bold' }}>
+            <div key={badge} className={styles.techBadge} style={{ fontSize: '1.1rem', padding: '0.8rem 1.5rem', borderColor: 'var(--accent-aqua)', fontWeight: 'bold' }}>
               <span style={{ background: 'linear-gradient(90deg, var(--text-primary), var(--accent-aqua))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{badge}</span>
             </div>
           ))}
@@ -125,17 +125,17 @@ export default function EcommerceRetail({ pageData }) {
         <h3 className={styles.sectionTitle}>Core Solutions</h3>
         <div className={styles.bentoGridLarge}>
           <div className={styles.bentoCard}>
-            <LayoutTemplate className={styles.bentoIcon} style={{ color: '#D946EF' }} />
+            <LayoutTemplate className={styles.bentoIcon} />
             <h4>Headless Commerce</h4>
             <p>Decoupled frontends for blazing fast load times and omnichannel delivery.</p>
           </div>
           <div className={styles.bentoCard}>
-            <Zap className={styles.bentoIcon} style={{ color: '#D946EF' }} />
+            <Zap className={styles.bentoIcon} />
             <h4>AI Recommendations</h4>
             <p>Personalized product feeds driving higher AOV (Average Order Value).</p>
           </div>
           <div className={styles.bentoCard}>
-            <Package className={styles.bentoIcon} style={{ color: '#D946EF' }} />
+            <Package className={styles.bentoIcon} />
             <h4>Multi-vendor Marketplaces</h4>
             <p>Complex vendor routing, split payments, and inventory sync systems.</p>
           </div>
