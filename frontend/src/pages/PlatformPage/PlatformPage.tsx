@@ -211,6 +211,33 @@ function ScrollRevealWrapper({ children, delay = 0, className }: ScrollRevealWra
 /* ─── PlatformPage ─────────────────────────────────────────────────────── */
 export default function PlatformPage() {
   const heroRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Set custom properties for spotlight positioning
+    cardRef.current.style.setProperty('--mouse-x', `${x}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}px`);
+
+    // Subtle 3D tilt tracking (sensitivity divisor: 35)
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = -(y - centerY) / 35;
+    const rotateY = (x - centerX) / 35;
+
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    // Smoothly restore horizontal/flat scale
+    cardRef.current.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  };
+
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(!!(window as any).xostVideoLoaded);
   useEffect(() => {
@@ -293,7 +320,7 @@ export default function PlatformPage() {
 
 
 
-        <div className={styles.heroContent}>
+        <div ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={styles.heroContent}>
           <TextMaskReveal tag="h1" className={styles.heroTitleText}>
             We build the infrastructure of tomorrow
           </TextMaskReveal>
