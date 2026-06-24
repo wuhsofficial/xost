@@ -1,10 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Chart from 'react-apexcharts';
-import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Cloud, Server, Shield, Zap, TrendingDown, ArrowRight } from 'lucide-react';
 import styles from './ServicesPages.module.css';
+
+function MapGestureHandler() {
+  const map = useMap();
+  React.useEffect(() => {
+    if (!map) return;
+    map.dragging.enable();
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        map.dragging.disable();
+      } else {
+        map.dragging.enable();
+      }
+    };
+    const container = map.getContainer();
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [map]);
+  return null;
+}
 
 export default function CloudArchitecture({ pageData }) {
   const areaOptions = {
@@ -102,12 +123,11 @@ export default function CloudArchitecture({ pageData }) {
               minZoom: 2,
               maxBounds: [[-85, -180], [85, 180]],
               maxBoundsViscosity: 1.0,
-              dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
-              touchZoom: true,
               style: { height: 400, width: '100%', zIndex: 1 },
               scrollWheelZoom: false
             } as any)}
           >
+            <MapGestureHandler />
             <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
             {mapLocations.map((loc, idx) => (
               <CircleMarker

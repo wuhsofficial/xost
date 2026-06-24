@@ -14,7 +14,7 @@ import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 import TypewriterText from '../../components/TypewriterText/TypewriterText';
 import MagneticButton from '../../components/MagneticButton/MagneticButton';
 import TextMaskReveal from '../../components/TextMaskReveal/TextMaskReveal';
-import { MapContainer, TileLayer, CircleMarker, Polyline, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Polyline, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import SEO from '../../components/SEO/SEO';
 import TechGalaxy from '../../components/TechGalaxy/TechGalaxy';
@@ -162,6 +162,27 @@ function GlobalAnimatedCounter({ endValue, suffix = '', label }: GlobalAnimatedC
       <span className={styles.globalStatLabel}>{label}</span>
     </div>
   );
+}
+
+function MapGestureHandler() {
+  const map = useMap();
+  useEffect(() => {
+    if (!map) return;
+    map.dragging.enable();
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        map.dragging.disable();
+      } else {
+        map.dragging.enable();
+      }
+    };
+    const container = map.getContainer();
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [map]);
+  return null;
 }
 
 interface ScrollRevealWrapperProps {
@@ -529,12 +550,11 @@ export default function PlatformPage() {
                 maxBounds: [[-85, -180], [85, 180]],
                 maxBoundsViscosity: 1.0,
                 scrollWheelZoom: false,
-                dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
-                touchZoom: true,
                 style: { width: '100%', height: '500px', borderRadius: 'var(--radius-xl)', zIndex: 1 },
                 attributionControl: false
               } as any)}
             >
+              <MapGestureHandler />
               <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               />

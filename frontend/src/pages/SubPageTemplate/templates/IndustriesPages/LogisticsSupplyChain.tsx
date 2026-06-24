@@ -1,11 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Chart from 'react-apexcharts';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Lottie from 'lottie-react';
 import { Globe, Truck, Package, Factory, MapPin, CheckCircle, Navigation, Box, Zap } from 'lucide-react';
 import styles from './IndustriesPages.module.css';
+
+function MapGestureHandler() {
+  const map = useMap();
+  React.useEffect(() => {
+    if (!map) return;
+    map.dragging.enable();
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        map.dragging.disable();
+      } else {
+        map.dragging.enable();
+      }
+    };
+    const container = map.getContainer();
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [map]);
+  return null;
+}
 
 export default function LogisticsSupplyChain({ pageData }) {
   const [lottieData, setLottieData] = useState(null);
@@ -89,12 +110,11 @@ export default function LogisticsSupplyChain({ pageData }) {
               minZoom: 2,
               maxBounds: [[-85, -180], [85, 180]],
               maxBoundsViscosity: 1.0,
-              dragging: typeof window !== 'undefined' && !('ontouchstart' in window || navigator.maxTouchPoints > 0),
-              touchZoom: true,
               style: { height: '100%', width: '100%', background: 'transparent' },
               scrollWheelZoom: false
             } as any)}
           >
+            <MapGestureHandler />
             <TileLayer
               {...({
                 url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
