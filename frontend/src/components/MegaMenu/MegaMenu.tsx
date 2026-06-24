@@ -5,12 +5,21 @@ import { createPortal } from 'react-dom';
 import { megaMenuData } from '../../data/megaMenuData';
 import styles from './MegaMenu.module.css';
 
-export default function MegaMenu({ activeMenu, alignment = 'left', onMouseLeave }) {
+export default function MegaMenu({ 
+  activeMenu, 
+  leftPosition, 
+  onMouseLeave 
+}: { 
+  activeMenu: string; 
+  leftPosition: number; 
+  onMouseLeave: () => void; 
+}) {
   const content = megaMenuData[activeMenu];
 
-  let positionStyle: any = { left: 0 };
-  if (alignment === 'right') positionStyle = { left: 'auto', right: 0 };
-  if (alignment === 'center') positionStyle = { left: '50%', transform: 'translateX(-50%)' };
+  const positionStyle = {
+    left: leftPosition,
+    top: '100%'
+  };
 
   return (
     <AnimatePresence>

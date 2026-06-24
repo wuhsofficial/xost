@@ -26,6 +26,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
   const [glassOpacity, setGlassOpacity] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [menuLeft, setMenuLeft] = useState<number>(0);
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState(null);
 
   /* Navbar ref + measured height so the mega menu can sit flush below it */
@@ -73,12 +74,28 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
     setMobileExpandedMenu(prev => prev === label ? null : label);
   };
 
-  const handleMouseEnter = (label) => {
+  const handleMouseEnter = (label: string, event?: React.MouseEvent) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     if (megaMenuData[label]) {
       setActiveMenu(label);
+      if (event) {
+        const target = event.currentTarget as HTMLElement;
+        const rect = target.getBoundingClientRect();
+        
+        // Bounding width of the mega menu is ~855px
+        const menuWidth = 855;
+        const screenWidth = window.innerWidth;
+        
+        // Calculate the centered left position
+        const targetLeft = rect.left + rect.width / 2 - menuWidth / 2;
+        
+        // Clamp the position to keep it on screen
+        // Allow a margin of 16px from the screen edges
+        const clampedLeft = Math.max(16, Math.min(targetLeft, screenWidth - menuWidth - 16));
+        setMenuLeft(clampedLeft);
+      }
     } else {
       setActiveMenu(null);
     }
@@ -130,15 +147,10 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
           {/* Desktop links */}
           <ul ref={linksRef} className={styles.desktopLinks}>
             {NAV_LINKS.map((link) => {
-              // Determine alignment based on tab position
-              let alignment = 'left';
-              if (['Insights', 'Industries', 'About'].includes(link.label)) alignment = 'center';
-
               return (
                 <li
                   key={link.path}
-                  onMouseEnter={() => handleMouseEnter(link.label)}
-                  style={{ position: 'relative' }}
+                  onMouseEnter={(e) => handleMouseEnter(link.label, e)}
                 >
                   <Link
                     to={link.path}
@@ -154,10 +166,6 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
                     )}
                     <span className={styles.underline} />
                   </Link>
-                  {/* Render MegaMenu exactly under the active tab */}
-                  {activeMenu === link.label && megaMenuData[link.label] && (
-                    <MegaMenu activeMenu={activeMenu} alignment={alignment} onMouseLeave={handleMouseLeaveNav} />
-                  )}
                 </li>
               );
             })}
@@ -182,25 +190,17 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
               className={styles.ctaButtonGhost}
               onClick={() => { navigate('/contact'); setMobileOpen(false); }}
               type="button"
-              onMouseEnter={() => handleMouseEnter('Contact Us')}
-              style={{ position: 'relative' }}
+              onMouseEnter={(e) => handleMouseEnter('Contact Us', e)}
             >
               Contact Us
-              {activeMenu === 'Contact Us' && megaMenuData['Contact Us'] && (
-                <MegaMenu activeMenu={activeMenu} alignment="right" onMouseLeave={handleMouseLeaveNav} />
-              )}
             </button>
             <button
               className={styles.ctaButton}
               onClick={handleCTA}
               type="button"
-              onMouseEnter={() => handleMouseEnter('Careers')}
-              style={{ position: 'relative' }}
+              onMouseEnter={(e) => handleMouseEnter('Careers', e)}
             >
               Careers
-              {activeMenu === 'Careers' && megaMenuData['Careers'] && (
-                <MegaMenu activeMenu={activeMenu} alignment="right" onMouseLeave={handleMouseLeaveNav} />
-              )}
             </button>
           </div>
 
@@ -224,6 +224,15 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
             </button>
           </div>
         </div>
+
+        {/* Global Mega Menu rendered at Navbar level to prevent viewport overflows */}
+        {activeMenu && megaMenuData[activeMenu] && (
+          <MegaMenu 
+            activeMenu={activeMenu} 
+            leftPosition={menuLeft} 
+            onMouseLeave={handleMouseLeaveNav} 
+          />
+        )}
       </nav>
 
       {/* Mobile bottom-sheet overlay */}

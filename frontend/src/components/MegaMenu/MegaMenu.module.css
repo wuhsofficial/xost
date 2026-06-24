@@ -10,7 +10,7 @@
 
 .megaMenuContainer {
   width: max-content;
-  max-width: 800px;
+  max-width: 90vw;
   background: var(--bg-primary); /* Solid background instead of transparent */
   border: 1px solid var(--card-border);
   border-radius: var(--radius-xl);

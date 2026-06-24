@@ -191,6 +191,7 @@ export default function PlatformPage() {
             clearTimeout(fallbackTimer);
           };
 
+          player.on('loaded', handleReady);
           player.on('play', handleReady);
           player.on('playing', handleReady);
         } catch (e) {
@@ -220,7 +221,7 @@ export default function PlatformPage() {
           <iframe
             ref={iframeRef}
             className={`${styles.video} ${videoLoaded ? styles.videoLoaded : ''}`}
-            src="https://player.vimeo.com/video/1203176983?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            src="https://player.vimeo.com/video/1204087817?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
             title="XOST background reel"
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -245,7 +246,7 @@ export default function PlatformPage() {
             transition={{ duration: 0.3, delay: 0.8, ease: 'easeOut' }}
           >
             <TypewriterText
-              text="Strategy. Execution. Scale. — Delivered by experts who live technology."
+              text="Strategy. Execution. Scale. Delivered by experts who live technology."
               startDelay={1200}
               speed={40}
             />
