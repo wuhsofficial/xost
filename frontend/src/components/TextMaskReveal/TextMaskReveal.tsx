@@ -27,7 +27,7 @@ export default function TextMaskReveal({
   return (
     <div
       ref={ref}
-      className={`${styles.wrapper} ${isVisible ? styles.visible : ''} ${className}`}
+      className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
     >
       <Tag
         className={`${styles.content} ${className}`}
