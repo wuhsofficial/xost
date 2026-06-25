@@ -275,6 +275,7 @@
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -608,6 +609,7 @@
     font-size: 14px;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -615,6 +617,7 @@
   .massiveExcerpt {
     font-size: 12px;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
 
   .newsletterSection {
@@ -642,6 +645,7 @@
     margin-bottom: 8px;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
