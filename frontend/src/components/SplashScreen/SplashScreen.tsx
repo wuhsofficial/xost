@@ -18,6 +18,7 @@ const MAX_DISPLAY = 10000;
  */
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [fadeOut, setFadeOut] = useState(false);
+  const [videoFinished, setVideoFinished] = useState(false);
 
   const finish = useCallback(() => {
     setFadeOut(true);
@@ -53,7 +54,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
 
       if (elapsed >= MAX_DISPLAY) {
         complete();
-      } else if (docReady && fontsReady && videoReady && elapsed >= MIN_DISPLAY) {
+      } else if (docReady && fontsReady && videoReady && videoFinished) {
         complete();
       }
     }, 100);
@@ -71,6 +72,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           autoPlay
           muted
           playsInline
+          onEnded={() => setVideoFinished(true)}
         />
       </div>
     </div>
