@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--bg-primary);
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,29 +25,21 @@
   justify-content: center;
 }
 
-/* ─── Animated Logo Image ──────────────────────────────────────────────────── */
-.splashImage {
-  width: 35vw;
-  max-width: 380px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0;
-  transform: scale(0.9);
-  animation: logoIntro 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  filter: drop-shadow(0 0 35px rgba(0, 212, 255, 0.35));
+/* ─── Animated Logo Video ──────────────────────────────────────────────────── */
+.splashVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain; /* Prevents cropping on mobile */
+  pointer-events: none;
+  /* MP4 compression often makes white backgrounds slightly grey. 
+     This boosts it back to pure #ffffff to blend seamlessly with the overlay! */
+  filter: brightness(1.05) contrast(1.05);
 }
 
-@keyframes logoIntro {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* ─── Mobile adjustments ───────────────────────────────────────────────────── */
-@media (max-width: 767px) {
-  .splashImage {
-    width: 60vw;
-    max-width: 220px;
+@media (max-width: 768px) {
+  .splashVideo {
+    /* Scale up slightly on mobile so it's not too small, 
+       but small enough to prevent cutting off the text */
+    transform: scale(1.4);
   }
 }

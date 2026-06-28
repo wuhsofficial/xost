@@ -6,9 +6,9 @@ interface SplashScreenProps {
 }
 
 /* Minimum time the splash stays up so the logo intro animation can play. */
-const MIN_DISPLAY = 1500;
+const MIN_DISPLAY = 6500;
 /* Hard cap so a slow asset can never trap the user on the splash. */
-const MAX_DISPLAY = 8000;
+const MAX_DISPLAY = 10000;
 
 /**
  * SplashScreen — holds the brand "X" loader on a clean light backdrop until the
@@ -64,11 +64,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <div className={`${styles.overlay} ${fadeOut ? styles.fadeOut : ''}`}>
       <div className={styles.content}>
-        {/* ── Brand "X" mark (transparent) with glow + intro animation ──── */}
-        <img
-          src="/x-logo.webp"
-          alt="XOST"
-          className={styles.splashImage}
+        {/* ── Brand "X" animated logo reveal (MP4) ──── */}
+        <video
+          src="/xost-logo-reveal.mp4"
+          className={styles.splashVideo}
+          autoPlay
+          muted
+          playsInline
         />
       </div>
     </div>
