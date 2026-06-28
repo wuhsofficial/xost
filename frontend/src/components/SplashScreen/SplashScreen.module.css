@@ -32,6 +32,9 @@
   object-fit: contain; /* Prevents cropping on mobile */
   pointer-events: none;
   background-color: #ffffff !important;
+  /* MP4 compression often makes white backgrounds slightly grey. 
+     This boosts it back to pure #ffffff to blend seamlessly with the overlay! */
+  filter: brightness(1.05) contrast(1.05);
 }
 
 @media (max-width: 768px) {
