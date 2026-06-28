@@ -26,7 +26,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
   const [glassOpacity, setGlassOpacity] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-  const [menuLeft, setMenuLeft] = useState<number>(0);
+  const [activeRect, setActiveRect] = useState<DOMRect | null>(null);
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState(null);
 
   /* Navbar ref + measured height so the mega menu can sit flush below it */
@@ -82,19 +82,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
       setActiveMenu(label);
       if (event) {
         const target = event.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
-        
-        // Bounding width of the mega menu is ~855px
-        const menuWidth = 855;
-        const screenWidth = window.innerWidth;
-        
-        // Calculate the centered left position
-        const targetLeft = rect.left + rect.width / 2 - menuWidth / 2;
-        
-        // Clamp the position to keep it on screen
-        // Allow a margin of 16px from the screen edges
-        const clampedLeft = Math.max(16, Math.min(targetLeft, screenWidth - menuWidth - 16));
-        setMenuLeft(clampedLeft);
+        setActiveRect(target.getBoundingClientRect());
       }
     } else {
       setActiveMenu(null);
@@ -229,7 +217,7 @@ export default function Navbar({ onSearchOpen }: { onSearchOpen?: () => void }) 
         {activeMenu && megaMenuData[activeMenu] && (
           <MegaMenu 
             activeMenu={activeMenu} 
-            leftPosition={menuLeft} 
+            targetRect={activeRect} 
             onMouseLeave={handleMouseLeaveNav} 
           />
         )}

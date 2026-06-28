@@ -1,3 +1,4 @@
+import { useState, useLayoutEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,17 +8,35 @@ import styles from './MegaMenu.module.css';
 
 export default function MegaMenu({ 
   activeMenu, 
-  leftPosition, 
+  targetRect, 
   onMouseLeave 
 }: { 
   activeMenu: string; 
-  leftPosition: number; 
+  targetRect: DOMRect | null; 
   onMouseLeave: () => void; 
 }) {
   const content = megaMenuData[activeMenu];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [leftPosition, setLeftPosition] = useState(-9999); // hidden until calculated
+
+  useLayoutEffect(() => {
+    if (containerRef.current && targetRect) {
+      const width = containerRef.current.offsetWidth;
+      const screenWidth = window.innerWidth;
+      
+      // Center relative to the hovered nav item
+      let desiredLeft = targetRect.left + (targetRect.width / 2) - (width / 2);
+      
+      // Clamp to screen edges to prevent right-side cutting off
+      desiredLeft = Math.max(16, Math.min(desiredLeft, screenWidth - width - 16));
+      
+      setLeftPosition(desiredLeft);
+    }
+  }, [activeMenu, targetRect]);
 
   const positionStyle = {
-    left: leftPosition,
+    left: leftPosition === -9999 ? 0 : leftPosition,
+    opacity: leftPosition === -9999 ? 0 : 1, // hide until positioned
     top: '100%'
   };
 
@@ -37,6 +56,7 @@ export default function MegaMenu({
             )}
             <div className={styles.megaMenuPositioner} style={positionStyle}>
               <motion.div
+                ref={containerRef}
                 className={styles.megaMenuContainer}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
