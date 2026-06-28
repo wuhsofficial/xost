@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #ffffff;
+  background-color: #ffffff !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,34 +19,25 @@
 /* ─── Centered content wrapper ─────────────────────────────────────────────── */
 .content {
   position: relative;
-  width: 100%;
-  max-width: 100vw;
-  max-height: 100vh;
-  aspect-ratio: 16 / 9;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 /* ─── Animated Logo Video ──────────────────────────────────────────────────── */
 .splashVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain; /* Prevents cropping on mobile */
   pointer-events: none;
-  /* MP4 compression often makes white backgrounds slightly grey. 
-     This boosts it back to pure #ffffff to blend seamlessly with the overlay! */
-  filter: brightness(1.05) contrast(1.05);
-  
-  /* Perfectly fades the edges of the video into the white background */
-  -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
+  background-color: #ffffff !important;
 }
 
 @media (max-width: 768px) {
   .splashVideo {
-    /* Scale up significantly on mobile so the logo is prominent.
-       The mask scales with it, ensuring smooth blended edges! */
-    transform: scale(2.2);
+    /* Scale up slightly on mobile so it's not too small, 
+       but small enough to prevent cutting off the text */
+    transform: scale(1.4);
   }
 }
