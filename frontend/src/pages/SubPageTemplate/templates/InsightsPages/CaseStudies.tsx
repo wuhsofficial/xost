@@ -58,19 +58,42 @@ export default function CaseStudies({ pageData }) {
       </div>
 
       <section className={styles.section}>
-        <div className={styles.featuredCard} style={{ background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(217, 70, 239, 0.05))', border: '1px solid var(--accent-aqua)' }}>
-          <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center' }}>
-            <span className={styles.cardTag} style={{ background: 'var(--accent-aqua)', color: '#000' }}>Featured Transformation</span>
-            <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)', lineHeight: '1.2' }}>GlobalPay: Scaling to 10,000 TPS</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
-              How we broke down a 10-year-old monolith into high-performance microservices, reducing infrastructure costs by 60% and enabling 10x transaction throughput.
+        <div className={styles.featuredCard} style={{ background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(217, 70, 239, 0.05))', border: '1px solid var(--accent-aqua)', display: 'block' }}>
+          <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <span className={styles.cardTag} style={{ background: 'var(--accent-aqua)', color: '#000', alignSelf: 'flex-start' }}>Featured Project (XOST Portfolio)</span>
+            <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)', lineHeight: '1.2' }}>Dakhala — Pakistan's Unified University Admissions Platform</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.6' }}>
+              Dakhala is a student-first web platform built to simplify the university admissions journey for Pakistani students. Designed to eliminate the confusion of scattered resources, it brings every critical admissions tool under one roof — free, fast, and built specifically for the Pakistani higher education landscape.
             </p>
-            <a href="/case-studies/globalpay-inc.html" target="_blank" rel="noopener noreferrer" className={styles.filterBtnActive} style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem', textDecoration: 'none' }}>
-              Read Full Study <ArrowRight size={16} />
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '1rem' }}>
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--card-border)' }}>
+                <h4 style={{ color: '#ff7b72', marginBottom: '0.5rem', fontSize: '1.2rem' }}>The Problem</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                  Every year, hundreds of thousands of Pakistani students navigate a fragmented admissions process — consulting multiple websites for merit formulas, manually calculating aggregates with outdated weightages, tracking entry test schedules across disconnected sources, and guessing which universities they qualify for.
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--card-border)' }}>
+                <h4 style={{ color: '#3fb950', marginBottom: '0.5rem', fontSize: '1.2rem' }}>The Impact</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                  Dakhala removes the guesswork from one of the most consequential decisions in a young Pakistani's life. Developed under the XOST product portfolio as part of our commitment to building technology that creates real, measurable impact. Completely free and optimized for all devices.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ marginTop: '1rem' }}>
+              <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.2rem' }}>Core Platform Solutions:</h4>
+              <ul style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyle: 'none', padding: 0 }}>
+                <li><strong style={{ color: 'var(--accent-aqua)' }}>Aggregate Calculator:</strong> Instant, accurate merit calculation for 15+ universities including NUST, FAST-NUCES, and UET using official weightage formulas.</li>
+                <li><strong style={{ color: 'var(--accent-aqua)' }}>Merit Tracker:</strong> Monitor standing across programs giving real-time clarity on admission probability.</li>
+                <li><strong style={{ color: 'var(--accent-aqua)' }}>AI-Powered Recommendations:</strong> Intelligent, data-driven university and program recommendations tailored to student profiles.</li>
+                <li><strong style={{ color: 'var(--accent-aqua)' }}>Entry Test Calendar:</strong> A unified timeline of all major Pakistani entry tests ensuring students never miss a critical deadline.</li>
+              </ul>
+            </div>
+
+            <a href="https://www.dakhala.site/" target="_blank" rel="noopener noreferrer" className={styles.filterBtnActive} style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', textDecoration: 'none' }}>
+              View Live Project (dakhala.site) <ArrowRight size={16} />
             </a>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-            <Chart options={barOptions as any} series={barSeries} type="bar" height={350} width="100%" />
           </div>
         </div>
       </section>
